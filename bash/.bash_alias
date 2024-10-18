@@ -1,0 +1,9 @@
+# kubectl
+alias kcl='kubectl'
+
+# vpn
+alias vpnup="bash /home/rp152k/source/work/credentials/vpn/wrk_rsch.sh"
+alias vpndn="tmux kill-session -t wrk-rsch"
+
+#misc
+alias bshrc="source ~/.bashrc"
