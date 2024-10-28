@@ -59,3 +59,6 @@
 (package! org-roam-ui)
 
 (package! exec-path-from-shell)
+
+(package! nov
+  :recipe (:host github :repo "/wasamasa/nov.el"))
