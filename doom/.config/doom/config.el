@@ -41,7 +41,8 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the 
-(setq doom-theme 'modus-vivendi-tinted)
+;; (setq doom-theme 'modus-vivendi)
+(load-theme 'modus-vivendi)
 
 ;;(set-frame-parameter nil 'alpha-background 100)
 
@@ -250,6 +251,7 @@
                                         ; Custom Maps
 
 (map! :leader
+      "m h t" #'modus-themes-toggle
       "m p s" #'python-shell-send-statement
       "m p r" #'python-shell-send-region
       "m p r" #'run-python
