@@ -251,6 +251,7 @@
                                         ; Custom Maps
 
 (map! :leader
+      "m o i" #'doom/set-frame-opacity
       "m h t" #'modus-themes-toggle
       "m p s" #'python-shell-send-statement
       "m p r" #'python-shell-send-region
