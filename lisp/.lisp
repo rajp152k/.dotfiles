@@ -44,3 +44,22 @@
                    (rec rest (cons (subseq source 0 n) acc))
                    (nreverse (cons source acc))))))
     (if source (rec source nil))))
+
+(defun flatten (lst)
+  (labels ((flatten-iter (acc lst)
+             (cond ((null lst) acc)
+                   ((atom lst) (cons lst acc))
+                   (t (flatten-iter (flatten-iter acc (cdr lst)) (car lst))))))
+    (flatten-iter nil lst)))
+
+(defun prune (test tree)
+  (labels ((rec (tree acc)
+             (cond ((null tree) (nreverse acc))
+                   ((consp (car tree))
+                    (rec (cdr tree)
+                         (cons (rec (car tree) nil) acc)))
+                   (t (rec (cdr tree)
+                           (if (funcall test (car tree))
+                               acc
+                               (cons (car tree) acc)))))))
+    (rec tree nil)))
