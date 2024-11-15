@@ -119,7 +119,7 @@
 (defun mostn (fn lst)
   (if (null lst)
       (values nil nil)
-      (let ((result list (car lst))
+      (let ((result (list (car lst)))
             (max (funcall fn (car lst))))
         (dolist (obj (cdr lst))
           (let ((score (funcall fn obj)))
