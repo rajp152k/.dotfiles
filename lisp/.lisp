@@ -282,3 +282,9 @@
                           (if (cdr tree)
                               (self (cdr tree))))))))
     #'self))
+
+(defmacro mx (expr)
+  `(macroexpand-1 ',expr))
+
+(defmacro mxa (expr)
+  `(macroexpand ',expr))

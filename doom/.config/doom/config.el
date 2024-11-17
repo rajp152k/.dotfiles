@@ -276,6 +276,9 @@
 
 (map! :i "M-[" #'lispy-brackets [])
 
+                                        ; Kbd Macros
+(macro) I(mx A)Iea m
+
 
 
 ;; I've a knob for volume
