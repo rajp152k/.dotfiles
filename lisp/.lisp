@@ -1,4 +1,6 @@
-(proclaim '(inline last1 single append1 nconc1 mklist)) ;;; utilities
+(proclaim '(inline last1 single append1 nconc1 mklist))
+
+;;; utilities
 
 (defun last1 (lst)
   (car (last lst)))
