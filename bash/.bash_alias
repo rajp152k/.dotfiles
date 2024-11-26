@@ -7,3 +7,6 @@ alias vpndn="tmux kill-session -t wrk-rsch"
 
 #misc
 alias bshrc="source ~/.bashrc"
+
+#o1-engineer
+alias o1e="python ~/source/tools/o1-engineer/o1-eng.py"

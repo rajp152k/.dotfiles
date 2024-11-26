@@ -277,7 +277,6 @@
 (map! :i "M-[" #'lispy-brackets [])
 
                                         ; Kbd Macros
-(macro) I(mx A)Iea m
 
 
 
