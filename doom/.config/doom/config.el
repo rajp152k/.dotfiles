@@ -254,7 +254,7 @@
       "m o i" #'doom/set-frame-opacity
       "m h t" #'modus-themes-toggle
       "m p s" #'python-shell-send-statement
-      "m p r" #'python-shell-send-region
+      "m r" #'python-shell-send-region
       "m p r" #'run-python
       "m p f" #'python-shell-send-file
       "r s" #'restclient-http-send-current
