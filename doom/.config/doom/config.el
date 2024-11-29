@@ -255,7 +255,7 @@
       "m h t" #'modus-themes-toggle
       "m p s" #'python-shell-send-statement
       "m r" #'python-shell-send-region
-      "m p r" #'run-python
+      "m p r" #'+python/open-ipython-repl
       "m p f" #'python-shell-send-file
       "r s" #'restclient-http-send-current
       "w w" #'switch-window
