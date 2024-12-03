@@ -12,6 +12,9 @@
 (when (daemonp)
   (exec-path-from-shell-initialize))
 
+;; Recursion depth
+(setq max-lisp-eval-depth 10000)
+
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
 (setq user-full-name USER-FULL-NAME
