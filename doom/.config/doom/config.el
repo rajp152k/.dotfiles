@@ -208,7 +208,7 @@
   (setq conda-anaconda-home (expand-file-name  "~/miniforge3"))
   (conda-env-initialize-interactive-shells)
   (conda-env-initialize-eshell)
-  (conda-env-autoactivate-mode t)
+  (conda-env-autoactivate-mode -1)
   (add-hook 'find-file-hook (lambda () (when (bound-and-true-p conda-project-env-path)
                                     (conda-env-activate-for-buffer)))))
 
