@@ -10,3 +10,6 @@ alias bshrc="source ~/.bashrc"
 
 #o1-engineer
 alias o1e="python ~/source/tools/o1-engineer/o1-eng.py"
+
+# screenkey
+alias sk='screenkey -s small --mods-mode emacs --vis-shift --font-color "#00ff00" --opacity 0.5'
