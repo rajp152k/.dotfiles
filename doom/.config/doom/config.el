@@ -47,6 +47,7 @@
 (setq doom-theme 'doom-outrun-electric
       doom-outrun-electric-padded-modeline t
       doom-outrun-electric-brighter-modeline t)
+(doom/set-frame-opacity 0.9)
 ;; (load-theme 'modus-vivendi)
 
 ;;(set-frame-parameter nil 'alpha-background 100)
