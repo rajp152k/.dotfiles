@@ -106,6 +106,11 @@
          (diff (float-time (time-subtract today birth))))
     (insert (concat " " (format "0x%X" (/ diff 86400))))))
 
+(defun time-stamp ()
+  "insert current time stamp"
+  (interactive)
+  (insert (format "%s" (format-time-string "%Y-%m-%d %H:%M:%S %Z" (current-time)))))
+
 (defun hex-ops ()
   "hexify decimal number at point, invoke life hex at count if nil"
   (interactive)
@@ -265,7 +270,8 @@
       "m p f" #'python-shell-send-file
       "r s" #'restclient-http-send-current
       "w w" #'switch-window
-      "l"  #'life-hex-count
+      "l h"  #'life-hex-count
+      "l t" #'time-stamp
       "o g" #'gtd-workspace
       "s w" #'eww
       "t t" #'tldr
