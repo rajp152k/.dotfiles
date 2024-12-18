@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: if ok {...}
+# key: ifok
+# --
+if ok {
+    `%`$0
+}
