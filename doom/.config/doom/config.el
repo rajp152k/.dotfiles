@@ -163,11 +163,11 @@
                                         ;gptel
 (use-package! gptel
   :config
-   (gptel-make-gemini "Gemini" :key GEMINI-API-KEY :stream t)
-   (setq
-    gptel-model GPTEL-MODEL
-    gptel-default-mode 'org-mode
-    gptel--system-message GPTEL-BASE-PROMPT))
+  (setq
+   gptel-api-key OPENAI-API-KEY
+   gptel-model GPTEL-MODEL
+   gptel-default-mode 'org-mode
+   gptel--system-message GPTEL-BASE-PROMPT))
 
 
                                         ;citar

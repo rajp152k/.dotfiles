@@ -7,6 +7,9 @@ export PATH=$PATH:/snap/bin
 #krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
+#kind
+export KIND_EXPERIMENTAL_PROVIDER=docker
+
 # golang
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/go/bin
