@@ -1,3 +1,6 @@
+# emacs
+alias edit="emacsclient -c -a 'emacs'"
+
 # kubectl
 alias kcl='kubectl'
 

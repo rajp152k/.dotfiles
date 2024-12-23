@@ -1,9 +1,6 @@
 ;;; Loading Secrets
-(load-file "./secrets.el")
+(load-file "/home/rp152k/.config/doom/secrets.el")
 
-;;;
-;;;
-;;;
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
