@@ -3,8 +3,10 @@ alias sudo='sudo '
 
 
 # mcp-cli
-alias mcpi='cd ~/source/tools/mcp-cli; uv run mcp-cli --config-file ~/.mcp/server_config.json --server'
-alias mcpl="jq '.mcpServers | to_entries | map({(.key): .value.description})' -C ~/.mcp/server_config.json | less -R"
+alias mcpip='cd ~/source/tools/mcp-cli; uv run mcp-cli --config-file ~/.mcp/server_config.json --server'
+alias mcpis='cd ~/source/tools/mcp-cli; uv run mcp-cli --config-file ~/.mcp/private_server_config.json --server'
+alias mcplp="jq '.mcpServers | to_entries | map({(.key): .value.description})' -C ~/.mcp/server_config.json | less -R"
+alias mcpls="jq '.mcpServers | to_entries | map({(.key): .value.description})' -C ~/.mcp/private_server_config.json | less -R"
 
 # emacs
 alias edit="emacsclient -c -a 'emacs'"
