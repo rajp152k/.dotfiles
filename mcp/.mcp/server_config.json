@@ -1,0 +1,44 @@
+{
+	"mcpServers": {
+		"fs" : {
+			"description": "filesystem over my source directory",
+			"command": "npx",
+			"args": [
+				"-y",
+				"@modelcontextprotocol/server-filesystem",
+				"/home/rp152k/source"
+			]
+		},
+		"k8s" : {
+			"description": "interact with current kubectl context",
+			"command": "npx",
+			"args": ["mcp-server-kubernetes"]
+		},
+		"conv" : {
+			"description": "file conversion via pandoc",
+			"command": "uvx",
+			"args": ["mcp-pandoc"]
+		},
+		"ytts": {
+			"description":"youtube transcript",
+			"command": "npx",
+			"args": ["-y", "@kimtaeyoon83/mcp-server-youtube-transcript"]
+		},
+		"ytdlp": {
+			"description":"youtube subtitles via yt-dlp",
+			"command": "npx",
+			"args": ["@anaisbetts/mcp-youtube"]
+		},
+		"web": {
+			"description":"fetch a URl and extract as markdown",
+			"command":"uvx",
+			"args": ["mcp-server-fetch"]
+		},
+		"go": {
+			"description": "llm enabled go docs",
+			"command": "godoc-mcp",
+			"args": ["-all"]
+		}
+
+	}
+}
