@@ -1,9 +1,6 @@
 # sudo with aliases
 alias sudo='sudo '
 
-# golang
-alias go="go1.22.10"
-
 # mcp-cli
 alias mcpip='cd ~/source/tools/mcp-cli; uv run mcp-cli --config-file ~/.mcp/server_config.json --server'
 alias mcpis='cd ~/source/tools/mcp-cli; uv run mcp-cli --config-file ~/.mcp/private_server_config.json --server'
