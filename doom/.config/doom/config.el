@@ -274,6 +274,7 @@
       "t t" #'tldr
       "e h" #'easy-hugo
       "e x" #'eros-eval-defun
+      "e e" #'execute-extended-command
       "n i l" #'org-insert-link
       "i g h" #'gptel
       "i g s" #'gptel-send
