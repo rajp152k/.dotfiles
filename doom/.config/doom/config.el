@@ -218,7 +218,9 @@
                                          (conda-env-activate-for-buffer)))))
 
 
-
+                                        ; Compile and Shell
+(setq shell-file-name "bash"
+      shell-command-switch "-ic")
 
                                         ;Lisp
 (load "~/quicklisp/clhs-use-local.el" 'noerror)
