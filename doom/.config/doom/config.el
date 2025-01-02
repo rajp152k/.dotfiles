@@ -215,13 +215,14 @@
   (conda-env-initialize-eshell)
   (conda-env-autoactivate-mode -1)
   (add-hook 'find-file-hook (lambda () (when (bound-and-true-p conda-project-env-path)
-                                    (conda-env-activate-for-buffer)))))
+                                         (conda-env-activate-for-buffer)))))
 
 
 
 
                                         ;Lisp
 (load "~/quicklisp/clhs-use-local.el" 'noerror)
+(map! :i "M-[" #'lispy-brackets [])
 
                                         ; Dap maps
 (map! :map dap-mode-map
@@ -257,10 +258,9 @@
 
 
                                         ; Custom Maps
-
+;; leader maps
 (map! :leader
       "m o i" #'doom/set-frame-opacity
-      ;; "m h t" #'modus-themes-toggle
       "m p s" #'python-shell-send-statement
       "m r" #'python-shell-send-region
       "m p r" #'+python/open-ipython-repl
@@ -274,7 +274,6 @@
       "t t" #'tldr
       "e h" #'easy-hugo
       "e x" #'eros-eval-defun
-      "e e" #'execute-extended-command
       "n i l" #'org-insert-link
       "i g h" #'gptel
       "i g s" #'gptel-send
@@ -283,17 +282,3 @@
       "c o" #'citar-open
       "c d" #'citar-dwim
       "s /" #'+vertico/project-search-from-cwd)
-
-(map! :i "M-[" #'lispy-brackets [])
-
-                                        ; Kbd Macros
-
-
-
-;; I've a knob for volume
-;; this is a convenient use case
-(map! "<AudioLowerVolume>" #'pdf-view-next-line-or-next-page
-      "<AudioRaiseVolume>" #'pdf-view-previous-line-or-previous-page)
-
-                                        ; Misc Maps
-(map! "M-c" #'capitalize-dwim)
