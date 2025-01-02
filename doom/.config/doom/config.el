@@ -274,6 +274,8 @@
       "t t" #'tldr
       "e h" #'easy-hugo
       "e x" #'eros-eval-defun
+      "e w" #'eww-switch-to-buffer
+      "e u" #'eww-open-in-new-buffer
       "n i l" #'org-insert-link
       "i g h" #'gptel
       "i g s" #'gptel-send
