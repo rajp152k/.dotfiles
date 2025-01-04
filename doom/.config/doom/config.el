@@ -278,6 +278,7 @@
       "e x" #'eros-eval-defun
       "e w" #'eww-switch-to-buffer
       "e u" #'eww-open-in-new-buffer
+      "e c" #'eww-copy-page-url
       "n i l" #'org-insert-link
       "i g h" #'gptel
       "i g s" #'gptel-send
