@@ -14,16 +14,6 @@
 			"command": "npx",
 			"args": ["mcp-server-kubernetes"]
 		},
-		"conv" : {
-			"description": "file conversion via pandoc",
-			"command": "uvx",
-			"args": ["mcp-pandoc"]
-		},
-		"ytts": {
-			"description":"youtube transcript",
-			"command": "npx",
-			"args": ["-y", "@kimtaeyoon83/mcp-server-youtube-transcript"]
-		},
 		"ytdlp": {
 			"description":"youtube subtitles via yt-dlp",
 			"command": "npx",
@@ -39,6 +29,5 @@
 			"command": "godoc-mcp",
 			"args": ["-all"]
 		}
-
 	}
 }
