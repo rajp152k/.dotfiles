@@ -41,11 +41,11 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the 
-(setq doom-theme 'doom-outrun-electric
-      doom-outrun-electric-padded-modeline t
-      doom-outrun-electric-brighter-modeline t)
+;; (setq doom-theme 'doom-outrun-electric
+;;       doom-outrun-electric-padded-modeline t
+;;       doom-outrun-electric-brighter-modeline t)
 (doom/set-frame-opacity 0.9)
-;; (load-theme 'modus-vivendi)
+(load-theme 'modus-vivendi-tinted)
 
 ;;(set-frame-parameter nil 'alpha-background 100)
 
@@ -267,6 +267,7 @@
       "m r" #'python-shell-send-region
       "m p r" #'+python/open-ipython-repl
       "m p f" #'python-shell-send-file
+      "m h t" #'modus-themes-toggle
       "r s" #'restclient-http-send-current
       "w w" #'switch-window
       "l h"  #'life-hex-count
