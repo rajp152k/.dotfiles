@@ -1,6 +1,9 @@
 # sudo with aliases
 alias sudo='sudo '
 
+# mcp-inspect
+alias mins='npx @modelcontextprotocol/inspector'
+
 # mcp-cli
 alias mcpi='cd ~/source/vcops/os-contribs/chrishayuk/mcp-cli; uv run mcp-cli --config-file ~/.mcp/server_config.json --all'
 alias mcpip='cd ~/source/tools/mcp-cli; uv run mcp-cli --config-file ~/.mcp/server_config.json --server'
