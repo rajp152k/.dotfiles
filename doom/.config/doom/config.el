@@ -44,7 +44,7 @@
 ;; (setq doom-theme 'doom-outrun-electric
 ;;       doom-outrun-electric-padded-modeline t
 ;;       doom-outrun-electric-brighter-modeline t)
-(doom/set-frame-opacity 0.9)
+(doom/set-frame-opacity 0.8)
 (load-theme 'modus-vivendi-tinted)
 
 ;;(set-frame-parameter nil 'alpha-background 100)
@@ -217,6 +217,13 @@
   (add-hook 'find-file-hook (lambda () (when (bound-and-true-p conda-project-env-path)
                                          (conda-env-activate-for-buffer)))))
 
+;; Ultra Scroll
+(use-package ultra-scroll
+  :init
+  (setq scroll-conservatively 101
+        scroll-margin 0)
+  :config
+  (ultra-scroll-mode 1))
 
                                         ; Compile and Shell
 (setq shell-file-name "bash"
