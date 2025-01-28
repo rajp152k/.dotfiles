@@ -65,3 +65,6 @@
 
 (package! ultra-scroll
   :recipe (:host github :repo "/jdtsmith/ultra-scroll"))
+
+(package! crosshairs
+  :recipe (:host github :repo "/rajp152k/crosshairs"))

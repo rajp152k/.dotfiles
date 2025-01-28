@@ -41,12 +41,10 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the 
-;; (setq doom-theme 'doom-outrun-electric
-;;       doom-outrun-electric-padded-modeline t
-;;       doom-outrun-electric-brighter-modeline t)
-(doom/set-frame-opacity 0.8)
-(load-theme 'modus-vivendi-tinted)
+(setq doom-theme 'doom-meltbus
+      doom-meltbus-hl-line t)
 
+(doom/set-frame-opacity 0.8)
 ;;(set-frame-parameter nil 'alpha-background 100)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
