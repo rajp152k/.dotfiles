@@ -44,7 +44,7 @@
 (setq doom-theme 'doom-meltbus
       doom-meltbus-hl-line t)
 
-(doom/set-frame-opacity 0.8)
+(doom/set-frame-opacity 0.9)
 ;;(set-frame-parameter nil 'alpha-background 100)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
