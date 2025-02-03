@@ -268,6 +268,7 @@
 ;; leader maps
 (map! :leader
       "z" #'+zen/toggle-fullscreen
+      "g d i" #'godoc
       "m o i" #'doom/set-frame-opacity
       "m p s" #'python-shell-send-statement
       "m r" #'python-shell-send-region
