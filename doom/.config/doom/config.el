@@ -41,8 +41,16 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the 
-(setq doom-theme 'doom-meltbus
-      doom-meltbus-hl-line t)
+;; (setq doom-theme 'doom-meltbus
+;;       doom-meltbus-hl-line t)
+
+;; (load-theme 'modus-operandi)
+;;
+;; Please set your themes directory to 'custom-theme-load-path
+(add-to-list 'custom-theme-load-path
+             (file-name-as-directory "/home/rp152k/.config/emacs/.local/straight/repos/replace-colorthemes"))
+
+(load-theme 'lawrence t)
 
 (doom/set-frame-opacity 0.9)
 ;;(set-frame-parameter nil 'alpha-background 100)
