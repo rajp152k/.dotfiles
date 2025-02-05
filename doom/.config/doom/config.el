@@ -54,8 +54,7 @@
 
 (setq pdf-view-midnight-colors (cons "#00ff00" "#000000"))
 
-(doom/set-frame-opacity 0.9)
-;;(set-frame-parameter nil 'alpha-background 100)
+;; (doom/set-frame-opacity 0.9)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
