@@ -54,9 +54,6 @@
 
 (setq pdf-view-midnight-colors (cons "#00ff00" "#000000"))
 
-(use-package! frame
-  :init
-  (setq blink-cursor-mode t))
 
 ;; (doom/set-frame-opacity 0.9)
 
@@ -281,6 +278,7 @@
 ;; leader maps
 (map! :leader
       "z" #'+zen/toggle-fullscreen
+      "c b" #'blink-cursor-mode
       "g d i" #'godoc
       "m o i" #'doom/set-frame-opacity
       "m p s" #'python-shell-send-statement
