@@ -54,6 +54,10 @@
 
 (setq pdf-view-midnight-colors (cons "#00ff00" "#000000"))
 
+(use-package! frame
+  :init
+  (setq blink-cursor-mode t))
+
 ;; (doom/set-frame-opacity 0.9)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
