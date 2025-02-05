@@ -52,6 +52,8 @@
 
 (load-theme 'lawrence t)
 
+(setq pdf-view-midnight-colors (cons "#00ff00" "#000000"))
+
 (doom/set-frame-opacity 0.9)
 ;;(set-frame-parameter nil 'alpha-background 100)
 
