@@ -52,7 +52,8 @@
 
 (load-theme 'lawrence t)
 
-(setq pdf-view-midnight-colors (cons "#00ff00" "#000000"))
+(setq pdf-view-midnight-colors (cons "#00ff00" "#000000")
+      pdf-view-midnight-invert nil)
 
 
 ;; (doom/set-frame-opacity 0.9)
