@@ -100,8 +100,6 @@
 ;; they are implemented.
 ;;
 
-
-
                                         ;Misc
 
 (defun life-hex-count ()
@@ -168,12 +166,19 @@
 
                                         ;gptel
 (use-package! gptel
+  :init
   :config
-  (setq
-   gptel-api-key OPENAI-API-KEY
-   gptel-model GPTEL-MODEL
-   gptel-default-mode 'org-mode
-   gptel--system-message GPTEL-BASE-PROMPT))
+  (let ((use-gemini t))
+    (setq
+     gptel-api-key (if use-gemini GEMINI-API-KEY OPENAI-API-KEY)
+     gptel-model (if use-gemini GEMINI-MODEL OPENAI-MODEL)
+     gptel-default-mode 'org-mode
+     gptel--system-message GPTEL-ENGINEER-PROMPT)
+    (if use-gemini
+        (setq
+         gptel-backend (gptel-make-gemini "Gemini"
+                         :key gptel-api-key
+                         :stream t)))))
 
 
                                         ;citar
