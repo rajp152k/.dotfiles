@@ -292,6 +292,13 @@
       "m p r" #'+python/open-ipython-repl
       "m p f" #'python-shell-send-file
       "m h t" #'modus-themes-toggle
+      "m a h" #'pdf-annot-add-highlight-markup-annotation
+      "m a m" #'pdf-annot-add-markup-annotation
+      "m a u" #'pdf-annot-add-underline-markup-annotation
+      "m a t" #'pdf-annot-add-text-annotation
+      "m a x" #'pdf-annot-add-strikeout-markup-annotation
+      "m a s" #'pdf-annot-add-squiggly-markup-annotation
+      "m a l" #'pdf-annot-list-annotations
       "r s" #'restclient-http-send-current
       "w w" #'switch-window
       "l h"  #'life-hex-count
