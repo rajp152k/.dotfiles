@@ -31,6 +31,8 @@ alias o1e="python ~/source/tools/o1-engineer/o1-eng.py"
 # screenkey
 alias sk='screenkey -s small --mods-mode emacs --vis-shift --font-color "#00ff00" --opacity 0.5'
 
+#mouseless
+alias ml='sudo /home/rp152k/go/bin/mouseless --config ~/.config/mouseless/config.yaml'
 
 # https://stackoverflow.com/questions/342969/how-do-i-get-bash-completion-to-work-with-aliases
 # wrap_alias takes three arguments:
