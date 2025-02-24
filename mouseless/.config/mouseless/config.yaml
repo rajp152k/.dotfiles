@@ -35,16 +35,16 @@ layers:
 - name: initial
   bindings:
     # when tab is held and another key pressed, activate mouse layer
-    tab: tap-hold-next tab ; toggle-layer mouse ; 500
+    #tab: tap-hold-next tab ; toggle-layer mouse ; 500
     # when a is held for 300ms, activate mouse layer
-    a: tap-hold a ; toggle-layer mouse ; 300
+    #a: tap-hold a ; toggle-layer mouse ; 300
     # right alt key toggles arrows layer
-    rightalt: toggle-layer arrows
+    rightalt: layer mouse
     # switch escape with capslock
     #esc: capslock
     #capslock: esc
     # key combos are activated when both keys are pressed simultaneously
-    space+rightalt: layer mouse
+    #space+rightalt: layer mouse
 # a layer for mouse movement
 - name: mouse
   # when true, keys that are not mapped keep their original meaning
