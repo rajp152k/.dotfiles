@@ -145,6 +145,8 @@
            "* %?\nSCHEDULED: %T\n  %i")
           ("i" "IN" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "INQ")
            "* %?\nEntered on %U\n  %i\n  %a")
+          ("k" "ICBM" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "ICBM")
+           "* %?\nEntered on %U\n  %i\n  %a")
 	  ("t" "Tickler" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Tickler")
 	   "* WAIT %?\nDEFER THOUGHT TO: %T\n %i"))))
 
@@ -173,7 +175,7 @@
      gptel-api-key (if use-gemini GEMINI-API-KEY OPENAI-API-KEY)
      gptel-model (if use-gemini GEMINI-MODEL OPENAI-MODEL)
      gptel-default-mode 'org-mode
-     gptel--system-message GPTEL-ENGINEER-PROMPT)
+     gptel--system-message GPTEL-BASE-PROMPT)
     (if use-gemini
         (setq
          gptel-backend (gptel-make-gemini "Gemini"
