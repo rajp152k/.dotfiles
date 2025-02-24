@@ -176,11 +176,11 @@
      gptel-model (if use-gemini GEMINI-MODEL OPENAI-MODEL)
      gptel-default-mode 'org-mode
      gptel--system-message GPTEL-BASE-PROMPT)
-    (if use-gemini
-        (setq
-         gptel-backend (gptel-make-gemini "Gemini"
-                         :key gptel-api-key
-                         :stream t)))))
+    (when use-gemini
+      (setq
+       gptel-backend (gptel-make-gemini "Gemini"
+                       :key gptel-api-key
+                       :stream t)))))
 
 
                                         ;citar
