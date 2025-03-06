@@ -170,18 +170,17 @@
 (use-package! gptel
   :init
   :config
-  (let ((use-gemini t))
+  (let ((use-gemini nil))
     (setq
      gptel-api-key (if use-gemini GEMINI-API-KEY OPENAI-API-KEY)
      gptel-model (if use-gemini GEMINI-MODEL OPENAI-MODEL)
      gptel-default-mode 'org-mode
-     gptel--system-message GPTEL-BASE-PROMPT)
+     gptel--system-message GPTEL-ENGINEER-PROMPT)
     (when use-gemini
       (setq
        gptel-backend (gptel-make-gemini "Gemini"
                        :key gptel-api-key
                        :stream t)))))
-
 
                                         ;citar
 (use-package! citar
