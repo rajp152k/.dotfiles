@@ -156,6 +156,24 @@
   :config
   (setq org-roam-directory "/home/rp152k/source/vcops/org/roam/Content"))
 
+(defun epistemological-overview ()
+  "initiate an epistemological overview for the conrresponding context preceding the cursor"
+  (interactive)
+  (insert "\n* Epistemological Overview\n")
+  (gptel-send))
+
+(defun systems-breakdown-overview ()
+  "initiate a systems breakdown for the corresponding context preceding the cursor"
+  (interactive)
+  (insert "\n* Systems Breakdown\n")
+  (gptel-send))
+
+(defun strategic-tasks-breakdown ()
+  "initiate a strategic tasks breakdown for the corresponding context preceding the cursor"
+  (interactive)
+  (insert "\n* Strategic Tasks Breakdown\n")
+  (gptel-send))
+
 (defun gtd-workspace()
   "open the GTD workspace"
   (interactive)
@@ -168,15 +186,15 @@
 
                                         ;gptel
 (use-package! gptel
-  :init
   :config
-  (let ((use-gemini nil))
+  (cl-macrolet ((gemini-switch (true false)
+                  `(if USE-GEMINI ,true ,false)))
     (setq
-     gptel-api-key (if use-gemini GEMINI-API-KEY OPENAI-API-KEY)
-     gptel-model (if use-gemini GEMINI-MODEL OPENAI-MODEL)
+     gptel-api-key (gemini-switch GEMINI-API-KEY OPENAI-API-KEY)
+     gptel-model  (gemini-switch GEMINI-MODEL OPENAI-MODEL)
      gptel-default-mode 'org-mode
-     gptel--system-message GPTEL-ENGINEER-PROMPT)
-    (when use-gemini
+     gptel--system-message GPTEL-BASE-PROMPT)
+    (when USE-GEMINI
       (setq
        gptel-backend (gptel-make-gemini "Gemini"
                        :key gptel-api-key
@@ -319,4 +337,7 @@
       "c e" #'org-cite-insert
       "c o" #'citar-open
       "c d" #'citar-dwim
-      "s /" #'+vertico/project-search-from-cwd)
+      "s /" #'+vertico/project-search-from-cwd
+      "i g i s b o" #'systems-breakdown-overview
+      "i g i e o" #'epistemological-overview
+      "i g i s t b" #'strategic-tasks-breakdown)
