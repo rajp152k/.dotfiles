@@ -1,6 +1,7 @@
 ;;; Loading Secrets
+(load-file "/home/rp152k/.config/doom/utils.el")
+(load-file "/home/rp152k/.config/doom/gptel-conf.el")
 (load-file "/home/rp152k/.config/doom/secrets.el")
-
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
@@ -156,6 +157,31 @@
   :config
   (setq org-roam-directory "/home/rp152k/source/vcops/org/roam/Content"))
 
+
+(defun gtd-workspace()
+  "open the GTD workspace"
+  (interactive)
+  (find-file "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org"))
+
+                                        ;blogging
+(use-package! easy-hugo
+  :config
+  (setq easy-hugo-basedir "/home/rp152k/source/vcops/thebitmage.com"))
+
+                                        ;gptel
+(use-package! gptel
+  :config
+  (setq
+   gptel-api-key (ascdr GPTEL-PROVIDER API-KEYS)
+   gptel-model  (ascdr GPTEL-PROVIDER GPTEL-MODELS)
+   gptel-default-mode 'org-mode
+   gptel--system-message (ascdr "base" GPTEL-PROMPTS)
+   gptel-backend (eval `(,(symbol-function (intern (format "gptel-make-%s" GPTEL-PROVIDER)))
+                         ,GPTEL-PROVIDER
+                         :key ,gptel-api-key
+                         :stream t))))
+
+
 (defun epistemological-overview ()
   "initiate an epistemological overview for the conrresponding context preceding the cursor"
   (interactive)
@@ -174,31 +200,6 @@
   (insert "\n* Strategic Tasks Breakdown\n")
   (gptel-send))
 
-(defun gtd-workspace()
-  "open the GTD workspace"
-  (interactive)
-  (find-file "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org"))
-
-                                        ;blogging
-(use-package! easy-hugo
-  :config
-  (setq easy-hugo-basedir "/home/rp152k/source/vcops/thebitmage.com"))
-
-                                        ;gptel
-(use-package! gptel
-  :config
-  (cl-macrolet ((gemini-switch (true false)
-                  `(if USE-GEMINI ,true ,false)))
-    (setq
-     gptel-api-key (gemini-switch GEMINI-API-KEY OPENAI-API-KEY)
-     gptel-model  (gemini-switch GEMINI-MODEL OPENAI-MODEL)
-     gptel-default-mode 'org-mode
-     gptel--system-message GPTEL-BASE-PROMPT)
-    (when USE-GEMINI
-      (setq
-       gptel-backend (gptel-make-gemini "Gemini"
-                       :key gptel-api-key
-                       :stream t)))))
 
                                         ;citar
 (use-package! citar
