@@ -181,6 +181,11 @@
                          :key ,gptel-api-key
                          :stream t))))
 
+(defun gptel-prompt-alter ()
+  "alter GPTEL prompt from a predefined list from gptel-conf.el "
+  (interactive)
+  (let ((prompt (completing-read "gptel prompt: " GPTEL-PROMPTS)))
+    (setq gptel--system-message (ascdr prompt GPTEL-PROMPTS))))
 
 (defun epistemological-overview ()
   "initiate an epistemological overview for the conrresponding context preceding the cursor"
@@ -339,6 +344,7 @@
       "c o" #'citar-open
       "c d" #'citar-dwim
       "s /" #'+vertico/project-search-from-cwd
-      "i g i s b o" #'systems-breakdown-overview
-      "i g i e o" #'epistemological-overview
-      "i g i s t b" #'strategic-tasks-breakdown)
+      "i g p a" #'gptel-prompt-alter
+      "i g i s b" #'systems-breakdown-overview
+      "i g i e" #'epistemological-overview
+      "i g i t b" #'strategic-tasks-breakdown)
