@@ -1,0 +1,28 @@
+#+title: Doom Configs
+
+* Abstract
+ - My doom configs
+
+* Overall structure
+
+** init.el
+ - doom flags for defaults that ship with the flavour
+** package.el
+ - custom/esoteric packages that don't ship with the flavour
+** config.el
+ - controlling the configs of the packages
+ - would like to structure these better
+   - also has some unstructured keybinds
+   - also has a bunch of misc functions
+
+** gptel-config.el
+ - prompts, models, configs for the gptel package
+
+** secret.el
+ - API keys, personal info vars, etc for convenient use
+
+* Future Plans
+** literacy vs hard core code
+ - see if I  want to go the "tangle and weave" a single org file
+ - or manually manage a bunch of diff files
+ - I won't be going vanilla again but doom could use some customizations
