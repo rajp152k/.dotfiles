@@ -26,3 +26,12 @@
  - see if I  want to go the "tangle and weave" a single org file
  - or manually manage a bunch of diff files
  - I won't be going vanilla again but doom could use some customizations
+
+* Handy defaults I'd like to remember exist
+** shell-stuff
+ - execute sync : M-!
+ - execute async : M-&
+ - evil shell command on region : !
+ - execute on region :- M-|
+ - eshell popup / in buffer : spc o e / E
+ - vterm popup / in buffer : spc o t / T
