@@ -1,6 +1,5 @@
 ;;; Loading Secrets
-(load-file "/home/rp152k/.config/doom/utils.el")
-(load-file "/home/rp152k/.config/doom/secrets.el")
+(load "/home/rp152k/.config/doom/secrets.el")
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
@@ -169,48 +168,55 @@
 
                                         ;gptel
 
-(defvar GPTEL-PROVIDER "openai")
-(defvar GPTEL-MODELS (list
-                      (cons "openai"  'gpt-4o-mini)
-                      (cons "gemini"  'gemini-2.0-flash-exp)))
+(defvar GPTEL-PROVIDER "openai"
+  "Provider for GPTel.")
+
+(defvar GPTEL-MODELS
+  (list
+   (cons "openai" 'gpt-4o-mini)
+   (cons "gemini" 'gemini-2.0-flash-exp))
+  "List of models for GPTel.")
+
 (defvar GPTEL-PROMPTS
-  '(("base" .  "be precise, exhaustive, unbiased, analytical and critical")
-    ("epistemology" . "you are an intelligent epistemological engineer with factual expertise and insights that span across domains. You speak in logically discrete bullets first and presenting connections between the entities that you previously presented. when you feel that the current context is lacking, you ask specific questions regarding the details that would further help you reform your answer. finally, you provide insightful pathways in the form of questions in the end of your answer to direct further research on the topic of concern. You avoid using filler phrases and communicate with precision. You leverage formatting strategies like using tables for presenting differences, ascii diagrams to represent small flow charts. You do not use asterics and slashes in your output for any stylistic formatting (bold and italics) but just words unless explicitly asked to do so. You have a curious mindset that allows you to explore possibilities of cross domain applications. You are capable of thinking via multiple strategies and facets: via systems, in terms of abstractions, causality and other such cognitive constructs that help humans better present and structure information for personal and shared retrieval.")
-    ("swe" .  "you are an experienced sofware engineer that knows the ins and outs of sofware architecture, system design, how services scale and all the miscellaneous domain expertise that makes a succesful principal engineer that can conceptualize products from scratch.. You are also capable of dealing with complex abstractions and able to stitch novel solutions from all that you know. You act as an introspective colleague when dealing with quesions, thinking out loud for me and helping me understand the thought process of a curious, competent and ambitious engineer")))
+  '(("base" . "be precise, exhaustive, unbiased, analytical and critical")
+    ("epistemology" . "you are an intelligent epistemological engineer...")
+    ("swe" . "you are an experienced software engineer..."))
+  "List of prompts for GPTel.")
 
 (use-package! gptel
   :config
   (setq
-   gptel-api-key  (ascdr GPTEL-PROVIDER API-KEYS)
-   gptel-model   (ascdr GPTEL-PROVIDER GPTEL-MODELS))
+   gptel-api-key  (cdr (assoc GPTEL-PROVIDER API-KEYS))
+   gptel-model   (cdr (assoc GPTEL-PROVIDER GPTEL-MODELS))
    gptel-default-mode 'org-mode
-   gptel--system-message (ascdr "base" GPTEL-PROMPTS)
-   gptel-backend (eval `(,(symbol-function (intern (format "gptel-make-%s" GPTEL-PROVIDER)))
-                         ,GPTEL-PROVIDER
-                         :key ,gptel-api-key
-                         :models (list ',gptel-model)
-                         :stream t)))
-
+   gptel--system-message (cdr (assoc "base" GPTEL-PROMPTS)))
+  (unless (equal GPTEL-PROVIDER "openai")
+    (setq
+     gptel-backend (funcall  (intern (format "gptel-make-%s" GPTEL-PROVIDER))
+                             GPTEL-PROVIDER
+                             :key gptel-api-key
+                             ;; :models ,(intern (format "gptel--%s-models" GPTEL-PROVIDER))
+                             :stream t))))
 (defun gptel-prompt-alter ()
   "alter GPTEL prompt from a predefined list from gptel-conf.el "
   (interactive)
   (let ((prompt (completing-read "gptel prompt: " GPTEL-PROMPTS)))
-    (setq gptel--system-message (ascdr prompt GPTEL-PROMPTS))))
+    (setq gptel--system-message (cdr (assoc prompt GPTEL-PROMPTS)))))
 
 (defun epistemological-overview ()
-  "initiate an epistemological overview for the conrresponding context preceding the cursor"
+  "init an epistemological overview forcontext preceding the cursor"
   (interactive)
   (insert "\n* Epistemological Overview\n")
   (gptel-send))
 
 (defun systems-breakdown-overview ()
-  "initiate a systems breakdown for the corresponding context preceding the cursor"
+  "init a systems breakdown for context preceding the cursor"
   (interactive)
   (insert "\n* Systems Breakdown\n")
   (gptel-send))
 
 (defun strategic-tasks-breakdown ()
-  "initiate a strategic tasks breakdown for the corresponding context preceding the cursor"
+  "init a strategic tasks breakdown for context preceding the cursor"
   (interactive)
   (insert "\n* Strategic Tasks Breakdown\n")
   (gptel-send))
@@ -354,7 +360,7 @@
       "c o" #'citar-open
       "c d" #'citar-dwim
       "s /" #'+vertico/project-search-from-cwd
-      "i g p a" #'gptel-prompt-alter
+      "i g a p" #'gptel-prompt-alter
       "i g i s b" #'systems-breakdown-overview
       "i g i e" #'epistemological-overview
       "i g i t b" #'strategic-tasks-breakdown)
