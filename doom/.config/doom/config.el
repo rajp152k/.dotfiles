@@ -207,16 +207,18 @@
     (setq gptel--system-message (cdr (assoc prompt GPTEL-PROMPTS)))))
 
 (defun epistemological-overview ()
-  "init an epistemological overview forcontext preceding the cursor"
+  "init an overview for context preceding the cursor"
   (interactive)
-  (insert "\n* Epistemological Overview\n")
-  (gptel-send))
+  (insert "\n* Overview\n")
+  (let ((gptel--system-message (cdr (assoc "epistemology" GPTEL-PROMPTS))))
+    (gptel-send)))
 
 (defun systems-breakdown-overview ()
   "init a systems breakdown for context preceding the cursor"
   (interactive)
   (insert "\n* Systems Breakdown\n")
-  (gptel-send))
+  (let ((gptel--system-message (cdr (assoc "epistemology" GPTEL-PROMPTS))))
+    (gptel-send)))
 
 (defun strategic-tasks-breakdown ()
   "init a strategic tasks breakdown for context preceding the cursor"
