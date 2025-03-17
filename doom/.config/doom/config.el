@@ -149,7 +149,7 @@
           ("k" "ICBM" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "ICBM")
            "* TODO [ICBM] %?\nEntered on %U\n  %i\n  %a")
 	        ("o" "Optimize" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Optimize")
-	         "* TODO [OPT]  %?\nDEFER THOUGHT TO: %T\n %i"))))
+	         "* TODO [OPT] %?\n %i\n %a"))))
 
 
                                         ;roam (+roam2)
