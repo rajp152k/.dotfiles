@@ -49,13 +49,13 @@
 (add-to-list 'custom-theme-load-path
              (file-name-as-directory "/home/rp152k/.config/emacs/.local/straight/repos/replace-colorthemes"))
 
-(load-theme 'doom-outrun-electric t)
+(load-theme 'lawrence t)
 
 ;; (setq pdf-view-midnight-colors (cons "#00ff00" "#000000")
 ;;       pdf-view-midnight-invert nil)
 
 
-;; (doom/set-frame-opacity 0.9)
+(doom/set-frame-opacity 0.8)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
