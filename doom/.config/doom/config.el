@@ -136,8 +136,10 @@
   (setq org-startup-numerated t)
   (setq org-agenda-files '("/home/rp152k/source/vcops/org/GTD/GTD_HQ.org"))
   (setq org-capture-templates
-	      '(("n" "Next Action" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "NA")
-           "* TODO %?\n  %i\n  %a")
+	      '(("n" "Next Action" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Next Action")
+           "* TODO [NA] %?\n  %i\n  %a")
+          ("o" "Open Source" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Open Source")
+           "* TODO [OS] %?\n  %i\n  %a")
           ("c" "Content" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Content")
            "* IDEA %?\n  %i\n  %a")
           ("m" "Meet" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Meets")
@@ -148,9 +150,8 @@
            "* STRT %?\nEntered on %U\n  %i\n  %a")
           ("k" "ICBM" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "ICBM")
            "* TODO [ICBM] %?\nEntered on %U\n  %i\n  %a")
-	        ("o" "Optimize" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Optimize")
-	         "* TODO [OPT] %?\n %i\n %a"))))
-
+	        ("t" "Tooling" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Tooling")
+	         "* TODO [TOOL] %?\n %i\n %a"))))
 
                                         ;roam (+roam2)
 (use-package! org-roam
