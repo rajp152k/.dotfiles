@@ -137,7 +137,7 @@
   (setq org-agenda-files '("/home/rp152k/source/vcops/org/GTD/GTD_HQ.org"))
   (setq org-capture-templates
 	      '(("n" "Next Action" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Next Action")
-           "* TODO [NA] %?\n  %i\n  %a")
+           "* TODO %?\n  %i\n  %a")
           ("o" "Open Source" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Open Source")
            "* TODO [OS] %?\n  %i\n  %a")
           ("c" "Content" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Content")
