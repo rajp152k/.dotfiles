@@ -221,6 +221,11 @@
   (insert "\n* Strategic Tasks Breakdown\n")
   (gptel-send))
 
+                                        ; fabric-gptel
+(use-package! fabric-gpt.el
+  :after gptel
+  :config
+  (fabric-gpt.el-sync-patterns))
 
                                         ;citar
 (use-package! citar
@@ -360,6 +365,8 @@
       "c o" #'citar-open
       "c d" #'citar-dwim
       "s /" #'+vertico/project-search-from-cwd
+      "i g f f" #'fabric-gpt.el-send
+      "i g f s" #'fabric-gpt.el-sync-patterns
       "i g a p" #'gptel-prompt-alter
       "i g i s b" #'systems-breakdown-overview
       "i g i e" #'epistemological-overview

@@ -69,6 +69,8 @@
 (package! crosshairs
   :recipe (:host github :repo "/rajp152k/crosshairs"))
 
-
 (package! replace-colorthemes
   :recipe (:host github :repo "/rajp152k/replace-colorthemes"))
+
+(package! fabric-gpt.el
+  :recipe (:host github :repo "/rajp152k/fabric-gpt.el"))
