@@ -1,4 +1,8 @@
-# sudo with aliases
+# vi info
+alias info='info --vi-keys'
+
+
+# sudoable aliases
 alias sudo='sudo '
 
 # mcp-inspect
