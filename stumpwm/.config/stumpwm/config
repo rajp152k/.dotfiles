@@ -1,3 +1,20 @@
 (in-package :stumpwm)
 
-(set-prefix-key (kbd "s-m"))
+(set-prefix-key (kbd "s-t"))
+(define-key *root-map* (kbd "s-r") "restart-soft")
+(define-key *root-map* (kbd "M-r") "restart-hard")
+
+(defcommand colon1 (&optional (initial "")) (:rest)
+  (let ((cmd (read-one-line (current-screen) ": " :initial-input initial)))
+    (when cmd
+      (eval-command cmd t))))
+
+;; Web jump (works for DuckDuckGo and Imdb)
+(defmacro make-web-jump (name prefix)
+  `(defcommand ,(intern name) (search) ((:rest ,(concatenate 'string name " search: ")))
+    (nsubstitute #\+ #\Space search)
+    (run-shell-command (concatenate 'string ,prefix search))))
+
+(make-web-jump "duckduckgo" "firefox https://duckduckgo.com/?q=")
+
+(define-key *root-map* (kbd "s-s") "duckduckgo")
