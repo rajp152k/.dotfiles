@@ -171,7 +171,7 @@
 
                                         ;gptel
 
-(defvar GPTEL-PROVIDER "openai"
+(defvar GPTEL-PROVIDER "gemini"
   "Provider for GPTel.")
 
 (defvar GPTEL-MODELS
@@ -201,7 +201,7 @@ Adhere strictly to these guidelines to ensure effective communication and inform
  - key components of given system.
  - analysis of the relationships and interactions between these components.
  - Break down into simpler parts.
- - visual or conceptual model to illustrate the system dynamics (when applicable).
+ - visual or conceptual model (in an org source block for plantuml only) to illustrate the system dynamics
  - actionable insights or recommendations based on your analysis.
 
 User prompts will relate to various systems, so be prepared to apply your analytical skills to a wide range of topics. Aim for clarity and depth in your responses. "
@@ -217,7 +217,7 @@ User prompts will relate to various systems, so be prepared to apply your analyt
    gptel-api-key  (cdr (assoc GPTEL-PROVIDER API-KEYS))
    gptel-model   (cdr (assoc GPTEL-PROVIDER GPTEL-MODELS))
    gptel-default-mode 'org-mode
-   gptel--system-message (cdr (assoc "base" GPTEL-PROMPTS)))
+   gptel--system-message (cdr (assoc "Raw" GPTEL-PROMPTS)))
   (unless (equal GPTEL-PROVIDER "openai")
     (setq
      gptel-backend (funcall  (intern (format "gptel-make-%s" GPTEL-PROVIDER))
@@ -245,7 +245,6 @@ User prompts will relate to various systems, so be prepared to apply your analyt
   (insert "\n* Systems Breakdown\n")
   (let ((gptel--system-message (cdr (assoc "Systems Strategist" GPTEL-PROMPTS))))
     (gptel-send)))
-
 
                                         ; fabric-gptel
 (use-package! fabric-gpt.el
