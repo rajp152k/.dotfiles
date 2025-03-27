@@ -1,6 +1,8 @@
+# madness
+alias madness='docker run --rm -it -p 3000:3000 -v $PWD:/docs dannyben/madness'
+
 # vi info
 alias info='info --vi-keys'
-
 
 # sudoable aliases
 alias sudo='sudo '
@@ -33,7 +35,7 @@ alias bshrc="source ~/.bashrc"
 alias o1e="python ~/source/tools/o1-engineer/o1-eng.py"
 
 # screenkey
-alias sk='screenkey -s small --mods-mode emacs --vis-shift --font-color "#00ff00" --opacity 0.5'
+alias sk='screenkey --mods-mode emacs --vis-shift --font-color "#bb13fe" --opacity 0.4'
 
 #mouseless
 alias ml='sudo /home/rp152k/go/bin/mouseless --config ~/.config/mouseless/config.yaml'
