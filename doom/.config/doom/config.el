@@ -236,7 +236,7 @@ Adhere strictly to these guidelines to ensure effective communication and inform
  - key components of given system.
  - analysis of the relationships and interactions between these components.
  - Break down into simpler parts.
- - visual or conceptual model (in an org source block for plantuml only) to illustrate the system dynamics
+ - visual or conceptual model (in an org source block for mermaid) to illustrate the system dynamics
  - actionable insights or recommendations based on your analysis.
 
 User prompts will relate to various systems, so be prepared to apply your analytical skills to a wide range of topics. Aim for clarity and depth in your responses. "
