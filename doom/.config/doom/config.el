@@ -285,6 +285,7 @@ User prompts will relate to various systems, so be prepared to apply your analyt
 (use-package! fabric-gpt.el
   :after gptel
   :config
+  (setq fabric-gpt.el-root "/home/rp152k/.config/doom/")
   (fabric-gpt.el-sync-patterns))
 
                                         ;citar
