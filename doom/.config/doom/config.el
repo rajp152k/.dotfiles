@@ -356,6 +356,7 @@ User prompts will relate to various systems, so be prepared to apply your analyt
 (map! :leader
       "z" #'+zen/toggle-fullscreen
       "c b" #'blink-cursor-mode
+      "b f" #'browse-url-firefox
       "g d i" #'godoc
       "m o i" #'doom/set-frame-opacity
       "m p s" #'python-shell-send-statement
