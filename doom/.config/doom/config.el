@@ -129,6 +129,13 @@
                                        (delete-word-at-point)
                                        (insert (format " 0x%X " (string-to-number dec-days))))))))
 
+                                        ; Babel
+(use-package! org
+  :config
+  (setq ob-mermaid-cli-path "/home/rp152k/miniforge3/bin/mmdc")
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((mermaid . t))))
                                         ; GTD
 
 (use-package! org
