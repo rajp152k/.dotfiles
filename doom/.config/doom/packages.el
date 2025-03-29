@@ -74,3 +74,6 @@
 
 (package! fabric-gpt.el
   :recipe (:host github :repo "/rajp152k/fabric-gpt.el"))
+
+(package! ob-mermaid
+  :recipe (:host github :repo "/arnm/ob-mermaid"))
