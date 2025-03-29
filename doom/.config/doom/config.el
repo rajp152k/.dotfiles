@@ -163,6 +163,7 @@
                                         ;roam (+roam2)
 (use-package! org-roam
   :config
+  (setq org-roam-database-connector 'emacsql-sqlite-builtin)
   (setq org-roam-directory "/home/rp152k/source/vcops/org/roam/Content"))
 
 
