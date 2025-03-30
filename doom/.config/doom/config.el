@@ -289,19 +289,22 @@ User prompts will relate to various systems, so be prepared to apply your analyt
   (let ((prompt (completing-read "gptel prompt: " GPTEL-PROMPTS)))
     (setq gptel--system-message (cdr (assoc prompt GPTEL-PROMPTS)))))
 
-(defun epistemological-overview ()
-  "init an overview for context preceding the cursor"
-  (interactive)
-  (insert "\n* Overview\n")
-  (let ((gptel--system-message (cdr (assoc "Epistemological Engineer" GPTEL-PROMPTS))))
+(defun dispatch-gptel-prompt-header-pair (init-header prompt)
+  (insert (format "\n* %s \n" init-header))
+  (let ((gptel--system-message (cdr (assoc prompt GPTEL-PROMPTS))))
     (gptel-send)))
 
-(defun systems-breakdown-overview ()
-  "init a strategic systems breakdown for context preceding the cursor"
+(defun dispatch-ephemeral-gptel-base-send ()
+  "init an analysis using a custom prompt"
   (interactive)
-  (insert "\n* Systems Breakdown\n")
-  (let ((gptel--system-message (cdr (assoc "Systems Strategist" GPTEL-PROMPTS))))
-    (gptel-send)))
+  (let ((init-header (read-string "analysis header:"))
+        (prompt (completing-read "gptel-prompt: " GPTEL-PROMPTS)))
+    (dispatch-gptel-prompt-header-pair init-header prompt)))
+
+(defmacro interactive-ephemeral-gptel-send (init-header prompt)
+  `(lambda ()
+    (interactive)
+    (dispatch-gptel-prompt-header-pair ,init-header ,prompt)))
 
                                         ; fabric-gptel
 (use-package! fabric-gpt.el
@@ -411,6 +414,7 @@ User prompts will relate to various systems, so be prepared to apply your analyt
 
                                         ; Custom Maps
 ;; leader maps
+
 (map! :leader
       "z" #'+zen/toggle-fullscreen
       "c b" #'blink-cursor-mode
@@ -449,8 +453,18 @@ User prompts will relate to various systems, so be prepared to apply your analyt
       "c o" #'citar-open
       "c d" #'citar-dwim
       "s /" #'+vertico/project-search-from-cwd
+
+      "i g i m a" (interactive-ephemeral-gptel-send "Analysis" "MMA Coach")
+      "i g i s b" (interactive-ephemeral-gptel-send "Systems Breakdown" "Systems Strategist")
+      "i g i e o" (interactive-ephemeral-gptel-send "Epistemological Overview" "Epistemological Engineer")
+      "i g i l h" (interactive-ephemeral-gptel-send "Hacks" "Life Hacker")
+      "i g i c b" (interactive-ephemeral-gptel-send "Analysis" "Chemistry Expert")
+      "i g i d m" (interactive-ephemeral-gptel-send "Dissection" "Magnifier")
+      "i g i b h" (interactive-ephemeral-gptel-send "Bio Hacks" "Bio Hacker")
+      "i g i r a" (interactive-ephemeral-gptel-send "Analysis" "Rhetorician")
+      "i g i s a" (interactive-ephemeral-gptel-send "Architecture Review" "Software Engineer")
+
       "i g f f" #'fabric-gpt.el-send
       "i g f s" #'fabric-gpt.el-sync-patterns
       "i g a p" #'gptel-prompt-alter
-      "i g i s b" #'systems-breakdown-overview
-      "i g i e" #'epistemological-overview)
+      "i g a s" #'dispatch-ephemeral-gptel-base-send)
