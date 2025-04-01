@@ -163,16 +163,43 @@
 	         "* [?] [TOOL] %?\n %i\n %a"))))
 
                                         ;roam (+roam2)
+(defvar ORG-ROAM-VAULTS
+  (list
+   (cons "public" "/home/rp152k/source/vcops/org/roam/Content")
+   (cons "private" "/home/rp152k/source/vcops/PrivateOrg")))
+
+(defvar ORG-ROAM-CURRENT-VAULT "public")
+
 (use-package! org-roam
   :config
   (setq org-roam-database-connector 'emacsql-sqlite-builtin)
-  (setq org-roam-directory "/home/rp152k/source/vcops/org/roam/Content"))
+  (setq org-roam-directory (cdr (assoc ORG-ROAM-CURRENT-VAULT ORG-ROAM-VAULTS)))
+  (alter-org-roam-db-location))
 
+(defun alter-org-roam-db-location ()
+  (setq org-roam-db-location
+        (locate-user-emacs-file (format "org-roam-db-%s.db" ORG-ROAM-CURRENT-VAULT))))
+
+(defun alter-org-roam-vault ()
+  (interactive)
+  (let ((vault (completing-read "org-roam vault:" ORG-ROAM-VAULTS)))
+    (message (format "saving current changes to db"))
+    (org-roam-db-sync)
+    (org-roam-db--close-all)
+    (message (format "altering roam vault to %s" vault))
+    (setq ORG-ROAM-CURRENT-VAULT vault)
+    (setq org-roam-directory (cdr (assoc vault ORG-ROAM-VAULTS)))
+    (alter-org-roam-db-location)
+    (org-roam-db--get-connection)))
+
+                                        ; GTD
+
+(defvar ORG-GTD-HQ-LOC  "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org")
 
 (defun gtd-workspace()
   "open the GTD workspace"
   (interactive)
-  (find-file "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org"))
+  (find-file ORG-GTD-HQ-LOC))
 
                                         ;blogging
 (use-package! easy-hugo
@@ -303,8 +330,8 @@ User prompts will relate to various systems, so be prepared to apply your analyt
 
 (defmacro interactive-ephemeral-gptel-send (init-header prompt)
   `(lambda ()
-    (interactive)
-    (dispatch-gptel-prompt-header-pair ,init-header ,prompt)))
+     (interactive)
+     (dispatch-gptel-prompt-header-pair ,init-header ,prompt)))
 
                                         ; fabric-gptel
 (use-package! fabric-gpt.el
@@ -416,16 +443,24 @@ User prompts will relate to various systems, so be prepared to apply your analyt
 ;; leader maps
 
 (map! :leader
+
       "z" #'+zen/toggle-fullscreen
+
       "c b" #'blink-cursor-mode
+
       "b f" #'browse-url-firefox
+
       "g d i" #'godoc
+
       "m o i" #'doom/set-frame-opacity
+
       "m p s" #'python-shell-send-statement
       "m r" #'python-shell-send-region
       "m p r" #'+python/open-ipython-repl
       "m p f" #'python-shell-send-file
+
       "m h t" #'modus-themes-toggle
+
       "m a h" #'pdf-annot-add-highlight-markup-annotation
       "m a m" #'pdf-annot-add-markup-annotation
       "m a u" #'pdf-annot-add-underline-markup-annotation
@@ -433,26 +468,39 @@ User prompts will relate to various systems, so be prepared to apply your analyt
       "m a x" #'pdf-annot-add-strikeout-markup-annotation
       "m a s" #'pdf-annot-add-squiggly-markup-annotation
       "m a l" #'pdf-annot-list-annotations
+
       "r s" #'restclient-http-send-current
+
       "w w" #'switch-window
+
+      "e x" #'eros-eval-defun
+
       "l h"  #'life-hex-count
       "l t" #'time-stamp
       "o g" #'gtd-workspace
+      "e h" #'easy-hugo
+
       "s w" #'eww
       "t t" #'tldr
-      "e h" #'easy-hugo
-      "e x" #'eros-eval-defun
       "e w" #'eww-switch-to-buffer
       "e u" #'eww-open-in-new-buffer
       "e c" #'eww-copy-page-url
+
+      "s /" #'+vertico/project-search-from-cwd
+
       "n i l" #'org-insert-link
-      "i g h" #'gptel
-      "i g s" #'gptel-send
-      "i g m" #'gptel-menu
       "c e" #'org-cite-insert
       "c o" #'citar-open
       "c d" #'citar-dwim
-      "s /" #'+vertico/project-search-from-cwd
+
+      "n r v a" #'alter-org-roam-vault
+      "n r v v" (lambda ()
+                  (interactive)
+                  (message (format "current roam vault: %s" ORG-ROAM-CURRENT-VAULT)))
+      
+      "i g h" #'gptel
+      "i g s" #'gptel-send
+      "i g m" #'gptel-menu
 
       "i g i m a" (interactive-ephemeral-gptel-send "Analysis" "MMA Coach")
       "i g i s b" (interactive-ephemeral-gptel-send "Systems Breakdown" "Systems Strategist")
