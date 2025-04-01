@@ -170,15 +170,15 @@
 
 (defvar ORG-ROAM-CURRENT-VAULT "public")
 
+(defun alter-org-roam-db-location ()
+  (setq org-roam-db-location
+        (locate-user-emacs-file (format "org-roam-db-%s.db" ORG-ROAM-CURRENT-VAULT))))
+
 (use-package! org-roam
   :config
   (setq org-roam-database-connector 'emacsql-sqlite-builtin)
   (setq org-roam-directory (cdr (assoc ORG-ROAM-CURRENT-VAULT ORG-ROAM-VAULTS)))
   (alter-org-roam-db-location))
-
-(defun alter-org-roam-db-location ()
-  (setq org-roam-db-location
-        (locate-user-emacs-file (format "org-roam-db-%s.db" ORG-ROAM-CURRENT-VAULT))))
 
 (defun alter-org-roam-vault ()
   (interactive)
@@ -190,6 +190,7 @@
     (setq ORG-ROAM-CURRENT-VAULT vault)
     (setq org-roam-directory (cdr (assoc vault ORG-ROAM-VAULTS)))
     (alter-org-roam-db-location)
+    (message (format "initializing connection with %s roam db" vault))
     (org-roam-db--get-connection)))
 
                                         ; GTD
