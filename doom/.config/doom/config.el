@@ -61,6 +61,9 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
 
+;Doom Scratch
+(setq doom-scratch-initial-major-mode 'org-mode)
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "/home/rp152k/source/vcops/org")
@@ -183,15 +186,16 @@
 (defun alter-org-roam-vault ()
   (interactive)
   (let ((vault (completing-read "org-roam vault:" ORG-ROAM-VAULTS)))
-    (message (format "saving current changes to db"))
+    (message (format "syncing current changes to %s db" vault))
     (org-roam-db-sync)
     (org-roam-db--close-all)
-    (message (format "altering roam vault to %s" vault))
+    (message (format "switching to %s roam vault" vault))
     (setq ORG-ROAM-CURRENT-VAULT vault)
     (setq org-roam-directory (cdr (assoc vault ORG-ROAM-VAULTS)))
     (alter-org-roam-db-location)
     (message (format "initializing connection with %s roam db" vault))
-    (org-roam-db--get-connection)))
+    (org-roam-db--get-connection)
+    (message "vault alter succeeded")))
 
                                         ; GTD
 
@@ -481,8 +485,11 @@ User prompts will relate to various systems, so be prepared to apply your analyt
       "o g" #'gtd-workspace
       "e h" #'easy-hugo
 
-      "s w" #'eww
       "t t" #'tldr
+
+      "X" #'scratch-buffer
+
+      "s w" #'eww
       "e w" #'eww-switch-to-buffer
       "e u" #'eww-open-in-new-buffer
       "e c" #'eww-copy-page-url
