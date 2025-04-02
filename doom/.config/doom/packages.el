@@ -77,3 +77,6 @@
 
 (package! ob-mermaid
   :recipe (:host github :repo "/arnm/ob-mermaid"))
+
+(package! nth-roam
+  :recipe (:host github :repo "/rajp152k/nth-roam"))

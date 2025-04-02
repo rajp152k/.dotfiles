@@ -166,36 +166,20 @@
 	         "* [?] [TOOL] %?\n %i\n %a"))))
 
                                         ;roam (+roam2)
-(defvar ORG-ROAM-VAULTS
-  (list
-   (cons "public" "/home/rp152k/source/vcops/org/roam/Content")
-   (cons "private" "/home/rp152k/source/vcops/PrivateOrg")))
-
-(defvar ORG-ROAM-CURRENT-VAULT "public")
-
-(defun alter-org-roam-db-location ()
-  (setq org-roam-db-location
-        (locate-user-emacs-file (format "org-roam-db-%s.db" ORG-ROAM-CURRENT-VAULT))))
 
 (use-package! org-roam
   :config
-  (setq org-roam-database-connector 'emacsql-sqlite-builtin)
-  (setq org-roam-directory (cdr (assoc ORG-ROAM-CURRENT-VAULT ORG-ROAM-VAULTS)))
-  (alter-org-roam-db-location))
+  (setq org-roam-database-connector 'emacsql-sqlite-builtin))
 
-(defun alter-org-roam-vault ()
-  (interactive)
-  (let ((vault (completing-read "org-roam vault:" ORG-ROAM-VAULTS)))
-    (message (format "syncing current changes to %s db" vault))
-    (org-roam-db-sync)
-    (org-roam-db--close-all)
-    (message (format "switching to %s roam vault" vault))
-    (setq ORG-ROAM-CURRENT-VAULT vault)
-    (setq org-roam-directory (cdr (assoc vault ORG-ROAM-VAULTS)))
-    (alter-org-roam-db-location)
-    (message (format "initializing connection with %s roam db" vault))
-    (org-roam-db--get-connection)
-    (message "vault alter succeeded")))
+
+                                        ; nth-roam
+
+(use-package! nth-roam
+  :after org-roam
+  :config
+  (nth-roam-default-vault-register "public" "/home/rp152k/source/vcops/org/roam/Content")
+  (nth-roam-register-vault "private" "/home/rp152k/source/vcops/PrivateOrg")
+  (nth-roam-init "public"))
 
                                         ; GTD
 
@@ -501,10 +485,9 @@ User prompts will relate to various systems, so be prepared to apply your analyt
       "c o" #'citar-open
       "c d" #'citar-dwim
 
-      "n r v a" #'alter-org-roam-vault
-      "n r v v" (lambda ()
-                  (interactive)
-                  (message (format "current roam vault: %s" ORG-ROAM-CURRENT-VAULT)))
+      "n r v a" #'nth-roam-select-vault
+      "n r v v" #'nth-roam-yield-current-vault
+      "n r v d" #'nth-roam-doctor
       
       "i g h" #'gptel
       "i g s" #'gptel-send
