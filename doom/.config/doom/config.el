@@ -178,7 +178,8 @@
   :after org-roam
   :config
   (nth-roam-default-vault-register "public" "/home/rp152k/source/vcops/org/roam/Content")
-  (nth-roam-register-vault "private" "/home/rp152k/source/vcops/PrivateOrg")
+  (nth-roam-register-vault "strat" "/home/rp152k/source/vcops/PrivateOrg/strat")
+  (nth-roam-register-vault "deep-study" "/home/rp152k/source/vcops/PrivateOrg/study")
   (nth-roam-init "public"))
 
                                         ; GTD
