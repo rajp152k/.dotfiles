@@ -1,5 +1,5 @@
 # yt
-alias yt='yt-dlp'
+alias yt='yt-dlp' #yt downloader
 
 # madness
 alias madness='docker run --rm -it -p 3000:3000 -v $PWD:/docs dannyben/madness'

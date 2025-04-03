@@ -132,6 +132,12 @@
                                        (delete-word-at-point)
                                        (insert (format " 0x%X " (string-to-number dec-days))))))))
 
+(defun insert-youtube-video-transcript ()
+  "insert youtube video transcript in the current buffer"
+  (interactive)
+  (let ((url (read-string "video url:")))
+    (insert (shell-command-to-string (format "fabric -y %s" url)))))
+
                                         ; Babel
 (use-package! org
   :config
@@ -204,7 +210,7 @@
 (defvar GPTEL-MODELS
   (list
    (cons "openai" 'gpt-4o-mini)
-   (cons "gemini" 'gemini-2.0-flash-exp))
+   (cons "gemini" 'gemini-2.0-flash))
   "List of models for GPTel.")
 
 (defvar GPTEL-PROMPTS
@@ -433,6 +439,8 @@ User prompts will relate to various systems, so be prepared to apply your analyt
 ;; leader maps
 
 (map! :leader
+
+      "y t" #'insert-youtube-video-transcript
 
       "r f c" (lambda ()
                 (interactive)
