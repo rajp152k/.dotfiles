@@ -434,6 +434,11 @@ User prompts will relate to various systems, so be prepared to apply your analyt
 
 (map! :leader
 
+      "r f c" (lambda ()
+                (interactive)
+                (message "resetting recentf-list")
+                (setq recentf-list (list)))
+
       "z" #'+zen/toggle-fullscreen
 
       "c b" #'blink-cursor-mode
