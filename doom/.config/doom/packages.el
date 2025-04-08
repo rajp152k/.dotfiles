@@ -80,3 +80,6 @@
 
 (package! nth-roam
   :recipe (:host github :repo "/rajp152k/nth-roam"))
+
+(package! copilot
+  :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
