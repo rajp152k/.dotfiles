@@ -316,11 +316,6 @@ User prompts will relate to various systems, so be prepared to apply your analyt
         (prompt (completing-read "gptel-prompt: " GPTEL-PROMPTS)))
     (dispatch-gptel-prompt-header-pair init-header prompt)))
 
-(defmacro interactive-ephemeral-gptel-send (init-header prompt)
-  `(lambda ()
-     (interactive)
-     (dispatch-gptel-prompt-header-pair ,init-header ,prompt)))
-
                                         ; fabric-gptel
 (use-package! fabric-gpt.el
   :after gptel
@@ -346,7 +341,7 @@ User prompts will relate to various systems, so be prepared to apply your analyt
   (org-cite-follow-processor 'citar)
   (org-cite-activate-processor 'citar)
   (citar-bibliographies org-cite-global-bibliography)
-  (citar-bibliography org-cite-global-bibliography))
+  )
 
                                         ;org-roam-ui
 (use-package! org-roam-ui
@@ -507,21 +502,13 @@ User prompts will relate to various systems, so be prepared to apply your analyt
       "n r v d" #'nth-roam-doctor
 
       "m c c" #'copilot-complete
-      "m c a" #'copilot-accept-completion"
-      
+      "m c a" #'copilot-accept-completion
+      "m c n" #'copilot-next-completion
+      "m c p" #'copilot-previous-completion
+
       "i g h" #'gptel
       "i g s" #'gptel-send
       "i g m" #'gptel-menu
-
-      "i g i m a" (interactive-ephemeral-gptel-send "Analysis" "MMA Coach")
-      "i g i s b" (interactive-ephemeral-gptel-send "Systems Breakdown" "Systems Strategist")
-      "i g i e o" (interactive-ephemeral-gptel-send "Epistemological Overview" "Epistemological Engineer")
-      "i g i l h" (interactive-ephemeral-gptel-send "Hacks" "Life Hacker")
-      "i g i c b" (interactive-ephemeral-gptel-send "Analysis" "Chemistry Expert")
-      "i g i d m" (interactive-ephemeral-gptel-send "Dissection" "Magnifier")
-      "i g i b h" (interactive-ephemeral-gptel-send "Bio Hacks" "Bio Hacker")
-      "i g i r a" (interactive-ephemeral-gptel-send "Analysis" "Rhetorician")
-      "i g i s a" (interactive-ephemeral-gptel-send "Architecture Review" "Software Engineer")
 
       "i g f f" #'fabric-gpt.el-send
       "i g f s" #'fabric-gpt.el-sync-patterns

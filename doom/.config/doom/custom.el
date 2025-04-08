@@ -14,3 +14,4 @@
    '("8450a92571b29a2184f7ad9be0760633245f95681c536c76dc740456ff904e38" default))
  '(org-agenda-files '("/home/rp152k/source/vcops/org/GTD/GTD_HQ.org")))
 (put 'narrow-to-region 'disabled nil)
+(put 'customize-group 'disabled nil)
