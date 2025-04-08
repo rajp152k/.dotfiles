@@ -55,7 +55,7 @@
       pdf-view-midnight-invert nil)
 
 
-(doom/set-frame-opacity 0.8)
+(doom/set-frame-opacity 0.9271)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -328,6 +328,16 @@ User prompts will relate to various systems, so be prepared to apply your analyt
   (setq fabric-gpt.el-root "/home/rp152k/.config/doom/")
   (fabric-gpt.el-sync-patterns))
 
+                                        ; copilot
+;; accept completion from copilot and fallback to company
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (:map copilot-completion-map
+              ("<tab>" . 'copilot-accept-completion)
+              ("TAB" . 'copilot-accept-completion)
+              ("C-TAB" . 'copilot-accept-completion-by-word)
+              ("C-<tab>" . 'copilot-accept-completion-by-word)))
+
                                         ;citar
 (use-package! citar
   :custom
@@ -378,7 +388,8 @@ User prompts will relate to various systems, so be prepared to apply your analyt
   (add-hook 'find-file-hook (lambda () (when (bound-and-true-p conda-project-env-path)
                                          (conda-env-activate-for-buffer)))))
 
-;; Ultra Scroll
+                                        ; Ultra Scroll
+
 (use-package ultra-scroll
   :init
   (setq scroll-conservatively 101
@@ -494,6 +505,9 @@ User prompts will relate to various systems, so be prepared to apply your analyt
       "n r v a" #'nth-roam-select-vault
       "n r v v" #'nth-roam-yield-current-vault
       "n r v d" #'nth-roam-doctor
+
+      "m c c" #'copilot-complete
+      "m c a" #'copilot-accept-completion"
       
       "i g h" #'gptel
       "i g s" #'gptel-send
