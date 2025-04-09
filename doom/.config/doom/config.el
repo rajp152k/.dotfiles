@@ -332,13 +332,47 @@ User prompts will relate to various systems, so be prepared to apply your analyt
               ("TAB" . 'copilot-accept-completion)
               ("C-TAB" . 'copilot-accept-completion-by-word)
               ("C-<tab>" . 'copilot-accept-completion-by-word)))
+
                                         ; mcp-hub
 (use-package! mcp-hub
   :config
-  ()
+  (add-hook 'after-init-hook
+            #'mcp-hub-start-all-server)
   (setq mcp-hub-servers
-        '(("thebitmage-roam" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" "/home/rp152k/source/vcops/org/roam/Content")))
+        '(("file-system" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" "/home/rp152k/source/")))
           ("fetch" . (:command "uvx" :args ("mcp-server-fetch"))))))
+
+(defun gptel-mcp-register-tool ()
+  (interactive)
+  (let ((tools (mcp-hub-get-all-tool :asyncp t :categoryp t)))
+    (mapcar #'(lambda (tool)
+                (apply #'gptel-make-tool
+                       tool))
+            tools)))
+
+(defun gptel-mcp-use-tool ()
+  (interactive)
+  (let ((tools (mcp-hub-get-all-tool :asyncp t :categoryp t)))
+    (mapcar #'(lambda (tool)
+                (let ((path (list (plist-get tool :category)
+                                  (plist-get tool :name))))
+                  (push (gptel-get-tool path)
+                        gptel-tools)))
+            tools)))
+
+(defun gptel-mcp-close-use-tool ()
+  (interactive)
+  (let ((tools (mcp-hub-get-all-tool :asyncp t :categoryp t)))
+    (mapcar #'(lambda (tool)
+                (let ((path (list (plist-get tool :category)
+                                  (plist-get tool :name))))
+                  (setq gptel-tools
+                        (cl-remove-if #'(lambda (tool)
+                                          (equal path
+                                                 (list (gptel-tool-category tool)
+                                                       (gptel-tool-name tool))))
+                                      gptel-tools))))
+            tools)))
 
                                         ;citar
 (use-package! citar
@@ -507,6 +541,8 @@ User prompts will relate to various systems, so be prepared to apply your analyt
       "n r v a" #'nth-roam-select-vault
       "n r v v" #'nth-roam-yield-current-vault
       "n r v d" #'nth-roam-doctor
+
+      "m h h" #'mcp-hub
 
       "m c c" #'copilot-complete
       "m c a" #'copilot-accept-completion
