@@ -49,13 +49,13 @@
 (add-to-list 'custom-theme-load-path
              (file-name-as-directory "/home/rp152k/.config/emacs/.local/straight/repos/replace-colorthemes"))
 
-(load-theme 'lawrence t)
+(load-theme 'subdued t)
 
 (setq pdf-view-midnight-colors (cons "#00ff00" "#000000")
       pdf-view-midnight-invert nil)
 
 
-;; (doom/set-frame-opacity 0.9271)
+(doom/set-frame-opacity 0.9271)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -101,6 +101,12 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 ;;
+;;
+
+                                        ;Spacious-Padding
+(use-package! spacious-padding
+  :config
+  (spacious-padding-mode t))
 
                                         ;Misc
 

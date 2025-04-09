@@ -86,3 +86,6 @@
 
 (package! mcp-hub
   :recipe (:host github :repo "lizqwerscott/mcp.el"))
+
+(package! spacious-padding
+  :recipe (:host github :repo "protesilaos/spacious-padding"))
