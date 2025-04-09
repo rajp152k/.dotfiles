@@ -542,6 +542,8 @@ User prompts will relate to various systems, so be prepared to apply your analyt
       "n r v v" #'nth-roam-yield-current-vault
       "n r v d" #'nth-roam-doctor
 
+      "m d h" #'shortdoc
+
       "m h h" #'mcp-hub
 
       "m c c" #'copilot-complete
