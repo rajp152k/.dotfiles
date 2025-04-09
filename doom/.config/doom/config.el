@@ -55,7 +55,7 @@
       pdf-view-midnight-invert nil)
 
 
-(doom/set-frame-opacity 0.9271)
+;; (doom/set-frame-opacity 0.9271)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
