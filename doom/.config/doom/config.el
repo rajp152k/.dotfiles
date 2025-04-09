@@ -332,6 +332,13 @@ User prompts will relate to various systems, so be prepared to apply your analyt
               ("TAB" . 'copilot-accept-completion)
               ("C-TAB" . 'copilot-accept-completion-by-word)
               ("C-<tab>" . 'copilot-accept-completion-by-word)))
+                                        ; mcp-hub
+(use-package! mcp-hub
+  :config
+  ()
+  (setq mcp-hub-servers
+        '(("thebitmage-roam" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" "/home/rp152k/source/vcops/org/roam/Content")))
+          ("fetch" . (:command "uvx" :args ("mcp-server-fetch"))))))
 
                                         ;citar
 (use-package! citar
