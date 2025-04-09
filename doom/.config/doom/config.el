@@ -288,7 +288,7 @@ User prompts will relate to various systems, so be prepared to apply your analyt
   (setq
    gptel-api-key  (cdr (assoc GPTEL-PROVIDER API-KEYS))
    gptel-model   (cdr (assoc GPTEL-PROVIDER GPTEL-MODELS))
-   gptel-default-mode 'org-mode
+   gptel-default-mode 'markdown-mode
    gptel--system-message (cdr (assoc "Raw" GPTEL-PROMPTS)))
   (unless (equal GPTEL-PROVIDER "openai")
     (setq
