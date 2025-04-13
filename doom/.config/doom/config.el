@@ -43,13 +43,12 @@
 ;; (setq doom-theme 'doom-meltbus
 ;;       doom-meltbus-hl-line t)
 
-;; (load-theme 'modus-operandi)
-;;
+(load-theme 'modus-operandi)
 ;; Please set your themes directory to 'custom-theme-load-path
 (add-to-list 'custom-theme-load-path
              (file-name-as-directory "/home/rp152k/.config/emacs/.local/straight/repos/replace-colorthemes"))
 
-(load-theme 'subdued t)
+;; (load-theme 'subdued t)
 
 (setq pdf-view-midnight-colors (cons "#00ff00" "#000000")
       pdf-view-midnight-invert nil)
@@ -104,9 +103,9 @@
 ;;
 
                                         ;Spacious-Padding
-(use-package! spacious-padding
-  :config
-  (spacious-padding-mode t))
+;; (use-package! spacious-padding
+;;   :config
+;;   (spacious-padding-mode t))
 
                                         ;Misc
 
