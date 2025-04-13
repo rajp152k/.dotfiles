@@ -536,8 +536,6 @@ User prompts will relate to various systems, so be prepared to apply your analyt
       "e u" #'eww-open-in-new-buffer
       "e c" #'eww-copy-page-url
 
-      "s /" #'+vertico/project-search-from-cwd
-
       "n i l" #'org-insert-link
       "c e" #'org-cite-insert
       "c o" #'citar-open
