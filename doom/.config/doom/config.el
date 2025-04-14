@@ -392,8 +392,7 @@ User prompts will relate to various systems, so be prepared to apply your analyt
 (use-package! org-roam-ui
   :after org-roam ;; or :after org
   :config
-  (setq org-roam-ui-sync-theme t
-        org-roam-ui-follow t
+  (setq org-roam-ui-follow t
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t
         org-roam-ui-browser-function #'browse-url-chromium))
