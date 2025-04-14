@@ -289,11 +289,12 @@ User prompts will relate to various systems, so be prepared to apply your analyt
 
 (use-package! gptel
   :config
-  (setq
-   gptel-api-key  (cdr (assoc GPTEL-PROVIDER API-KEYS))
-   gptel-model   (cdr (assoc GPTEL-PROVIDER GPTEL-MODELS))
-   gptel-default-mode 'markdown-mode
-   gptel--system-message (cdr (assoc "Raw" GPTEL-PROMPTS)))
+  (setq gptel--rewrite-message "")
+  (setq gptel-api-key (cdr (assoc GPTEL-PROVIDER API-KEYS))
+        gptel-model (cdr (assoc GPTEL-PROVIDER GPTEL-MODELS))
+        gptel-default-mode 'markdown-mode
+        gptel--system-message (cdr (assoc "Raw" GPTEL-PROMPTS)))
+
   (unless (equal GPTEL-PROVIDER "openai")
     (setq
      gptel-backend (funcall  (intern (format "gptel-make-%s" GPTEL-PROVIDER))
