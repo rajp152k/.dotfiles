@@ -545,6 +545,17 @@ User prompts will relate to various systems, so be prepared to apply your analyt
       "n r v v" #'nth-roam-yield-current-vault
       "n r v d" #'nth-roam-doctor
 
+      "n r u u" #'org-roam-ui-open
+      "n r u z" #'org-roam-ui-node-zoom
+      "n r u f f" #'org-roam-ui-follow-mode
+      "n r u l i" #'org-roam-ui-node-local
+      "n r u l c" #'org-roam-ui-change-local-graph
+      "n r u l a" #'org-roam-ui-add-to-local-graph
+      "n r u l d" #'org-roam-ui-remove-from-local-graph
+
+
+
+
       "m d h" #'shortdoc
 
       "m h h" #'mcp-hub
