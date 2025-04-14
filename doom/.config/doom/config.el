@@ -40,15 +40,14 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the 
-;; (setq doom-theme 'doom-meltbus
-;;       doom-meltbus-hl-line t)
+(setq doom-theme 'doom-outrun-electric
+      doom-meltbus-hl-line t)
 
-(load-theme 'doom-outrun-electric)
 ;; Please set your themes directory to 'custom-theme-load-path
 (add-to-list 'custom-theme-load-path
              (file-name-as-directory "/home/rp152k/.config/emacs/.local/straight/repos/replace-colorthemes"))
 
-;; (load-theme 'subdued t)
+;; (load-theme 'lawrence t)
 
 (setq pdf-view-midnight-colors (cons "#00ff00" "#000000")
       pdf-view-midnight-invert nil)
@@ -396,7 +395,8 @@ User prompts will relate to various systems, so be prepared to apply your analyt
   (setq org-roam-ui-sync-theme t
         org-roam-ui-follow t
         org-roam-ui-update-on-save t
-        org-roam-ui-open-on-start t))
+        org-roam-ui-open-on-start t
+        org-roam-ui-browser-function #'browse-url-chromium))
 
                                         ;LSP
 (use-package! lsp-mode
