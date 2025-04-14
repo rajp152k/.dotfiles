@@ -382,11 +382,11 @@ User prompts will relate to various systems, so be prepared to apply your analyt
 (use-package! citar
   :custom
   (org-cite-global-bibliography '("/home/rp152k/source/vcops/org/roam/Content/bib/references.bib"))
+  (citar-bibliography '("/home/rp152k/source/vcops/org/roam/Content/bib/references.bib"))
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)
   (org-cite-activate-processor 'citar)
-  (citar-bibliographies org-cite-global-bibliography)
-  )
+  (citar-bibliographies org-cite-global-bibliography))
 
                                         ;org-roam-ui
 (use-package! org-roam-ui
