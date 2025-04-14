@@ -40,14 +40,14 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the 
-(setq doom-theme 'doom-outrun-electric
-      doom-meltbus-hl-line t)
+;; (setq doom-theme 'doom-outrun-electric
+;;       doom-outrun-electric t)
 
 ;; Please set your themes directory to 'custom-theme-load-path
 (add-to-list 'custom-theme-load-path
              (file-name-as-directory "/home/rp152k/.config/emacs/.local/straight/repos/replace-colorthemes"))
 
-;; (load-theme 'lawrence t)
+(load-theme 'lawrence t)
 
 (setq pdf-view-midnight-colors (cons "#00ff00" "#000000")
       pdf-view-midnight-invert nil)
@@ -395,7 +395,20 @@ User prompts will relate to various systems, so be prepared to apply your analyt
   (setq org-roam-ui-follow t
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t
-        org-roam-ui-browser-function #'browse-url-chromium))
+        org-roam-ui-browser-function #'browse-url-chromium
+        org-roam-ui-sync-theme nil
+        org-roam-ui-custom-theme '((bg . "#000000")
+                                   (bg-alt . "#000800")
+                                   (fg . "#00FF00")
+                                   (fg-alt . "#00FF00")
+                           (red . "#FF0066")
+                           (orange . "#FF9933")
+                           (yellow . "#FFFF33")
+                           (green . "#33FF33")
+                           (cyan . "#33FFFF")
+                           (blue . "#6666FF")
+                           (violet . "#9933FF")
+                           (magenta . "#FF33FF"))))                                        ;LSP
 
                                         ;LSP
 (use-package! lsp-mode
