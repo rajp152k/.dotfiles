@@ -340,8 +340,8 @@ User prompts will relate to various systems, so be prepared to apply your analyt
                                         ; mcp-hub
 (use-package! mcp-hub
   :config
-  (add-hook 'after-init-hook
-            #'mcp-hub-start-all-server)
+  ;; (add-hook 'after-init-hook
+  ;;           #'mcp-hub-start-all-server)
   (setq mcp-hub-servers
         '(("file-system" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" "/home/rp152k/source/")))
           ("fetch" . (:command "uvx" :args ("mcp-server-fetch"))))))
@@ -575,12 +575,15 @@ User prompts will relate to various systems, so be prepared to apply your analyt
  "n r u l d" #'org-roam-ui-remove-from-local-graph
 
 
-
-
  "m d h" #'shortdoc
 
  "m h h" #'mcp-hub
 
+ "m c t t" #'copilot-mode
+ "m c t g" #'(lambda ()
+               "disable copilot mode globally"
+               (interactive)
+               (global-copilot-mode nil))
  "m c c" #'copilot-complete
  "m c a" #'copilot-accept-completion
  "m c n" #'copilot-next-completion
