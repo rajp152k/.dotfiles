@@ -59,7 +59,7 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
 
-;Doom Scratch
+                                        ;Doom Scratch
 (setq doom-scratch-initial-major-mode 'org-mode)
 
 ;; If you use `org' and don't want your org files in the default location below,
@@ -156,24 +156,24 @@
   (setq org-startup-numerated t)
   (setq org-agenda-files '("/home/rp152k/source/vcops/org/GTD/GTD_HQ.org"))
   (setq org-capture-templates
-	      '(("n" "Next Action" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Next Action")
-                 "* TODO %?\n  %i\n  %a")
-                ("o" "Open Source" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Open Source")
-                 "* [?] [OS] %?\n  %i\n  %a")
-                ("c" "Content" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Content")
-                 "* [?] [CNTNT] %?\n  %i\n  %a")
-                ("m" "Meet Log" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Meet Logs")
-                 "* @ %? w/")
-	        ("e" "Event" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Events")
-                 "* %?\nSCHEDULED: %T\n  %i")
-                ("i" "IN" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "INQ")
-                 "* [?] [INQ] %?\nEntered on %U\n  %i\n  %a")
-                ("r" "Roam" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Roam")
-                 "* [?] [ROAM] %?\n  %i\n  %a")
-                ("k" "ICBM" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "ICBM")
-                 "* [?] [ICBM] %?\nEntered on %U\n  %i\n  %a")
-	        ("t" "Tooling" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Tooling")
-	         "* [?] [TOOL] %?\n %i\n %a"))))
+        '(("n" "Next Action" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Next Action")
+           "* TODO %?\n  %i\n  %a")
+          ("o" "Open Source" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Open Source")
+           "* [?] [OS] %?\n  %i\n  %a")
+          ("c" "Content" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Content")
+           "* [?] [CNTNT] %?\n  %i\n  %a")
+          ("m" "Meet Log" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Meet Logs")
+           "* @ %? w/")
+          ("e" "Event" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Events")
+           "* %?\nSCHEDULED: %T\n  %i")
+          ("i" "IN" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "INQ")
+           "* [?] [INQ] %?\nEntered on %U\n  %i\n  %a")
+          ("r" "Roam" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Roam")
+           "* [?] [ROAM] %?\n  %i\n  %a")
+          ("k" "ICBM" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "ICBM")
+           "* [?] [ICBM] %?\nEntered on %U\n  %i\n  %a")
+          ("t" "Tooling" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Tooling")
+           "* [?] [TOOL] %?\n %i\n %a"))))
 
                                         ;roam (+roam2)
 
@@ -401,14 +401,14 @@ User prompts will relate to various systems, so be prepared to apply your analyt
                                    (bg-alt . "#000800")
                                    (fg . "#00FF00")
                                    (fg-alt . "#00FF00")
-                           (red . "#FF0066")
-                           (orange . "#FF9933")
-                           (yellow . "#FFFF33")
-                           (green . "#33FF33")
-                           (cyan . "#33FFFF")
-                           (blue . "#6666FF")
-                           (violet . "#9933FF")
-                           (magenta . "#FF33FF"))))                                        ;LSP
+                                   (red . "#FF0066")
+                                   (orange . "#FF9933")
+                                   (yellow . "#FFFF33")
+                                   (green . "#33FF33")
+                                   (cyan . "#33FFFF")
+                                   (blue . "#6666FF")
+                                   (violet . "#9933FF")
+                                   (magenta . "#FF33FF"))))                                        ;LSP
 
                                         ;LSP
 (use-package! lsp-mode
@@ -496,92 +496,101 @@ User prompts will relate to various systems, so be prepared to apply your analyt
 
 (map! :leader
 
-      "y t" #'insert-youtube-video-transcript
+ "y t" #'insert-youtube-video-transcript
 
-      "r f c" (lambda ()
-                (interactive)
-                (message "resetting recentf-list")
-                (setq recentf-list (list)))
+ "r f c" (lambda ()
+           (interactive)
+           (message "resetting recentf-list")
+           (setq recentf-list (list)))
 
-      "z" #'+zen/toggle-fullscreen
+ "z" #'+zen/toggle-fullscreen
 
-      "c b" #'blink-cursor-mode
+ "c b" #'blink-cursor-mode
 
-      "b f" #'browse-url-firefox
+ "b f" #'browse-url-firefox
 
-      "g d i" #'godoc
+ "g d i" #'godoc
 
-      "m o i" #'doom/set-frame-opacity
+ "m o i" #'doom/set-frame-opacity
 
-      "m p s" #'python-shell-send-statement
-      "m r" #'python-shell-send-region
-      "m p r" #'+python/open-ipython-repl
-      "m p f" #'python-shell-send-file
+ "m p s" #'python-shell-send-statement
+ "m r" #'python-shell-send-region
+ "m p r" #'+python/open-ipython-repl
+ "m p f" #'python-shell-send-file
 
-      "m h t" #'modus-themes-toggle
+ "m h t" #'modus-themes-toggle
 
-      "m a h" #'pdf-annot-add-highlight-markup-annotation
-      "m a m" #'pdf-annot-add-markup-annotation
-      "m a u" #'pdf-annot-add-underline-markup-annotation
-      "m a t" #'pdf-annot-add-text-annotation
-      "m a x" #'pdf-annot-add-strikeout-markup-annotation
-      "m a s" #'pdf-annot-add-squiggly-markup-annotation
-      "m a l" #'pdf-annot-list-annotations
+ "m a h" #'pdf-annot-add-highlight-markup-annotation
+ "m a m" #'pdf-annot-add-markup-annotation
+ "m a u" #'pdf-annot-add-underline-markup-annotation
+ "m a t" #'pdf-annot-add-text-annotation
+ "m a x" #'pdf-annot-add-strikeout-markup-annotation
+ "m a s" #'pdf-annot-add-squiggly-markup-annotation
+ "m a l" #'pdf-annot-list-annotations
 
-      "r s" #'restclient-http-send-current
+ "r s" #'restclient-http-send-current
 
-      "w w" #'switch-window
+ "w w" #'switch-window
 
-      "e x" #'eros-eval-defun
+ "e x" #'eros-eval-defun
 
-      "l h"  #'life-hex-count
-      "l t" #'time-stamp
-      "o g" #'gtd-workspace
-      "e h" #'easy-hugo
+ "l h" #'life-hex-count
+ "l t" #'time-stamp
+ "o g" #'gtd-workspace
+ "e h" #'easy-hugo
 
-      "t t" #'tldr
+ "t t" #'tldr
 
-      "X" #'scratch-buffer
+ "X" #'scratch-buffer
 
-      "s w" #'eww
-      "e w" #'eww-switch-to-buffer
-      "e u" #'eww-open-in-new-buffer
-      "e c" #'eww-copy-page-url
+ "s w" #'eww
+ "e w" #'eww-switch-to-buffer
+ "e u" #'eww-open-in-new-buffer
+ "e c" #'eww-copy-page-url
 
-      "n i l" #'org-insert-link
-      "c e" #'org-cite-insert
-      "c o" #'citar-open
-      "c d" #'citar-dwim
+ "n i l" #'org-insert-link
+ "c e" #'org-cite-insert
+ "c o" #'citar-open
+ "c d" #'citar-dwim
 
-      "n r v a" #'nth-roam-select-vault
-      "n r v v" #'nth-roam-yield-current-vault
-      "n r v d" #'nth-roam-doctor
+ "n r v a" #'nth-roam-select-vault
+ "n r v v" #'nth-roam-yield-current-vault
+ "n r v d" #'nth-roam-doctor
 
-      "n r u u" #'org-roam-ui-open
-      "n r u z" #'org-roam-ui-node-zoom
-      "n r u f f" #'org-roam-ui-follow-mode
-      "n r u l i" #'org-roam-ui-node-local
-      "n r u l c" #'org-roam-ui-change-local-graph
-      "n r u l a" #'org-roam-ui-add-to-local-graph
-      "n r u l d" #'org-roam-ui-remove-from-local-graph
+ "n r u u" #'org-roam-ui-open
+ "n r u z" (lambda ()
+             (interactive)
+             (org-roam-ui-node-zoom (org-roam-id-at-point)
+                                    100
+                                    10))
+ "n r u f f" #'org-roam-ui-follow-mode
+ "n r u l l" (lambda ()
+               (interactive)
+               (org-roam-ui-node-local (org-roam-id-at-point)
+                                       100
+                                       0))
+
+ "n r u l c" #'org-roam-ui-change-local-graph
+ "n r u l a" #'org-roam-ui-add-to-local-graph
+ "n r u l d" #'org-roam-ui-remove-from-local-graph
 
 
 
 
-      "m d h" #'shortdoc
+ "m d h" #'shortdoc
 
-      "m h h" #'mcp-hub
+ "m h h" #'mcp-hub
 
-      "m c c" #'copilot-complete
-      "m c a" #'copilot-accept-completion
-      "m c n" #'copilot-next-completion
-      "m c p" #'copilot-previous-completion
+ "m c c" #'copilot-complete
+ "m c a" #'copilot-accept-completion
+ "m c n" #'copilot-next-completion
+ "m c p" #'copilot-previous-completion
 
-      "i g h" #'gptel
-      "i g s" #'gptel-send
-      "i g m" #'gptel-menu
+ "i g h" #'gptel
+ "i g s" #'gptel-send
+ "i g m" #'gptel-menu
 
-      "i g f f" #'fabric-gpt.el-send
-      "i g f s" #'fabric-gpt.el-sync-patterns
-      "i g a p" #'gptel-prompt-alter
-      "i g a s" #'dispatch-ephemeral-gptel-base-send)
+ "i g f f" #'fabric-gpt.el-send
+ "i g f s" #'fabric-gpt.el-sync-patterns
+ "i g a p" #'gptel-prompt-alter
+ "i g a s" #'dispatch-ephemeral-gptel-base-send)
