@@ -562,13 +562,13 @@ User prompts will relate to various systems, so be prepared to apply your analyt
              (interactive)
              (org-roam-ui-node-zoom (org-roam-id-at-point)
                                     100
-                                    10))
+                                    20))
  "n r u f f" #'org-roam-ui-follow-mode
  "n r u l l" (lambda ()
                (interactive)
                (org-roam-ui-node-local (org-roam-id-at-point)
                                        100
-                                       0))
+                                       20))
 
  "n r u l c" #'org-roam-ui-change-local-graph
  "n r u l a" #'org-roam-ui-add-to-local-graph
@@ -580,14 +580,8 @@ User prompts will relate to various systems, so be prepared to apply your analyt
  "m h h" #'mcp-hub
 
  "m c t t" #'copilot-mode
- "m c t g" #'(lambda ()
-               "disable copilot mode globally"
-               (interactive)
-               (global-copilot-mode nil))
- "m c c" #'copilot-complete
- "m c a" #'copilot-accept-completion
- "m c n" #'copilot-next-completion
- "m c p" #'copilot-previous-completion
+ "m c p" #'copilot-panel-complete
+
 
  "i g h" #'gptel
  "i g s" #'gptel-send
