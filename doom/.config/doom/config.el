@@ -206,6 +206,12 @@
   :config
   (setq easy-hugo-basedir "/home/rp152k/source/vcops/thebitmage.com"))
 
+                                        ; aider
+(use-package! aidermacs
+  :config
+  (aidermacs-use-architect-mode t)
+  (aidermacs-default-model "gemini"))
+
                                         ;gptel
 
 (defvar GPTEL-PROVIDER "gemini"
@@ -582,6 +588,7 @@ User prompts will relate to various systems, so be prepared to apply your analyt
  "m c t t" #'copilot-mode
  "m c p" #'copilot-panel-complete
 
+ "i a" #'aidermacs-transient-menu
 
  "i g h" #'gptel
  "i g s" #'gptel-send

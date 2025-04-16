@@ -89,3 +89,6 @@
 
 ;; (package! spacious-padding
 ;;   :recipe (:host github :repo "protesilaos/spacious-padding"))
+
+(package! aidermacs
+  :recipe (:host github :repo "MatthewZMD/aidermacs"))
