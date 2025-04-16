@@ -211,6 +211,7 @@
   :config
   (setenv "OPENAI_API_KEY" (cdr (assoc "openai" API-KEYS)))
   (setq aidermacs-backend 'vterm)
+  (setq aidermacs-use-architect-mode t)
   (setq aidermacs-architect-model "o1-mini")
   (setq aidermacs-default-model "gpt-4o-mini"))
 
