@@ -209,8 +209,10 @@
                                         ; aider
 (use-package! aidermacs
   :config
-  (aidermacs-use-architect-mode t)
-  (aidermacs-default-model "gemini"))
+  (setenv "OPENAI_API_KEY" (cdr (assoc "openai" API-KEYS)))
+  (setenv "GEMINI_API_KEY" (cdr (assoc "gemini" API-KEYS)))
+  (setq aidermacs-use-architect-mode t)
+  (setq aidermacs-default-model "openai"))
 
                                         ;gptel
 

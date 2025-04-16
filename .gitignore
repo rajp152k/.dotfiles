@@ -1,3 +1,4 @@
 doom/.config/doom/secrets.el
 doom/.config/doom/fabric
 mcp/.mcp/private_server_config.json
+.aider*
