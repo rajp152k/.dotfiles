@@ -1,3 +1,7 @@
+# aider
+alias aid='cd ~/aider-buffer && aider --model="gpt-4o-mini"'
+
+
 # yt
 alias yt='yt-dlp' #yt downloader
 
