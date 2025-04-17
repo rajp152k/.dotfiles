@@ -190,7 +190,7 @@
   :config
   (nth-roam-default-vault-register "thebitmage" "/home/rp152k/source/vcops/org/roam/Content")
   (nth-roam-register-vault "study" "/home/rp152k/source/vcops/PrivateOrg/study")
-  (nth-roam-register-vault "linguistics" "/home/rp152k/source/vcops/PrivateOrg/linguistics")
+  (nth-roam-register-vault "symbolic" "/home/rp152k/source/vcops/PrivateOrg/symbolic")
   (nth-roam-init "thebitmage"))
 
                                         ; GTD
