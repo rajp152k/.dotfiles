@@ -211,11 +211,11 @@
 (use-package! aidermacs
   :config
   (setenv "OPENAI_API_KEY" (cdr (assoc "openai" API-KEYS)))
-  ;; (add-to-list 'aidermacs-extra-args "--multiline" )
+  ;; (add-to-list 'aidermacs-extra-args "--reasoning-effort medium" )
   (setq aidermacs-backend 'vterm)
   (setq aidermacs-use-architect-mode t)
-  (setq aidermacs-architect-model "o1-mini")
-  (setq aidermacs-default-model "gpt-4o-mini"))
+  (setq aidermacs-architect-model "o4-mini")
+  (setq aidermacs-default-model "gpt-4.1-mini"))
 
 (defvar GPTEL-PROVIDER "gemini"
   "Provider for GPTel.")
