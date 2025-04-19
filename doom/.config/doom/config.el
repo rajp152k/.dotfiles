@@ -211,6 +211,7 @@
 (use-package! aidermacs
   :config
   (setenv "OPENAI_API_KEY" (cdr (assoc "openai" API-KEYS)))
+  (setenv "OPENROUTER_NAUGHT" (cdr (assoc "openrouter" API-KEYS)))
   ;; (add-to-list 'aidermacs-extra-args "--reasoning-effort medium" )
   (setq aidermacs-backend 'vterm)
   (setq aidermacs-use-architect-mode t)
@@ -222,9 +223,10 @@
 
 (defvar GPTEL-MODELS
   (list
-   (cons "openai" 'gpt-4o-mini)
-   (cons "gemini" 'gemini-2.0-flash))
-  "List of models for GPTel.")
+   (cons "openai" 'gpt-4.1-mini)
+   (cons "gemini" 'gemini-2.5-flash)
+   (cons "openrouter" 'openai/gpt-4.1-mini))
+  "List of defualt init models for GPTel.")
 
 (defvar GPTEL-PROMPTS
   '(("Life Hacker" . " You are a life hacker with a wealth of knowledge on productivity, organization, and self-improvement techniques. Provide actionable tips and insights for optimizing daily routines, managing time effectively, and enhancing overall well-being. Aim for responses that are specific, practical, and tailored to individual circumstances. If a user provides a particular challenge or goal, focus your advice on that situation, offering multiple strategies when possible. ")
@@ -303,13 +305,58 @@ User prompts will relate to various systems, so be prepared to apply your analyt
         gptel-default-mode 'markdown-mode
         gptel--system-message (cdr (assoc "Raw" GPTEL-PROMPTS)))
 
-  (unless (equal GPTEL-PROVIDER "openai")
-    (setq
-     gptel-backend (funcall  (intern (format "gptel-make-%s" GPTEL-PROVIDER))
-                             GPTEL-PROVIDER
-                             :key gptel-api-key
-                             ;; :models ,(intern (format "gptel--%s-models" GPTEL-PROVIDER))
-                             :stream t))))
+  ;; (unless (equal GPTEL-PROVIDER "openai")
+  ;;   (setq
+  ;;    gptel-backend (funcall  (intern (format "gptel-make-%s" GPTEL-PROVIDER))
+  ;;                            GPTEL-PROVIDER
+  ;;                            :key gptel-api-key
+  ;;                            ;; :models ,(intern (format "gptel--%s-models" GPTEL-PROVIDER))
+  ;;                            :stream t)))
+  (setq gptel-model   'openai/gpt-4.1-nano
+        gptel-backend
+        (gptel-make-openai "OpenRouter"
+          :host "openrouter.ai"
+          :endpoint "/api/v1/chat/completions"
+          :stream t
+          :key (cdr (assoc "openrouter" API-KEYS))
+          :models '(openai/gpt-4.1
+                    openai/gpt-4.1-nano
+                    openai/gpt-4.1-mini
+                    openai/o4-mini-high
+                    openai/o4-mini
+
+                    meta-llama/llama-4-maverick:free
+                    meta-llama/llama-4-maverick
+                    meta-llama/llama-4-scout:free
+                    meta-llama/llama-4-scout
+
+                    deepseek/deepseek-chat
+                    deepseek/deepseek-chat-v3-0324
+                    deepseek/deepseek-r1
+                    deepseek/deepseek-r1-distill-llama-70b
+
+                    mistralai/mixtral-8x7b-instruct
+                    mistralai/codestral-2501
+                    mistralai/codestral-mamba
+                    mistralai/ministral-8b
+                    mistralai/mistral-small-3.1-24b-instruct
+                    mistralai/mistral-saba
+
+                    anthropic/claude-3.7-sonnet:thinking
+                    anthropic/claude-3.7-sonnet
+                    anthropic/claude-3.5-haiku
+
+                    google/gemini-2.5-flash-preview:thinking
+                    google/gemini-2.5-flash-preview
+                    google/gemini-2.5-pro-preview-03-25
+
+                    x-ai/grok-3-mini-beta
+                    x-ai/grok-3-beta))))
+
+
+
+
+
 
 (defun gptel-prompt-alter ()
   "alter GPTEL prompt from a predefined list from gptel-conf.el "
