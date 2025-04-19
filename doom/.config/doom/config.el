@@ -211,14 +211,28 @@
 (use-package! aidermacs
   :config
   (setenv "OPENAI_API_KEY" (cdr (assoc "openai" API-KEYS)))
-  (setenv "OPENROUTER_NAUGHT" (cdr (assoc "openrouter" API-KEYS)))
-  ;; (add-to-list 'aidermacs-extra-args "--reasoning-effort medium" )
+  (setenv "OPENROUTER_API_KEY" (cdr (assoc "openrouter" API-KEYS)))
+  (add-to-list 'aidermacs-extra-args "--no-show-model-warnings" )
   (setq aidermacs-backend 'vterm)
   (setq aidermacs-use-architect-mode t)
   (setq aidermacs-architect-model "o4-mini")
   (setq aidermacs-default-model "gpt-4.1-mini"))
 
-(defvar GPTEL-PROVIDER "gemini"
+
+(defun aidermacs-mode-config ()
+  (interactive)
+  (cl-flet ((alter-models (flash think)
+              (setq aidermacs-architect-model think
+                    aidermacs-default-model flash)
+              (message (format "Aider flash : %s | Aider think : %s"
+                               flash
+                               think))))
+    (let ((mode (completing-read "Aider Mode: " '("work" "business"))))
+      (cl-case (intern mode)
+        (work (alter-models "openai/gpt-4.1-mini" "openai/o4-mini"))
+        (business (alter-models "openrouter/anthropic/claude-3-5-haiku" "openrouter/anthropic/claude-3.7-sonnet"))))))
+
+(defvar GPTEL-PROVIDER "openrouter"
   "Provider for GPTel.")
 
 (defvar GPTEL-MODELS
@@ -639,6 +653,8 @@ User prompts will relate to various systems, so be prepared to apply your analyt
  "m c p" #'copilot-panel-complete
 
  "i a" #'aidermacs-transient-menu
+
+ "i c" #'aidermacs-mode-config
 
  "i g h" #'gptel
  "i g s" #'gptel-send
