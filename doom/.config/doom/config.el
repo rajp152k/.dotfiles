@@ -230,7 +230,7 @@
     (let ((mode (completing-read "Aider Mode: " '("work" "business"))))
       (cl-case (intern mode)
         (work (alter-models "openai/gpt-4.1-mini" "openai/o4-mini"))
-        (business (alter-models "openrouter/anthropic/claude-3-5-haiku" "openrouter/anthropic/claude-3.7-sonnet"))))))
+        (business (alter-models "openrouter/openai/gpt-4.1-mini" "openrouter/openai/o4-mini"))))))
 
 (defvar GPTEL-PROVIDER "openrouter"
   "Provider for GPTel.")
@@ -653,7 +653,6 @@ User prompts will relate to various systems, so be prepared to apply your analyt
  "m c p" #'copilot-panel-complete
 
  "i a" #'aidermacs-transient-menu
-
  "i c" #'aidermacs-mode-config
 
  "i g h" #'gptel
