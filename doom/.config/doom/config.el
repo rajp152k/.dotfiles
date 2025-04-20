@@ -227,10 +227,15 @@
               (message (format "Aider flash : %s | Aider think : %s"
                                flash
                                think))))
-    (let ((mode (completing-read "Aider Mode: " '("work" "business"))))
+    (let ((mode (completing-read "Aider Mode: " '("work"
+                                                  "openai"
+                                                  "deepseek"
+                                                  "claude"))))
       (cl-case (intern mode)
         (work (alter-models "openai/gpt-4.1-mini" "openai/o4-mini"))
-        (business (alter-models "openrouter/openai/gpt-4.1-mini" "openrouter/openai/o4-mini"))))))
+        (deepseek (alter-models "openrouter/deepseek/deepseek-chat" "openrouter/deepseek/deepseek-r1" ))
+        (claude (alter-models "openrouter/anthropic/claude-3-7-haiku" "openrouter/anthropic/claude-3.7-sonnet"))
+        (openai (alter-models "openrouter/openai/gpt-4.1-mini" "openrouter/openai/o4-mini"))))))
 
 (defvar GPTEL-PROVIDER "openrouter"
   "Provider for GPTel.")
