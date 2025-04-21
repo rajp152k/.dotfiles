@@ -40,20 +40,18 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the 
-;; (setq doom-theme 'doom-outrun-electric
-;;       doom-outrun-electric t)
 
 ;; Please set your themes directory to 'custom-theme-load-path
 (add-to-list 'custom-theme-load-path
              (file-name-as-directory "/home/rp152k/.config/emacs/.local/straight/repos/replace-colorthemes"))
 
-(load-theme 'lawrence t)
+(load-theme 'modus-vivendi t)
 
 (setq pdf-view-midnight-colors (cons "#00ff00" "#000000")
       pdf-view-midnight-invert nil)
 
 
-(doom/set-frame-opacity 0.9271)
+(doom/set-frame-opacity 0.8)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
