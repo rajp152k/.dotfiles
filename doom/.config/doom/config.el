@@ -99,7 +99,6 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 ;;
-;;
 
                                         ;Spacious-Padding
 ;; (use-package! spacious-padding
@@ -230,11 +229,13 @@
     (let ((mode (completing-read "Aider Mode: " '("work"
                                                   "openai"
                                                   "deepseek"
+                                                  "llama"
                                                   "claude"))))
       (cl-case (intern mode)
         (work (alter-models "openai/gpt-4.1-mini" "openai/o4-mini"))
         (deepseek (alter-models "openrouter/deepseek/deepseek-chat" "openrouter/deepseek/deepseek-r1" ))
         (claude (alter-models "openrouter/anthropic/claude-3-7-haiku" "openrouter/anthropic/claude-3.7-sonnet"))
+        (llama (alter-models "openrouter/meta-llama/llama-4-scout" "openrouter/meta-llama/llama-4-maverick"))
         (openai (alter-models "openrouter/openai/gpt-4.1-mini" "openrouter/openai/o4-mini"))))))
 
 (defvar GPTEL-PROVIDER "openrouter"
@@ -331,7 +332,7 @@ User prompts will relate to various systems, so be prepared to apply your analyt
   ;;                            :key gptel-api-key
   ;;                            ;; :models ,(intern (format "gptel--%s-models" GPTEL-PROVIDER))
   ;;                            :stream t)))
-  (setq gptel-model   'openai/gpt-4.1-nano
+  (setq gptel-model   'meta-llama/llama-4-maverick
         gptel-backend
         (gptel-make-openai "OpenRouter"
           :host "openrouter.ai"
