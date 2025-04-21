@@ -650,6 +650,11 @@ User prompts will relate to various systems, so be prepared to apply your analyt
  "n r u l d" #'org-roam-ui-remove-from-local-graph
 
 
+ "n r u l c" #'org-roam-ui-change-local-graph
+ "n r u l a" #'org-roam-ui-add-to-local-graph
+ "n r u l d" #'org-roam-ui-remove-from-local-graph
+
+
  "m d h" #'shortdoc
 
  "m h h" #'mcp-hub
