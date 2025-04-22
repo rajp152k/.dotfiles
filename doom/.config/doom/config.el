@@ -169,8 +169,12 @@
            "* [?] [ROAM] %?\n  %i\n  %a")
           ("k" "ICBM" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "ICBM")
            "* [?] [ICBM] %?\nEntered on %U\n  %i\n  %a")
-          ("t" "Tooling" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Tooling")
-           "* [?] [TOOL] %?\n %i\n %a"))))
+          ("a" "Agentify" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Agentify")
+           "* [?] [AGNTFY] %?\nEntered on %U\n  %i\n  %a")
+          ("t" "Thunk" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Thunk")
+           "* [?] [THUNK] %?\nEntered on %U\n  %i\n  %a")
+          ("u" "UTIL" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "UTIL")
+           "* [?] [UTIl] %?\n %i\n %a"))))
 
                                         ;roam (+roam2)
 
