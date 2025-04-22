@@ -176,6 +176,36 @@
           ("u" "UTIL" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "UTIL")
            "* [?] [UTIl] %?\n %i\n %a"))))
 
+(defun gtd-workspace-archive ()
+  "Archive every heading whose TODO state is DONE in all `org-agenda-files`."
+  (interactive)
+  (let ((files  (org-agenda-files))
+        (count  0))
+    (dolist (file files)
+      (with-current-buffer (find-file-noselect file)
+        ;; Make sure we see the whole buffer even if you've narrowed
+        (org-with-wide-buffer
+         (let (done-markers)
+           (goto-char (point-min))
+           ;; collect every DONE heading
+           (while (re-search-forward org-heading-regexp nil t)
+             (when (string= (org-get-todo-state) "DONE")
+               (push (point-marker) done-markers)))
+           ;; process from bottom to top
+           (dolist (mk (sort done-markers
+                             (lambda (a b)
+                               (> (marker-position a)
+                                  (marker-position b)))))
+             (goto-char (marker-position mk))
+             (org-archive-subtree)
+             (cl-incf count)
+             (set-marker mk nil))))
+        ;; save only if changed
+        (when (buffer-modified-p)
+          (save-buffer))))
+    (message "Archived %d DONE entries across %d files"
+             count (length files))))
+
                                         ;roam (+roam2)
 
 (use-package! org-roam
@@ -614,7 +644,10 @@ User prompts will relate to various systems, so be prepared to apply your analyt
 
  "l h" #'life-hex-count
  "l t" #'time-stamp
- "o g" #'gtd-workspace
+
+ "o g w" #'gtd-workspace
+ "o g a" #'gtd-workspace-archive
+
  "e h" #'easy-hugo
 
  "t t" #'tldr
