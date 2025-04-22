@@ -1,3 +1,7 @@
+# self hosts
+alias foxcool='firefox ost.thebitmage.com:8000'
+
+
 # aider
 alias aid='cd ~/aider-buffer && aider --model="openrouter/openai/gpt-4.1-mini"'
 
