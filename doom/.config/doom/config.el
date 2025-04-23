@@ -605,108 +605,115 @@ User prompts will relate to various systems, so be prepared to apply your analyt
 
 (map! :leader
 
- "y t" #'insert-youtube-video-transcript
+      "y t" #'insert-youtube-video-transcript
 
- "r f c" (lambda ()
-           (interactive)
-           (message "resetting recentf-list")
-           (setq recentf-list (list)))
+      "r f c" (lambda ()
+                (interactive)
+                (message "resetting recentf-list")
+                (setq recentf-list (list)))
 
- "z" #'+zen/toggle-fullscreen
+      "z" #'+zen/toggle-fullscreen
 
- "c b" #'blink-cursor-mode
+      "c b" #'blink-cursor-mode
 
- "b f" #'browse-url-firefox
+      "b f" #'browse-url-firefox
 
- "g d i" #'godoc
+      "g d i" #'godoc
 
- "m o i" #'doom/set-frame-opacity
+      "m o i" #'doom/set-frame-opacity
 
- "m p s" #'python-shell-send-statement
- "m r" #'python-shell-send-region
- "m p r" #'+python/open-ipython-repl
- "m p f" #'python-shell-send-file
+      "m p s" #'python-shell-send-statement
+      "m p r" #'python-shell-send-region
+      "m p i" #'+python/open-ipython-repl
+      "m p f" #'python-shell-send-file
 
- "m h t" #'modus-themes-toggle
+      "m h s" #'hy-shell-eval-last-sexp
+      "m h r" #'hy-shell-eval-region
+      "m h c" #'hy-shell-eval-current-form
+      "m h b" #'hy-shell-eval-buffer
+      "m h k" #'hy-describe-thing-at-point
 
- "m a h" #'pdf-annot-add-highlight-markup-annotation
- "m a m" #'pdf-annot-add-markup-annotation
- "m a u" #'pdf-annot-add-underline-markup-annotation
- "m a t" #'pdf-annot-add-text-annotation
- "m a x" #'pdf-annot-add-strikeout-markup-annotation
- "m a s" #'pdf-annot-add-squiggly-markup-annotation
- "m a l" #'pdf-annot-list-annotations
-
- "r s" #'restclient-http-send-current
-
- "w w" #'switch-window
-
- "e x" #'eros-eval-defun
-
- "l h" #'life-hex-count
- "l t" #'time-stamp
-
- "o g w" #'gtd-workspace
- "o g a" #'gtd-workspace-archive
-
- "e h" #'easy-hugo
-
- "t t" #'tldr
-
- "X" #'scratch-buffer
-
- "s w" #'eww
- "e w" #'eww-switch-to-buffer
- "e u" #'eww-open-in-new-buffer
- "e c" #'eww-copy-page-url
-
- "n i l" #'org-insert-link
- "c e" #'org-cite-insert
- "c o" #'citar-open
- "c d" #'citar-dwim
-
- "n r v a" #'nth-roam-select-vault
- "n r v v" #'nth-roam-yield-current-vault
- "n r v d" #'nth-roam-doctor
-
- "n r u u" #'org-roam-ui-open
- "n r u z" (lambda ()
-             (interactive)
-             (org-roam-ui-node-zoom (org-roam-id-at-point)
-                                    100
-                                    20))
- "n r u f f" #'org-roam-ui-follow-mode
- "n r u l l" (lambda ()
-               (interactive)
-               (org-roam-ui-node-local (org-roam-id-at-point)
-                                       100
-                                       20))
-
- "n r u l c" #'org-roam-ui-change-local-graph
- "n r u l a" #'org-roam-ui-add-to-local-graph
- "n r u l d" #'org-roam-ui-remove-from-local-graph
+      "m t t"  #'modus-themes-toggle
 
 
- "n r u l c" #'org-roam-ui-change-local-graph
- "n r u l a" #'org-roam-ui-add-to-local-graph
- "n r u l d" #'org-roam-ui-remove-from-local-graph
+      "m a h" #'pdf-annot-add-highlight-markup-annotation
+      "m a m" #'pdf-annot-add-markup-annotation
+      "m a u" #'pdf-annot-add-underline-markup-annotation
+      "m a t" #'pdf-annot-add-text-annotation
+      "m a x" #'pdf-annot-add-strikeout-markup-annotation
+      "m a s" #'pdf-annot-add-squiggly-markup-annotation
+      "m a l" #'pdf-annot-list-annotations
+
+      "r s" #'restclient-http-send-current
+
+      "w w" #'switch-window
+
+      "e x" #'eros-eval-defun
+
+      "l h" #'life-hex-count
+      "l t" #'time-stamp
+
+      "o g w" #'gtd-workspace
+      "o g a" #'gtd-workspace-archive
+
+      "e h" #'easy-hugo
+
+      "t t" #'tldr
+
+      "X" #'scratch-buffer
+
+      "s w" #'eww
+      "e w" #'eww-switch-to-buffer
+      "e u" #'eww-open-in-new-buffer
+      "e c" #'eww-copy-page-url
+
+      "n i l" #'org-insert-link
+      "c e" #'org-cite-insert
+      "c o" #'citar-open
+      "c d" #'citar-dwim
+
+      "n r v a" #'nth-roam-select-vault
+      "n r v v" #'nth-roam-yield-current-vault
+      "n r v d" #'nth-roam-doctor
+
+      "n r u u" #'org-roam-ui-open
+      "n r u z" (lambda ()
+                  (interactive)
+                  (org-roam-ui-node-zoom (org-roam-id-at-point)
+                                         100
+                                         20))
+      "n r u f f" #'org-roam-ui-follow-mode
+      "n r u l l" (lambda ()
+                    (interactive)
+                    (org-roam-ui-node-local (org-roam-id-at-point)
+                                            100
+                                            20))
+
+      "n r u l c" #'org-roam-ui-change-local-graph
+      "n r u l a" #'org-roam-ui-add-to-local-graph
+      "n r u l d" #'org-roam-ui-remove-from-local-graph
 
 
- "m d h" #'shortdoc
+      "n r u l c" #'org-roam-ui-change-local-graph
+      "n r u l a" #'org-roam-ui-add-to-local-graph
+      "n r u l d" #'org-roam-ui-remove-from-local-graph
 
- "m h h" #'mcp-hub
 
- "m c t t" #'copilot-mode
- "m c p" #'copilot-panel-complete
+      "m d h" #'shortdoc
 
- "i a" #'aidermacs-transient-menu
- "i c" #'aidermacs-mode-config
+      "m h h" #'mcp-hub
 
- "i g h" #'gptel
- "i g s" #'gptel-send
- "i g m" #'gptel-menu
+      "m c t t" #'copilot-mode
+      "m c p" #'copilot-panel-complete
 
- "i g f f" #'fabric-gpt.el-send
- "i g f s" #'fabric-gpt.el-sync-patterns
- "i g a p" #'gptel-prompt-alter
- "i g a s" #'dispatch-ephemeral-gptel-base-send)
+      "i a" #'aidermacs-transient-menu
+      "i c" #'aidermacs-mode-config
+
+      "i g h" #'gptel
+      "i g s" #'gptel-send
+      "i g m" #'gptel-menu
+
+      "i g f f" #'fabric-gpt.el-send
+      "i g f s" #'fabric-gpt.el-sync-patterns
+      "i g a p" #'gptel-prompt-alter
+      "i g a s" #'dispatch-ephemeral-gptel-base-send)
