@@ -624,9 +624,10 @@ User prompts will relate to various systems, so be prepared to apply your analyt
 
       "m p s" #'python-shell-send-statement
       "m p r" #'python-shell-send-region
-      "m p i" #'+python/open-ipython-repl
+      "m p p" #'+python/open-ipython-repl
       "m p f" #'python-shell-send-file
 
+      "m h h" #'run-hy
       "m h s" #'hy-shell-eval-last-sexp
       "m h r" #'hy-shell-eval-region
       "m h c" #'hy-shell-eval-current-form
@@ -701,7 +702,6 @@ User prompts will relate to various systems, so be prepared to apply your analyt
 
       "m d h" #'shortdoc
 
-      "m h h" #'mcp-hub
 
       "m c t t" #'copilot-mode
       "m c p" #'copilot-panel-complete
