@@ -434,6 +434,7 @@ should be rewritten as:
   "alter GPTEL prompt from a predefined list from gptel-conf.el "
   (interactive)
   (let ((prompt (completing-read "gptel prompt: " GPTEL-PROMPTS)))
+    (setq gptel--rewrite-directive (cdr (assoc prompt GPTEL-PROMPTS)))
     (setq gptel--system-message (cdr (assoc prompt GPTEL-PROMPTS)))))
 
 (defun dispatch-gptel-prompt-header-pair (init-header prompt)
