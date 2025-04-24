@@ -139,6 +139,7 @@
   (let ((url (read-string "video url:")))
     (insert (shell-command-to-string (format "fabric -y %s" url)))))
 
+(setq shell-command-prompt-show-cwd t)
                                         ; Babel
 (use-package! org
   :config
@@ -427,9 +428,6 @@ should be rewritten as:
 
 
 
-
-
-
 (defun gptel-prompt-alter ()
   "alter GPTEL prompt from a predefined list from gptel-conf.el "
   (interactive)
@@ -656,6 +654,11 @@ should be rewritten as:
 
       "m t t"  #'modus-themes-toggle
 
+      "m s t" (lambda ()
+                "dispatch SOS timer alarm via shell command for read seconds"
+                (interactive)
+                (let ((seconds (read-number "SOS in seconds: ")))
+                  (call-process-shell-command (format "timer %s" seconds) nil nil nil)))
 
       "m a h" #'pdf-annot-add-highlight-markup-annotation
       "m a m" #'pdf-annot-add-markup-annotation
