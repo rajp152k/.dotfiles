@@ -660,6 +660,12 @@ should be rewritten as:
                 (let ((seconds (read-number "SOS in seconds: ")))
                   (call-process-shell-command (format "timer %s" seconds) nil nil nil)))
 
+      "m s f p" (lambda ()
+                  "open a particular localhost port in firefox"
+                  (interactive)
+                  (let ((port (read-number "Port: ")))
+                    (call-process-shell-command (format "firefox http://localhost:%s" port) nil nil nil)))
+
       "m a h" #'pdf-annot-add-highlight-markup-annotation
       "m a m" #'pdf-annot-add-markup-annotation
       "m a u" #'pdf-annot-add-underline-markup-annotation
