@@ -92,3 +92,6 @@
 
 (package! aidermacs
   :recipe (:host github :repo "MatthewZMD/aidermacs"))
+
+(package! md-babel
+  :recipe  (:host github :repo "md-babel/md-babel.el"))

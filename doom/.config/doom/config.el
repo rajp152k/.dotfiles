@@ -147,6 +147,12 @@
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((mermaid . t))))
+
+;; (use-package! md-babel
+;;   :config
+;;   :bind (:map md-babel-mode-map
+;;         ("C-c C-c" . md-babel-execute-block-at-point)))
+
                                         ; GTD
 
 (use-package! org
