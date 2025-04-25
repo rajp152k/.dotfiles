@@ -1,6 +1,6 @@
 # the keyboard devices it reads from, if no devices are specified, it reads from all
-devices:
-  - "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
+#devices:
+#  - "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
 # - "/dev/input/by-id/SOME_KEYBOARD_REPLACE_ME-event-kbd"
 
 
