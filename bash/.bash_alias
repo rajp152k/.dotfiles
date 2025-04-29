@@ -4,7 +4,9 @@ alias foxmage='firefox ost.thebitmage.com:1313'
 
 
 # aider
-alias aid='cd ~/aider-buffer && aider --model="openrouter/openai/gpt-4.1-mini"'
+alias aidb='cd ~/aider-buffer && aider --model="openrouter/openai/gpt-4.1-mini"'
+alias aidr='aider --model="openai/gpt-4.1-mini" --weak-model="openai/gpt-4.1-mini"'
+alias aidt='aider --model="openai/o4-mini" --weak-model="openai/gpt-4.1-mini"'
 
 # yt
 alias yt='yt-dlp' #yt downloader
