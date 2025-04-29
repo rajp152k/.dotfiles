@@ -71,7 +71,7 @@ layers:
     d: button middle
     s: button right
     # move to the top left corner
-    k0: "exec xdotool mousemove 0 0"
+    t: "exec xdotool mousemove 0 0"
 # another layer for arrows and some other keys
 - name: arrows
   passThrough: false
