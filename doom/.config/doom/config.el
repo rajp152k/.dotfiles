@@ -231,7 +231,7 @@
   :config
   (nth-roam-default-vault-register "thebitmage" "/home/rp152k/source/vcops/org/roam/Content")
   (nth-roam-register-vault "study" "/home/rp152k/source/vcops/PrivateOrg/study")
-  (nth-roam-register-vault "symbolic" "/home/rp152k/source/vcops/PrivateOrg/symbolic")
+  (nth-roam-register-vault "cognware" "/home/rp152k/source/ln2.thebitmage/CognWare/roam")
   (nth-roam-init "thebitmage"))
 
                                         ; GTD
@@ -431,6 +431,12 @@ should be rewritten as:
                     google/gemini-2.5-flash-preview:thinking
                     google/gemini-2.5-flash-preview
                     google/gemini-2.5-pro-preview-03-25
+
+                    qwen/qwen3-30b-a3b
+                    qwen/qwen3-8b:free
+                    qwen/qwen3-14b
+                    qwen/qwen3-32b
+                    qwen/qwen3-235b-a22b
 
                     x-ai/grok-3-mini-beta
                     x-ai/grok-3-beta))))
