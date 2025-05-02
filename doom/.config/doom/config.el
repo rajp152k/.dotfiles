@@ -722,12 +722,14 @@ should be rewritten as:
 
       "e h b" (lambda ()
                 (interactive)
-                (setq easy-hugo-basedir  "/home/rp152k/source/vcops/thebitmage.com")
+                (setq easy-hugo-basedir  "/home/rp152k/source/vcops/thebitmage.com/"
+                      easy-hugo-postdir "content/post/")
                 (easy-hugo))
 
       "e h c" (lambda ()
                 (interactive)
-                (setq easy-hugo-basedir  "/home/rp152k/source/ln2.thebitmage/CognWare/cognware")
+                (setq easy-hugo-basedir  "/home/rp152k/source/ln2.thebitmage/CognWare/cognware/"
+                      easy-hugo-postdir "content/posts/")
                 (easy-hugo))
 
       "t t" #'tldr
