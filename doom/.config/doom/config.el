@@ -104,8 +104,22 @@
 ;;   :config
 ;;   (spacious-padding-mode t))
 
-                                        ;Misc
+                                        ;EAF
 
+;(use-package! eaf
+;  :load-path "~/.emacs.d/site-lisp/emacs-application-framework"
+;  :custom
+;  (eaf-browser-continue-where-left-off t)
+;  (eaf-browser-enable-adblocker t)
+;  (browse-url-browser-function 'eaf-open-browser)
+;  :config
+;  (defalias 'browse-web #'eaf-open-browser)
+;  (eaf-bind-key scroll_up "C-n" eaf-pdf-viewer-keybinding)
+;  (eaf-bind-key scroll_down "C-p" eaf-pdf-viewer-keybinding)
+;  (eaf-bind-key take_photo "p" eaf-camera-keybinding)
+;  (eaf-bind-key nil "M-q" eaf-browser-keybinding))
+
+                                        ;Misc
 (defun life-hex-count ()
   "number of days I've been alive"
   (interactive)
@@ -181,6 +195,8 @@
            "* [?] [%] [AGNTFY] %?\nEntered on %U\n  %i\n  %a")
           ("t" "Thunk" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Thunk")
            "* [?] [%] [THUNK] %?\nEntered on %U\n  %i\n  %a")
+          ("f" "Fire" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Fire")
+           "* [?] [%] [FIRE] %?\nEntered on %U\n  %i\n  %a")
           ("b" "Business" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Business")
            "* [?] [%] [BSNS] %?\nEntered on %U\n  %i\n  %a")
           ("u" "UTIL" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "UTIL")
@@ -247,6 +263,7 @@
 (use-package! easy-hugo
   :config
   (setq easy-hugo-basedir "/home/rp152k/source/vcops/thebitmage.com"))
+
 
                                         ; aider
 (use-package! aidermacs
@@ -701,7 +718,17 @@ should be rewritten as:
       "o g w" #'gtd-workspace
       "o g a" #'gtd-workspace-archive
 
-      "e h" #'easy-hugo
+      "e h " nil
+
+      "e h b" (lambda ()
+                (interactive)
+                (setq easy-hugo-basedir  "/home/rp152k/source/vcops/thebitmage.com")
+                (easy-hugo))
+
+      "e h c" (lambda ()
+                (interactive)
+                (setq easy-hugo-basedir  "/home/rp152k/source/ln2.thebitmage/CognWare/cognware")
+                (easy-hugo))
 
       "t t" #'tldr
 
