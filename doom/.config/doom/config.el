@@ -785,6 +785,7 @@ should be rewritten as:
       "i g h" #'gptel
       "i g s" #'gptel-send
       "i g m" #'gptel-menu
+      "i g x" #'gptel-abort
 
       "i g f f" #'fabric-gpt.el-send
       "i g f s" #'fabric-gpt.el-sync-patterns
