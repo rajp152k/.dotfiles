@@ -1,3 +1,4 @@
+### SOS timer
 single_beep() {
 ( \speaker-test --frequency $1 --test sine )&
 pid=$!
@@ -22,4 +23,10 @@ sos() {
 timer() {
     \echo $2 && \sleep $1 && sos &
 }
+
+#Image operations
+alias img2j='f(){ magick "$1" -resize "$2"x"$3" -strip -interlace Plane -quality $4     "${1%.*}.jpg" && jpegoptim --strip-all --all-progressive --max=85 "${1%.*}.jpg"; };  f'
+alias imgpstr='f(){ magick "$1" -colorspace Gray -posterize "$2" "$3"; }; f'
+alias imgtnt='f(){ magick "$1" -fill "$2" -tint "$3"%  "$4"; }; f'
+
 
