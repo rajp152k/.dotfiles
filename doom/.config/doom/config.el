@@ -288,12 +288,14 @@
     (let ((mode (completing-read "Aider Mode: " '("work"
                                                   "openai"
                                                   "deepseek"
+                                                  "gemini"
                                                   "llama"
                                                   "claude"))))
       (cl-case (intern mode)
         (work (alter-models "openai/gpt-4.1-mini" "openai/o4-mini"))
         (deepseek (alter-models "openrouter/deepseek/deepseek-chat" "openrouter/deepseek/deepseek-r1" ))
         (claude (alter-models "openrouter/anthropic/claude-3-7-haiku" "openrouter/anthropic/claude-3.7-sonnet"))
+        (gemini (alter-models "openrouter/google/gemini-2.5-flash-preview" "openrouter/google/gemini-2.5-flash-preview:thinking" ))
         (llama (alter-models "openrouter/meta-llama/llama-4-scout" "openrouter/meta-llama/llama-4-maverick"))
         (openai (alter-models "openrouter/openai/gpt-4.1-mini" "openrouter/openai/o4-mini"))))))
 
