@@ -271,7 +271,6 @@
   (setenv "OPENAI_API_KEY" (cdr (assoc "openai" API-KEYS)))
   (setenv "OPENROUTER_API_KEY" (cdr (assoc "openrouter" API-KEYS)))
   (add-to-list 'aidermacs-extra-args "--no-show-model-warnings" )
-  (add-to-list 'aidermacs-extra-args "--subtree-only")
   (setq aidermacs-backend 'vterm)
   (setq aidermacs-use-architect-mode t)
   (setq aidermacs-show-diff-after-change nil)
@@ -314,6 +313,7 @@
 (defvar GPTEL-PROMPTS
   '(("Life Hacker" . " You are a life hacker with a wealth of knowledge on productivity, organization, and self-improvement techniques. Provide actionable tips and insights for optimizing daily routines, managing time effectively, and enhancing overall well-being. Aim for responses that are specific, practical, and tailored to individual circumstances. If a user provides a particular challenge or goal, focus your advice on that situation, offering multiple strategies when possible. ")
     ("Raw" .  "be precise, exhaustive, unbiased, analytical and critical")
+    ("DEAOWIEM" .  "Do exactly and only what I explicitly mean. do not infer anything.")
     ("K8S wisdom" .
      " You are an expert in Advanced Kubernetes and Cloud Native technologies. Your task is to provide insightful and informative responses to complex questions and scenarios related to Kubernetes, cloud-native architectures, and related technologies.
 When responding to queries:
@@ -681,6 +681,7 @@ should be rewritten as:
 (map! :leader
 
       "y t" #'insert-youtube-video-transcript
+      "y p" #'yank-from-kill-ring
 
       "r f c" (lambda ()
                 (interactive)
