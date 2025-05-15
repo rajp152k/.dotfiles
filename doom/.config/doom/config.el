@@ -282,6 +282,10 @@
   (setq aidermacs-architect-model "o4-mini")
   (setq aidermacs-default-model "gpt-4.1-mini"))
 
+(defun aidermacs-send-voice-command ()
+  "send the /voice command to the aidermacs process"
+  (interactive)
+  (aidermacs--send-command "/voice"))
 
 (defun aidermacs-mode-config ()
   (interactive)
@@ -812,6 +816,7 @@ should be rewritten as:
 
       "i a" #'aidermacs-transient-menu
       "i c" #'aidermacs-mode-config
+      "v" #'aidermacs-send-voice-command
 
       "i g h" #'gptel
       "i g s" #'gptel-send
