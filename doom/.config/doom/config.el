@@ -1,6 +1,8 @@
 ;;; Loading Secrets
 (load "/home/rp152k/.config/doom/secrets.el")
+
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
@@ -195,6 +197,8 @@
            "*  [%] [AGNTFY] %?\nEntered on %U\n  %i\n  %a")
           ("t" "Thunk" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Thunk")
            "*  [%] [THUNK] %?\nEntered on %U\n  %i\n  %a")
+          ("y" "YrGrSl" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "YrGrSl")
+           "*  [%] [YrGrSl] %?\nEntered on %U\n  %i\n  %a")
           ("f" "Fire" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Fire")
            "* TODO [%] [FIRE] %?\nEntered on %U\n  %i\n  %a")
           ("b" "Business" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Business")
@@ -247,6 +251,7 @@
   :config
   (nth-roam-default-vault-register "thebitmage" "/home/rp152k/source/vcops/org/roam/Content")
   (nth-roam-register-vault "study" "/home/rp152k/source/vcops/PrivateOrg/study")
+  (nth-roam-register-vault "YrGrSl"  "/home/rp152k/source/vcops/PrivateOrg/YrGrSl")
   (nth-roam-register-vault "cognware" "/home/rp152k/source/ln2.thebitmage/CognWare/roam")
   (nth-roam-init "thebitmage"))
 
@@ -817,3 +822,8 @@ should be rewritten as:
       "i g f s" #'fabric-gpt.el-sync-patterns
       "i g a p" #'gptel-prompt-alter
       "i g a s" #'dispatch-ephemeral-gptel-base-send)
+
+
+;; higher order loads
+(load "/home/rp152k/.dotfiles/doom/.config/doom/higher-roam.el")
+(load "/home/rp152k/.dotfiles/doom/.config/doom/utils.el")
