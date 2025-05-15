@@ -822,8 +822,3 @@ should be rewritten as:
       "i g f s" #'fabric-gpt.el-sync-patterns
       "i g a p" #'gptel-prompt-alter
       "i g a s" #'dispatch-ephemeral-gptel-base-send)
-
-
-;; higher order loads
-(load "/home/rp152k/.dotfiles/doom/.config/doom/higher-roam.el")
-(load "/home/rp152k/.dotfiles/doom/.config/doom/utils.el")
