@@ -95,3 +95,6 @@
 
 (package! md-babel
   :recipe  (:host github :repo "md-babel/md-babel.el"))
+
+;; (package! whisper
+;;   :recipe (:host github :repo "natrys/whisper.el"))

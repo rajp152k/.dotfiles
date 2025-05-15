@@ -269,6 +269,9 @@
   :config
   (setq easy-hugo-basedir "/home/rp152k/source/vcops/thebitmage.com"))
 
+;;                                         ; whisper
+;; (use-package! whisper
+;;   :load-path "")
 
                                         ; aider
 (use-package! aidermacs
