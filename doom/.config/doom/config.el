@@ -764,7 +764,11 @@ should be rewritten as:
       "e x" #'eros-eval-defun
 
       "l h" #'life-hex-count
-      "l t" #'time-stamp
+
+      "l t" #'(lambda ()
+                (interactive)
+                (insert (format-time-string "%Y-%m-%d %H:%M:%S")))
+
 
       "o g w" #'gtd-workspace
       "o g a" #'gtd-workspace-archive
