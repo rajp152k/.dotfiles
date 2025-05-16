@@ -288,7 +288,11 @@
 (defun aidermacs-send-voice-command ()
   "send the /voice command to the aidermacs process"
   (interactive)
-  (aidermacs--send-command "/voice"))
+  (let ((mode (completing-read "mode:" '("/architect"
+                                         "/ask"
+                                         "/code"))))
+    (aidermacs--send-command mode)
+    (aidermacs--send-command "/voice")))
 
 (defun aidermacs-mode-config ()
   (interactive)
