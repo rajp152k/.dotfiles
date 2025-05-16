@@ -296,11 +296,12 @@
 (defun aidermacs-send-voice-command ()
   "send the /voice command to the aidermacs process"
   (interactive)
-  (let ((mode (completing-read "mode:" '("/architect"
-                                         "/ask"
-                                         "/code"))))
-    (aidermacs--send-command mode)
-    (aidermacs--send-command "/voice")))
+  ;; (let ((mode (completing-read "mode:" '("/architect"
+  ;;                                        "/ask"
+  ;;                                        "/code"))))
+  ;;   (aidermacs--send-command mode)
+  ;;   (aidermacs--send-command "/voice"))
+  (aidermacs--send-command "/voice"))
 
 (defun aidermacs-mode-config ()
   (interactive)
@@ -830,8 +831,10 @@ should be rewritten as:
       "m c p" #'copilot-panel-complete
 
       "i a" #'aidermacs-transient-menu
-      "i c" #'aidermacs-mode-config
-      "v" #'aidermacs-send-voice-command
+      "i c l" #'aidermacs-mode-config
+      "i c r" #'aidermacs-send-block-or-region
+      "i c d" #'aidermacs-debug-exception
+      "i v" #'aidermacs-send-voice-command
 
       "i g h" #'gptel
       "i g s" #'gptel-send
