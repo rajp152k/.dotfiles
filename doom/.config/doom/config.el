@@ -263,6 +263,16 @@
   (nth-roam-register-vault "cognware" "/home/rp152k/source/ln2.thebitmage/CognWare/roam")
   (nth-roam-init "thebitmage"))
 
+(defun cognware-note-init ()
+  "Insert top-level headings for a Cognware org-roam note."
+  (interactive)
+  (let ((level (+ 1 (org-outline-level))))
+    (insert (format "%s\n"
+                    (mapconcat (lambda (heading)
+                                 (format "%s %s" (make-string level ?*) heading))
+                               '("Abstract" "Incentive" "Outline" "Links")
+                               "\n")))))
+
                                         ; GTD
 
 (defvar ORG-GTD-HQ-LOC  "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org")
