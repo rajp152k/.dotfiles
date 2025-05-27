@@ -861,3 +861,12 @@ should be rewritten as:
       "i g f s" #'fabric-gpt.el-sync-patterns
       "i g a p" #'gptel-prompt-alter
       "i g a s" #'dispatch-ephemeral-gptel-base-send)
+
+;; eshell
+;; reserving "C-M-h" as the local prefix for any mode specific maps henceforth
+
+(map! "C-M-h" nil)
+
+(after! eshell
+  (map! :map eshell-mode-map
+        "C-M-h c s" #'(lambda () (interactive) (eshell/clear-scrollback))))
