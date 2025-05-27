@@ -838,6 +838,8 @@ should be rewritten as:
       "n r u l d" #'org-roam-ui-remove-from-local-graph
 
 
+      "m c c n" #'cognware-note-init
+
       "m d h" #'shortdoc
 
 
