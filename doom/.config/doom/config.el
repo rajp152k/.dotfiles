@@ -48,13 +48,14 @@
              (file-name-as-directory "/home/rp152k/.config/emacs/.local/straight/repos/replace-colorthemes"))
 
 ;; (load-theme 'modus-vivendi t)
-(load-theme 'lawrence t)
+;; (load-theme 'lawrence t)
+(setq doom-theme 'doom-outrun-electric )
 
 (setq pdf-view-midnight-colors (cons "#00ff00" "#000000")
       pdf-view-midnight-invert nil)
 
 
-(doom/set-frame-opacity 0.8)
+(doom/set-frame-opacity 0.9271)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -671,7 +672,7 @@ should be rewritten as:
 
                                         ; Compile and Shell
 (setq shell-file-name "bash"
-      shell-command-switch "-ic")
+      shell-command-switch "-c")
 
                                         ;Lisp
 (load "~/quicklisp/clhs-use-local.el" 'noerror)

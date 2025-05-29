@@ -17,3 +17,4 @@
    '((copilot copilot-no-mode-indent) (defvaralias) (lexical-binding))))
 (put 'narrow-to-region 'disabled nil)
 (put 'customize-group 'disabled nil)
+(put 'erase-buffer 'disabled nil)
