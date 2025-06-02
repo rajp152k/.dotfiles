@@ -124,10 +124,10 @@
 
                                         ;Misc
 
-(defmacro generate-bindable-lambda (body)
+(defmacro generate-bindable-lambda (&rest body)
   `#'(lambda ()
        (interactive)
-       ,body))
+       ,@body))
 
 (defun life-hex-count ()
   "number of days I've been alive"
@@ -757,8 +757,7 @@ should be rewritten as:
       "y t" #'insert-youtube-video-transcript
       "y p" #'yank-from-kill-ring
 
-      "r f c" (lambda ()
-                (interactive)
+      "r f c" (generate-bindable-lambda
                 (message "resetting recentf-list")
                 (setq recentf-list (list)))
 
@@ -786,15 +785,11 @@ should be rewritten as:
 
       "m t t"  #'modus-themes-toggle
 
-      "m s t" (lambda ()
-                "dispatch SOS timer alarm via shell command for read seconds"
-                (interactive)
+      "m s t" (generate-bindable-lambda
                 (let ((seconds (read-number "SOS in seconds: ")))
                   (call-process-shell-command (format "timer %s" seconds) nil nil nil)))
 
-      "m s f p" (lambda ()
-                  "open a particular localhost port in firefox"
-                  (interactive)
+      "m s f p" (generate-bindable-lambda
                   (let ((port (read-number "Port: ")))
                     (call-process-shell-command (format "firefox http://localhost:%s" port) nil nil nil)))
 
@@ -814,8 +809,7 @@ should be rewritten as:
 
       "l h" #'life-hex-count
 
-      "l t" #'(lambda ()
-                (interactive)
+      "l t" (generate-bindable-lambda
                 (insert (format-time-string "%Y-%m-%d %H:%M:%S")))
 
 
@@ -824,14 +818,12 @@ should be rewritten as:
 
       "e h " nil
 
-      "e h b" (lambda ()
-                (interactive)
+      "e h b" (generate-bindable-lambda
                 (setq easy-hugo-basedir  "/home/rp152k/source/vcops/thebitmage.com/"
                       easy-hugo-postdir "content/post/")
                 (easy-hugo))
 
-      "e h c" (lambda ()
-                (interactive)
+      "e h c" (generate-bindable-lambda
                 (setq easy-hugo-basedir  "/home/rp152k/source/ln2.thebitmage/CognWare/cognware/"
                       easy-hugo-postdir "content/posts/")
                 (easy-hugo))
@@ -855,14 +847,12 @@ should be rewritten as:
       "n r v d" #'nth-roam-doctor
 
       "n r u u" #'org-roam-ui-open
-      "n r u z" (lambda ()
-                  (interactive)
+      "n r u z" (generate-bindable-lambda
                   (org-roam-ui-node-zoom (org-roam-id-at-point)
                                          100
                                          20))
       "n r u f f" #'org-roam-ui-follow-mode
-      "n r u l l" (lambda ()
-                    (interactive)
+      "n r u l l" (generate-bindable-lambda
                     (org-roam-ui-node-local (org-roam-id-at-point)
                                             100
                                             20))
