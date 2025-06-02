@@ -124,10 +124,10 @@
 
                                         ;Misc
 
-(defmacro generate-bindable-lambda (func &rest args)
+(defmacro generate-bindable-lambda (body)
   `#'(lambda ()
        (interactive)
-       (,func ,@args)))
+       ,body))
 
 (defun life-hex-count ()
   "number of days I've been alive"
@@ -573,9 +573,9 @@ should be rewritten as:
 
 (defmacro gptel-prompt-lambda (header prompt)
   `(generate-bindable-lambda
-   dispatch-gptel-prompt-header-pair
-   ,header
-   ,prompt))
+   (dispatch-gptel-prompt-header-pair
+    ,header
+    ,prompt)))
 
 
                                         ; fabric-gptel
@@ -912,4 +912,4 @@ should be rewritten as:
 
 (after! eshell
   (map! :map eshell-mode-map
-        "C-M-h c s" #'(lambda () (interactive) (eshell/clear-scrollback))))
+        "C-M-h c s" (generate-bindable-lambda (eshell/clear-scrollback))))
