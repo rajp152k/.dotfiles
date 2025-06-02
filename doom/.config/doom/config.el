@@ -123,6 +123,12 @@
 ;  (eaf-bind-key nil "M-q" eaf-browser-keybinding))
 
                                         ;Misc
+
+(defmacro generate-bindable-lambda (func &rest args)
+  `#'(lambda ()
+       (interactive)
+       (,func ,@args)))
+
 (defun life-hex-count ()
   "number of days I've been alive"
   (interactive)
@@ -565,6 +571,13 @@ should be rewritten as:
         (prompt (completing-read "gptel-prompt: " GPTEL-PROMPTS)))
     (dispatch-gptel-prompt-header-pair init-header prompt)))
 
+(defmacro gptel-prompt-lambda (header prompt)
+  `(generate-bindable-lambda
+   dispatch-gptel-prompt-header-pair
+   ,header
+   ,prompt))
+
+
                                         ; fabric-gptel
 (use-package! fabric-gpt.el
   :after gptel
@@ -886,7 +899,11 @@ should be rewritten as:
       "i g f f" #'fabric-gpt.el-send
       "i g f s" #'fabric-gpt.el-sync-patterns
       "i g a p" #'gptel-prompt-alter
-      "i g a s" #'dispatch-ephemeral-gptel-base-send)
+      "i g a s" #'dispatch-ephemeral-gptel-base-send
+
+      "i g a M" (gptel-prompt-lambda "Outline" "-:Jargonize")
+      "i g a O" (gptel-prompt-lambda "Outline" "*:Jargonize"))
+
 
 ;; eshell
 ;; reserving "C-M-h" as the local prefix for any mode specific maps henceforth
