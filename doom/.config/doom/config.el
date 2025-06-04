@@ -305,7 +305,6 @@
   (setenv "OPENROUTER_API_KEY" (cdr (assoc "openrouter" API-KEYS)))
   (add-to-list 'aidermacs-extra-args "--no-show-model-warnings" )
   (setq aidermacs-backend 'vterm)
-  (setq aidermacs-use-architect-mode t)
   (setq aidermacs-show-diff-after-change nil)
   (setq aidermacs-architect-model "o4-mini")
   (setq aidermacs-default-model "gpt-4.1-mini"))
