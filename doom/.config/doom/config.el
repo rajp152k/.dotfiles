@@ -688,6 +688,11 @@ should be rewritten as:
   (setq lsp-enable-snippet t)
   (setq lsp-modeline-code-action t))
 
+                                        ; UV-mode
+(use-package! uv-mode
+  :config
+  (add-hook 'python-mode-hook #'uv-mode-auto-activate-hook)
+  (add-hook 'hy-mode-hook #'uv-mode-auto-activate-hook))
                                         ; Conda
 ;; (use-package! conda
 ;;   :config
@@ -902,3 +907,8 @@ should be rewritten as:
 (after! eshell
   (map! :map eshell-mode-map
         "C-M-h c s" (generate-bindable-lambda (eshell/clear-scrollback))))
+
+(after! evil
+  (map! :map evil-normal-state-map
+        "C-M-k" (generate-bindable-lambda (ultra-scroll-up (/  (window-pixel-height) 8)))
+        "C-M-j" (generate-bindable-lambda (ultra-scroll-down (/  (window-pixel-height) 8)))))
