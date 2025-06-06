@@ -96,5 +96,8 @@
 (package! md-babel
   :recipe  (:host github :repo "md-babel/md-babel.el"))
 
+(package! uv-mode
+  :recipe  (:host github :repo "z80dev/uv-mode"))
+
 ;; (package! whisper
 ;;   :recipe (:host github :repo "natrys/whisper.el"))
