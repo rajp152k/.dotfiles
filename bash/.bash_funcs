@@ -24,9 +24,21 @@ timer() {
     \echo $2 && \sleep $1 && sos &
 }
 
-#Image operations
-alias img2j='f(){ magick "$1" -resize "$2"x"$3" -strip -interlace Plane -quality $4     "${1%.*}.jpg" && jpegoptim --strip-all --all-progressive --max=85 "${1%.*}.jpg"; };  f'
-alias imgpstr='f(){ magick "$1" -colorspace Gray -posterize "$2" "$3"; }; f'
-alias imgtnt='f(){ magick "$1" -fill "$2" -tint "$3"%  "$4"; }; f'
-alias cgnimgops='f() { imgpstr "$1" 8 output-int.jpg; imgtnt output-int.jpg green 60 cgn-img.jpg; }; f'
+### CognWare image operations
+img2j () {
+    magick $1 -resize $2x$3 -strip -interlace Plane -quality $4 ${1%.*}.jpg
+    jpegoptim --strip-all --all-progressive -max=85 ${1%.*}.jpg
+}
 
+imgpstr () {
+    magick $1 -colorspace Gray -posterize $2 $3
+}
+
+imgtnt () {
+    magick $1 -fill $2 -tint $3% $4
+}
+
+cgnimgops () {
+    imgpstr $1 8 output-int.jpg
+    imgtnt output-int.jpg green 60 cgn-img.jpg
+}
