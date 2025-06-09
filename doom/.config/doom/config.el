@@ -779,6 +779,7 @@ should be rewritten as:
       "m p r" #'python-shell-send-region
       "m p p" #'+python/open-ipython-repl
       "m p f" #'python-shell-send-file
+      "m p k" #'python-eldoc-at-point
 
       "m h h" #'run-hy
       "m h s" #'hy-shell-eval-last-sexp
