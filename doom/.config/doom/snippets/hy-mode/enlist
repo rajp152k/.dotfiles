@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: enlist
+# uuid:
+# key: (list )
+# condition: t
+# --
+
+(list `%`)
