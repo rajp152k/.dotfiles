@@ -1,8 +1,8 @@
 # -*- mode: snippet -*-
-# name: (list )
+# name: (comment )
 # uuid:
-# key: list
+# key: comment
 # condition: t
 # --
 
-(list `%`)
+(comment `%`)
