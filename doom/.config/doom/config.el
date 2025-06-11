@@ -47,8 +47,8 @@
 (add-to-list 'custom-theme-load-path
              (file-name-as-directory "/home/rp152k/.config/emacs/.local/straight/repos/replace-colorthemes"))
 
-;; (load-theme 'modus-vivendi t)
-(load-theme 'lawrence t)
+(load-theme 'modus-vivendi t)
+;; (load-theme 'lawrence t)
 ;; (setq doom-theme 'doom-outrun-electric )
 
 (setq pdf-view-midnight-colors (cons "#00ff00" "#000000")
