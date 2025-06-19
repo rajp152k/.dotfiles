@@ -913,3 +913,8 @@ should be rewritten as:
   (map! :map evil-normal-state-map
         "C-M-k" (generate-bindable-lambda (ultra-scroll-up (/  (window-pixel-height) 8)))
         "C-M-j" (generate-bindable-lambda (ultra-scroll-down (/  (window-pixel-height) 8)))))
+
+(after! hy-mode
+  (map! :map hy-mode-map
+        "C-M-h r i" (generate-bindable-lambda (insert "#/ "))
+        "C-M-h r a" (generate-bindable-lambda (insert "#^ "))))
