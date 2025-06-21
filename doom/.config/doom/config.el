@@ -296,9 +296,17 @@
   :config
   (setq easy-hugo-basedir "/home/rp152k/source/vcops/thebitmage.com"))
 
-;;                                         ; whisper
-;; (use-package! whisper
-;;   :load-path "")
+                                        ; k8s
+(use-package! kubernetes
+  :commands (kubernetes-overview)
+  (fset 'k8s 'kubernetes-overview)
+  :config
+  (setq kubernetes-poll-frequency 3600
+        kubernetes-redraw-frequency 3600))
+
+(use-package! kubernetes-evil
+  :after kubernetes)
+
 
                                         ; aider
 (use-package! aidermacs
