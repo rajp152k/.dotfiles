@@ -99,5 +99,5 @@
 (package! uv-mode
   :recipe  (:host github :repo "z80dev/uv-mode"))
 
-;; (package! whisper
-;;   :recipe (:host github :repo "natrys/whisper.el"))
+
+(package! kubernetes)
