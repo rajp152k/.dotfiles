@@ -216,6 +216,8 @@
            "*  [%] [YrGrSl] %?\nEntered on %U\n  %i\n  %a")
           ("f" "Fire" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Fire")
            "* TODO [%] [FIRE] %?\nEntered on %U\n  %i\n  %a")
+          ("d" "Discuss" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Discuss")
+           "* TODO [%] [DISCUSS] %?\nEntered on %U\n  %i\n  %a")
           ("b" "Business" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Business")
            "* TODO [%] [BSNS] %?\nEntered on %U\n  %i\n  %a")
           ("u" "UTIL" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "UTIL")
@@ -306,8 +308,8 @@
   (add-to-list 'aidermacs-extra-args "--no-show-model-warnings" )
   (setq aidermacs-backend 'vterm)
   (setq aidermacs-show-diff-after-change nil)
-  (setq aidermacs-architect-model "o4-mini")
-  (setq aidermacs-default-model "gpt-4.1-mini"))
+  (setq aidermacs-weak-model "openai/gpt-4.1-mini")
+  (setq aidermacs-default-model "openai/o4-mini"))
 
 (defun aidermacs-send-voice-command ()
   "send the /voice command to the aidermacs process"
@@ -323,7 +325,8 @@
   (interactive)
   (cl-flet ((alter-models (flash think)
               (setq aidermacs-architect-model think
-                    aidermacs-default-model flash)
+                    aidermacs-weak-model flash
+                    aidermacs-default-model think)
               (message (format "Aider flash : %s | Aider think : %s"
                                flash
                                think))))
@@ -336,8 +339,8 @@
       (cl-case (intern mode)
         (work (alter-models "openai/gpt-4.1-mini" "openai/o4-mini"))
         (deepseek (alter-models "openrouter/deepseek/deepseek-chat" "openrouter/deepseek/deepseek-r1" ))
-        (claude (alter-models "openrouter/anthropic/claude-3-7-haiku" "openrouter/anthropic/claude-3.7-sonnet"))
-        (gemini (alter-models "openrouter/google/gemini-2.5-flash-preview" "openrouter/google/gemini-2.5-flash-preview:thinking" ))
+        (claude (alter-models "openrouter/anthropic/claude-3-7-haiku" "openrouter/anthropic/claude-sonnet-4"))
+        (gemini (alter-models "openrouter/google/gemini-2.5-flash-preview" "openrouter/google/gemini-2.5-pro-preview" ))
         (llama (alter-models "openrouter/meta-llama/llama-4-scout" "openrouter/meta-llama/llama-4-maverick"))
         (openai (alter-models "openrouter/openai/gpt-4.1-mini" "openrouter/openai/o4-mini"))))))
 
