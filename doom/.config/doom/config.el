@@ -298,9 +298,8 @@
 
                                         ; k8s
 (use-package! kubernetes
-  :commands (kubernetes-overview)
-  (fset 'k8s 'kubernetes-overview)
   :config
+  (fset 'k8s 'kubernetes-overview)
   (setq kubernetes-poll-frequency 3600
         kubernetes-redraw-frequency 3600))
 
