@@ -928,4 +928,5 @@ should be rewritten as:
 (after! hy-mode
   (map! :map hy-mode-map
         "C-M-h r i" (generate-bindable-lambda (insert "#/ "))
+        "C-M-h r l" (generate-bindable-lambda (insert "#%"))
         "C-M-h r a" (generate-bindable-lambda (insert "#^ "))))
