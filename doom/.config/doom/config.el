@@ -48,11 +48,24 @@
              (file-name-as-directory "/home/rp152k/.config/emacs/.local/straight/repos/replace-colorthemes"))
 
 ;; (load-theme 'modus-vivendi t)
-(load-theme 'lawrence t)
-;; (setq doom-theme 'doom-outrun-electric )
+;; (load-theme 'marquardt t)
+(setq doom-theme 'doom-solarized-dark-high-contrast)
 
-(setq pdf-view-midnight-colors (cons "#00ff00" "#000000")
-      pdf-view-midnight-invert nil)
+;; (let ((dark? 0))
+;;   (setq theme-toggler
+;;         (lambda ()
+;;           (if (= dark? 1)
+;;               (and (setq doom-theme 'doom-solarized-dark-high-contrast)
+;;                    (load-theme 'doom-solarized-dark-high-contrast)
+;;                    (setq dark? 0))
+;;             (and (setq doom-theme 'doom-solarized-light)
+;;                  (load-theme 'doom-solarized-light)
+;;                  (setq dark? 1))))))
+
+;; (funcall theme-toggler)
+
+;; (setq pdf-view-midnight-colors (cons "#00ff00" "#000000")
+;;       pdf-view-midnight-invert nil)
 
 
 (doom/set-frame-opacity 0.9271)
@@ -798,7 +811,7 @@ should be rewritten as:
       "m h b" #'hy-shell-eval-buffer
       "m h k" #'hy-describe-thing-at-point
 
-      "m t t"  #'modus-themes-toggle
+      ;; "m t t"
 
       "m s t" (generate-bindable-lambda
                 (let ((seconds (read-number "SOS in seconds: ")))
