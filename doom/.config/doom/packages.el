@@ -93,6 +93,9 @@
 (package! aidermacs
   :recipe (:host github :repo "MatthewZMD/aidermacs"))
 
+(package! emigo
+  :recipe (:host github :repo "rajp152k/emigo" :files (:defaults "*.py" "*.el")))
+
 (package! md-babel
   :recipe  (:host github :repo "md-babel/md-babel.el"))
 

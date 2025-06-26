@@ -319,6 +319,14 @@
 (use-package! kubernetes-evil
   :after kubernetes)
 
+; emigo
+(use-package! emigo
+  :config
+  (emigo-enable)
+  :custom
+  (emigo-model "openrouter/deepseek/deepseek-chat-v3-0324")
+  (emigo-base-url "https://openrouter.ai/api/v1")
+  (emigo-api-key (cdr (assoc "openrouter" API-KEYS))))
 
                                         ; aider
 (use-package! aidermacs
@@ -363,6 +371,7 @@
         (gemini (alter-models "openrouter/google/gemini-2.5-flash-preview" "openrouter/google/gemini-2.5-pro-preview" ))
         (llama (alter-models "openrouter/meta-llama/llama-4-scout" "openrouter/meta-llama/llama-4-maverick"))
         (openai (alter-models "openrouter/openai/gpt-4.1-mini" "openrouter/openai/o4-mini"))))))
+
 
 (defvar GPTEL-PROVIDER "openrouter"
   "Provider for GPTel.")
@@ -811,7 +820,6 @@ should be rewritten as:
       "m h b" #'hy-shell-eval-buffer
       "m h k" #'hy-describe-thing-at-point
 
-      ;; "m t t"
 
       "m s t" (generate-bindable-lambda
                 (let ((seconds (read-number "SOS in seconds: ")))
