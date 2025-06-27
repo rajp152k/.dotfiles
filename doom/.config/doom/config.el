@@ -49,7 +49,7 @@
 
 ;; (load-theme 'modus-vivendi t)
 ;; (load-theme 'marquardt t)
-(setq doom-theme 'doom-solarized-dark-high-contrast)
+(setq doom-theme 'doom-outrun-electric)
 
 ;; (let ((dark? 0))
 ;;   (setq theme-toggler
