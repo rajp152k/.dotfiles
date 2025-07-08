@@ -334,6 +334,8 @@
   (setenv "OPENAI_API_KEY" (cdr (assoc "openai" API-KEYS)))
   (setenv "OPENROUTER_API_KEY" (cdr (assoc "openrouter" API-KEYS)))
   (add-to-list 'aidermacs-extra-args "--no-show-model-warnings" )
+  (add-to-list 'aidermacs-extra-args "--add-gitignore-files" )
+  (add-to-list 'aidermacs-extra-args "--skip-sanity-check-repo" )
   (setq aidermacs-backend 'vterm)
   (setq aidermacs-show-diff-after-change nil)
   (setq aidermacs-weak-model "openai/gpt-4.1-mini")
@@ -358,15 +360,17 @@
               (message (format "Aider flash : %s | Aider think : %s"
                                flash
                                think))))
-    (let ((mode (completing-read "Aider Mode: " '("work"
+    (let ((mode (completing-read "Aider Mode: " '("?"
+                                                  "work"
                                                   "openai"
                                                   "deepseek"
                                                   "gemini"
                                                   "llama"
                                                   "claude"))))
       (cl-case (intern mode)
+        (? (alter-models "openrouter/openai/gpt-4.1-nano" "openrouter/deepseek/deepseek-chat-v3-0324"))
         (work (alter-models "openai/gpt-4.1-mini" "openai/o4-mini"))
-        (deepseek (alter-models "openrouter/deepseek/deepseek-chat" "openrouter/deepseek/deepseek-r1" ))
+        (deepseek (alter-models "openrouter/deepseek/deepseek-chat" "openrouter/deepseek/deepseek-chat-v3-0324" ))
         (claude (alter-models "openrouter/anthropic/claude-3-7-haiku" "openrouter/anthropic/claude-sonnet-4"))
         (gemini (alter-models "openrouter/google/gemini-2.5-flash-preview" "openrouter/google/gemini-2.5-pro-preview" ))
         (llama (alter-models "openrouter/meta-llama/llama-4-scout" "openrouter/meta-llama/llama-4-maverick"))
@@ -563,6 +567,10 @@ should be rewritten as:
                     mistralai/ministral-8b
                     mistralai/mistral-small-3.1-24b-instruct
                     mistralai/mistral-saba
+
+                    morph/morph-v3-large
+                    morph/morph-v3-fast
+                    morph/morph-v2
 
                     anthropic/claude-3.7-sonnet:thinking
                     anthropic/claude-3.7-sonnet
