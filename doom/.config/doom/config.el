@@ -641,7 +641,9 @@ should be rewritten as:
   ;;           #'mcp-hub-start-all-server)
   (setq mcp-hub-servers
         '(("file-system" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" "/home/rp152k/source/")))
-          ("fetch" . (:command "uvx" :args ("mcp-server-fetch"))))))
+          ("fetch" . (:command "uvx" :args ("mcp-server-fetch")))))
+  (add-hook! 'after-init-hook
+             #'mcp-hub-start-all-server))
 
 (defun gptel-mcp-register-tool ()
   (interactive)
@@ -802,8 +804,8 @@ should be rewritten as:
       "y p" #'yank-from-kill-ring
 
       "r f c" (generate-bindable-lambda
-                (message "resetting recentf-list")
-                (setq recentf-list (list)))
+               (message "resetting recentf-list")
+               (setq recentf-list (list)))
 
       "z" #'+zen/toggle-fullscreen
 
@@ -830,12 +832,12 @@ should be rewritten as:
 
 
       "m s t" (generate-bindable-lambda
-                (let ((seconds (read-number "SOS in seconds: ")))
-                  (call-process-shell-command (format "timer %s" seconds) nil nil nil)))
+               (let ((seconds (read-number "SOS in seconds: ")))
+                 (call-process-shell-command (format "timer %s" seconds) nil nil nil)))
 
       "m s f p" (generate-bindable-lambda
-                  (let ((port (read-number "Port: ")))
-                    (call-process-shell-command (format "firefox http://localhost:%s" port) nil nil nil)))
+                 (let ((port (read-number "Port: ")))
+                   (call-process-shell-command (format "firefox http://localhost:%s" port) nil nil nil)))
 
       "m a h" #'pdf-annot-add-highlight-markup-annotation
       "m a m" #'pdf-annot-add-markup-annotation
@@ -854,7 +856,7 @@ should be rewritten as:
       "l h" #'life-hex-count
 
       "l t" (generate-bindable-lambda
-                (insert (format-time-string "%Y-%m-%d %H:%M:%S")))
+             (insert (format-time-string "%Y-%m-%d %H:%M:%S")))
 
 
       "o g w" #'gtd-workspace
@@ -863,14 +865,14 @@ should be rewritten as:
       "e h " nil
 
       "e h b" (generate-bindable-lambda
-                (setq easy-hugo-basedir  "/home/rp152k/source/vcops/thebitmage.com/"
-                      easy-hugo-postdir "content/post/")
-                (easy-hugo))
+               (setq easy-hugo-basedir  "/home/rp152k/source/vcops/thebitmage.com/"
+                     easy-hugo-postdir "content/post/")
+               (easy-hugo))
 
       "e h c" (generate-bindable-lambda
-                (setq easy-hugo-basedir  "/home/rp152k/source/ln2.thebitmage/CognWare/cognware/"
-                      easy-hugo-postdir "content/posts/")
-                (easy-hugo))
+               (setq easy-hugo-basedir  "/home/rp152k/source/ln2.thebitmage/CognWare/cognware/"
+                     easy-hugo-postdir "content/posts/")
+               (easy-hugo))
 
       "t t" #'tldr
 
@@ -892,14 +894,14 @@ should be rewritten as:
 
       "n r u u" #'org-roam-ui-open
       "n r u z" (generate-bindable-lambda
-                  (org-roam-ui-node-zoom (org-roam-id-at-point)
-                                         100
-                                         20))
+                 (org-roam-ui-node-zoom (org-roam-id-at-point)
+                                        100
+                                        20))
       "n r u f f" #'org-roam-ui-follow-mode
       "n r u l l" (generate-bindable-lambda
-                    (org-roam-ui-node-local (org-roam-id-at-point)
-                                            100
-                                            20))
+                   (org-roam-ui-node-local (org-roam-id-at-point)
+                                           100
+                                           20))
 
       "n r u l c" #'org-roam-ui-change-local-graph
       "n r u l a" #'org-roam-ui-add-to-local-graph
@@ -917,7 +919,8 @@ should be rewritten as:
 
 
       "m c t t" #'copilot-mode
-      "m c p" #'copilot-panel-complete
+
+      "m c p h" #'mcp-hub
 
       "i a" #'aidermacs-transient-menu
       "i c l" #'aidermacs-mode-config
@@ -936,7 +939,10 @@ should be rewritten as:
       "i g a s" #'dispatch-ephemeral-gptel-base-send
 
       "i g a M" (gptel-prompt-lambda "Outline" "-:Jargonize")
-      "i g a O" (gptel-prompt-lambda "Outline" "*:Jargonize"))
+      "i g a O" (gptel-prompt-lambda "Outline" "*:Jargonize")
+
+
+      )
 
 
 ;; eshell
