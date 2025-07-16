@@ -11,3 +11,7 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 # golang
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/go/bin
+
+
+# excel mcp server
+export EXCEL_FILES_PATH="~/source/excel-files-buffer/"

@@ -640,7 +640,9 @@ should be rewritten as:
   ;;           #'mcp-hub-start-all-server)
   (setq mcp-hub-servers
         '(("file-system" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" "/home/rp152k/source/")))
+          ("excel-mcp-server" . (:command "uvx" :args ("excel-mcp-server" "stdio")))
           ("fetch" . (:command "uvx" :args ("mcp-server-fetch")))))
+
   (add-hook! 'after-init-hook
              #'mcp-hub-start-all-server))
 
