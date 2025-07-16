@@ -281,7 +281,6 @@
   :config
   (nth-roam-default-vault-register "thebitmage" "/home/rp152k/source/vcops/org/roam/Content")
   (nth-roam-register-vault "study" "/home/rp152k/source/vcops/PrivateOrg/study")
-  (nth-roam-register-vault "YrGrSl"  "/home/rp152k/source/vcops/PrivateOrg/YrGrSl")
   (nth-roam-register-vault "cognware" "/home/rp152k/source/ln2.thebitmage/CognWare/roam")
   (nth-roam-init "thebitmage"))
 
@@ -921,6 +920,7 @@ should be rewritten as:
       "m c t t" #'copilot-mode
 
       "m c p h" #'mcp-hub
+      "m c p r" #'gptel-mcp-register-tool
 
       "i a" #'aidermacs-transient-menu
       "i c l" #'aidermacs-mode-config
@@ -940,7 +940,6 @@ should be rewritten as:
 
       "i g a M" (gptel-prompt-lambda "Outline" "-:Jargonize")
       "i g a O" (gptel-prompt-lambda "Outline" "*:Jargonize")
-
 
       )
 
