@@ -13,5 +13,8 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/go/bin
 
 
-# excel mcp server
+# mcp servers
+## excel
 export EXCEL_FILES_PATH="~/source/excel-files-buffer/"
+## google calendar
+export CREDENTIALS_PATH="~/source/secrets/credentials.json"
