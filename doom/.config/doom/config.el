@@ -521,7 +521,7 @@ You must adhere to the following rules absolutely, without exception:
  - stating again, there should be no hyphens anywhere
 
 ---
-### Example of Correct Output for the concept \"SAML\"
+### Example of Correct Output for the concept \"Security Assertion Markup Language\"
 
 ** Systems Theory & Cybernetics
 *** State: Identity assertions, authentication status
