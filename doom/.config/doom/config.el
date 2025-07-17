@@ -1039,8 +1039,6 @@ should be rewritten as:
 ;; eshell
 ;; reserving "C-M-h" as the local prefix for any mode specific maps henceforth
 
-(map! "C-M-h" nil)
-
 (after! eshell
   (map! :map eshell-mode-map
         "C-M-h c s" (generate-bindable-lambda (eshell/clear-scrollback))))
