@@ -954,8 +954,6 @@ should be rewritten as:
       "o g w" #'gtd-workspace
       "o g a" #'gtd-workspace-archive
 
-      "e h " nil
-
       "e h b" (generate-bindable-lambda
                (setq easy-hugo-basedir  "/home/rp152k/source/vcops/thebitmage.com/"
                      easy-hugo-postdir "content/post/")
