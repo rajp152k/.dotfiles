@@ -47,9 +47,9 @@
 (add-to-list 'custom-theme-load-path
              (file-name-as-directory "/home/rp152k/.config/emacs/.local/straight/repos/replace-colorthemes"))
 
-;; (load-theme 'modus-vivendi t)
+(load-theme 'modus-vivendi t)
 ;; (load-theme 'marquardt t)
-(setq doom-theme 'doom-outrun-electric)
+;; (setq doom-theme 'doom-outrun-electric)
 
 ;; (let ((dark? 0))
 ;;   (setq theme-toggler
@@ -922,6 +922,7 @@ should be rewritten as:
       "m h b" #'hy-shell-eval-buffer
       "m h k" #'hy-describe-thing-at-point
 
+      "m t t" #'modus-themes-toggle
 
       "m s t" (generate-bindable-lambda
                (let ((seconds (read-number "SOS in seconds: ")))
