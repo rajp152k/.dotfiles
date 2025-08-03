@@ -207,34 +207,12 @@
   (setq org-capture-templates
         '(("n" "Next Action" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Next Action")
            "* TODO [%] %?\n  %i\n  %a")
-          ("o" "Open Source" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Open Source")
-           "*  [%] [OS] %?\n  %i\n  %a")
-          ("c" "Content" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Content")
-           "*  [%] [CNTNT] %?\n  %i\n  %a")
           ("m" "Meet Log" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Meet Logs")
            "* @ %? w/")
-          ("e" "Event" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Events")
-           "* %?\nSCHEDULED: %T\n  %i")
+          ("a" "Annotations" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Meet Logs")
+           "* @ %? w/")
           ("i" "IN" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "INQ")
-           "*  [%] [INQ] %?\nEntered on %U\n  %i\n  %a")
-          ("r" "Roam" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Roam")
-           "*  [%] [ROAM] %?\n  %i\n  %a")
-          ("k" "ICBM" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "ICBM")
-           "*  [%] [ICBM] %?\nEntered on %U\n  %i\n  %a")
-          ("a" "Agentify" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Agentify")
-           "*  [%] [AGNTFY] %?\nEntered on %U\n  %i\n  %a")
-          ("t" "Thunk" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Thunk")
-           "*  [%] [THUNK] %?\nEntered on %U\n  %i\n  %a")
-          ("y" "YrGrSl" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "YrGrSl")
-           "*  [%] [YrGrSl] %?\nEntered on %U\n  %i\n  %a")
-          ("f" "Fire" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Fire")
-           "* TODO [%] [FIRE] %?\nEntered on %U\n  %i\n  %a")
-          ("d" "Discuss" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Discuss")
-           "* TODO [%] [DISCUSS] %?\nEntered on %U\n  %i\n  %a")
-          ("b" "Business" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Business")
-           "* TODO [%] [BSNS] %?\nEntered on %U\n  %i\n  %a")
-          ("u" "UTIL" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "UTIL")
-           "*  [%] [UTIL] %?\n %i\n %a"))))
+           "*  [%] [INQ] %?\nEntered on %U\n  %i\n  %a"))))
 
 (defun gtd-workspace-archive ()
   "Archive every heading whose TODO state is DONE in all `org-agenda-files`."
@@ -279,20 +257,9 @@
 (use-package! nth-roam
   :after org-roam
   :config
-  (nth-roam-default-vault-register "thebitmage" "/home/rp152k/source/vcops/org/roam/Content")
-  (nth-roam-register-vault "study" "/home/rp152k/source/vcops/PrivateOrg/study")
-  (nth-roam-register-vault "cognware" "/home/rp152k/source/ln2.thebitmage/CognWare/roam")
-  (nth-roam-init "thebitmage"))
-
-(defun cognware-note-init ()
-  "Insert top-level headings for a Cognware org-roam note."
-  (interactive)
-  (let ((level (+ 1 (org-outline-level))))
-    (insert (format "%s\n"
-                    (mapconcat (lambda (heading)
-                                 (format "%s %s" (make-string level ?*) heading))
-                               '("Abstract" "Incentive" "Outline" "Links")
-                               "\n")))))
+  (nth-roam-default-vault-register "CartoGraph" "/home/rp152k/source/vcops/PrivateOrg/cartograph")
+  (nth-roam-register-vault "thebitmage-archives-0x2408" "/home/rp152k/source/vcops/org/roam/Content")
+  (nth-roam-init "CartoGraph" ))
 
                                         ; GTD
 
@@ -1003,8 +970,6 @@ should be rewritten as:
       "n r u l a" #'org-roam-ui-add-to-local-graph
       "n r u l d" #'org-roam-ui-remove-from-local-graph
 
-
-      "m c c n" #'cognware-note-init
 
       "m d h" #'shortdoc
 
