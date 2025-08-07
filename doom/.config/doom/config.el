@@ -739,8 +739,8 @@ should be rewritten as:
                                         ;citar
 (use-package! citar
   :custom
-  (org-cite-global-bibliography '("/home/rp152k/source/vcops/org/roam/Content/bib/references.bib"))
-  (citar-bibliography '("/home/rp152k/source/vcops/org/roam/Content/bib/references.bib"))
+  (org-cite-global-bibliography '("/home/rp152k/source/vcops/PrivateOrg/zotero.bib"))
+  (citar-bibliography '("/home/rp152k/source/vcops/PrivateOrg/zotero.bib"))
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)
   (org-cite-activate-processor 'citar)
@@ -997,6 +997,7 @@ should be rewritten as:
 
       "i g a J m" (gptel-prompt-lambda "Outline" "-:Jargonize")
       "i g a J o" (gptel-prompt-lambda "Outline" "*:Jargonize")
+      "i g a E o" (gptel-prompt-lambda "Overview" "Epistemological Engineer" )
       "i g a C m" (gptel-prompt-lambda "Conceptual Models" "*:Formulate"))
 
 
