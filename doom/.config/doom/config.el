@@ -67,6 +67,8 @@
 ;; (setq pdf-view-midnight-colors (cons "#00ff00" "#000000")
 ;;       pdf-view-midnight-invert nil)
 
+;; completion case ignore
+(setq completion-ignore-case t)
 
 (doom/set-frame-opacity 0.9271)
 
@@ -704,6 +706,10 @@ should be rewritten as:
                     openai/gpt-4.1-mini
                     openai/o4-mini-high
                     openai/o4-mini
+                    openai/gpt-5
+                    openai/gpt-5-chat
+                    openai/gpt-5-mini
+                    openai/gpt-5-nano
 
                     meta-llama/llama-4-maverick:free
                     meta-llama/llama-4-maverick
