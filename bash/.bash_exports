@@ -21,3 +21,7 @@ export CREDENTIALS_PATH="~/source/secrets/credentials.json"
 
 # lima
 export PATH=$PATH:$HOME/source/tools/lima/bin
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
