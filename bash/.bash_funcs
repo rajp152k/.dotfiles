@@ -42,3 +42,14 @@ cgnimgops () {
     imgpstr $1 8 output-int.jpg
     imgtnt output-int.jpg green 60 cgn-img.jpg
 }
+
+#uwu
+
+uwu() {
+  local cmd
+  cmd="$(uwu-cli "$@")" || return
+  # requires interactive shell and Bash 4+
+  read -e -i "$cmd" -p "" cmd || return
+  builtin history -s -- "$cmd"
+  eval -- "$cmd"
+  }
