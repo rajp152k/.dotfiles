@@ -1105,11 +1105,12 @@ should be rewritten as:
 ;; reserving "C-M-h" as the local prefix for any mode specific maps henceforth
 
 ;; .. the home row ..
-(map! :map evil-normal-state-map
+(map! :map evil-insert-state-map
       "C-M-i p" (generate-bindable-lambda (insert "+"))
       "C-M-i n" (generate-bindable-lambda (insert "-"))
       "C-M-i u" (generate-bindable-lambda (insert "_"))
       "C-M-i e" (generate-bindable-lambda (insert "=")))
+
 
 (after! eshell
   (map! :map eshell-mode-map
