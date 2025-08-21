@@ -32,6 +32,7 @@ alias mcpls="jq '.mcpServers | to_entries | map({(.key): .value.description})' -
 
 # emacs
 alias edit="emacsclient -c -a 'emacs'"
+alias enw="emacsclient -nw"
 alias e="edit ."
 alias erestart="systemctl --user restart emacs"
 alias elogs="journalctl -f --user -xeu emacs"
