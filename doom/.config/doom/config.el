@@ -47,9 +47,10 @@
 (add-to-list 'custom-theme-load-path
              (file-name-as-directory "/home/rp152k/.config/emacs/.local/straight/repos/replace-colorthemes"))
 
-(load-theme 'modus-vivendi t)
-;; (load-theme 'marquardt t)
-;; (setq doom-theme 'doom-outrun-electric)
+;;(load-theme 'lawrence t)
+;;(load-theme 'marquardt t)
+(setq doom-theme 'doom-solarized-dark-high-contrast)
+(setq global-hl-line-mode t)
 
 ;; (let ((dark? 0))
 ;;   (setq theme-toggler
