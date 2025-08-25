@@ -1083,7 +1083,6 @@ should be rewritten as:
       "i c l" #'aidermacs-mode-config
       "i c r" #'aidermacs-send-block-or-region
       "i c d" #'aidermacs-debug-exception
-      "i v" #'aidermacs-send-voice-command
 
       "i g h" #'gptel
       "i g s" #'gptel-send
