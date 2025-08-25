@@ -212,8 +212,8 @@
            "* TODO [%] %?\n  %i\n  %a")
           ("m" "Meet Log" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Meet Logs")
            "* @ %? w/")
-          ("a" "Annotations" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Meet Logs")
-           "* @ %? w/")
+          ("a" "Annotations" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Annotations")
+           "* : %?")
           ("i" "IN" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "INQ")
            "*  [%] [INQ] %?\nEntered on %U\n  %i\n  %a"))))
 
@@ -1099,6 +1099,7 @@ should be rewritten as:
       "i g a J o" (gptel-prompt-lambda "Outline" "*:Jargonize")
       "i g a E o" (gptel-prompt-lambda "Overview" "Epistemological Engineer" )
       "i g a C o" (gptel-prompt-lambda "Overview" "CartoGrapher")
+      "i g a O m" (gptel-prompt-lambda "Operational Mechanisms" "Systems Strategist")
       "i g a C m" (gptel-prompt-lambda "Conceptual Models" "*:Formulate"))
 
 
