@@ -1075,9 +1075,10 @@ should be rewritten as:
       "i c r" #'aidermacs-send-block-or-region
       "i c d" #'aidermacs-debug-exception
       "i c g c" #'aidermacs-commit-with-auto-message
-      "i c g a c" (generate-bindable-lambda
+      "i c g C" (generate-bindable-lambda
                    (magit-stage-untracked)
-                   (aidermacs-commit-with-auto-message))
+                   (aidermacs-commit-with-auto-message)
+                   (magit-push))
 
       "i g h" #'gptel
       "i g s" #'gptel-send
