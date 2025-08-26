@@ -311,16 +311,6 @@
   (setq aidermacs-weak-model "openai/gpt-4.1-mini")
   (setq aidermacs-default-model "openai/o4-mini"))
 
-(defun aidermacs-send-voice-command ()
-  "send the /voice command to the aidermacs process"
-  (interactive)
-  ;; (let ((mode (completing-read "mode:" '("/architect"
-  ;;                                        "/ask"
-  ;;                                        "/code"))))
-  ;;   (aidermacs--send-command mode)
-  ;;   (aidermacs--send-command "/voice"))
-  (aidermacs--send-command "/voice"))
-
 (defun aidermacs-mode-config ()
   (interactive)
   (cl-flet ((alter-models (flash think)
@@ -1084,6 +1074,7 @@ should be rewritten as:
       "i c l" #'aidermacs-mode-config
       "i c r" #'aidermacs-send-block-or-region
       "i c d" #'aidermacs-debug-exception
+      "i c g c" #'aidermacs-commit-with-auto-message
 
       "i g h" #'gptel
       "i g s" #'gptel-send
