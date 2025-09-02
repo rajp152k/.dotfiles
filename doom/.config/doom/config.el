@@ -1076,9 +1076,9 @@ should be rewritten as:
       "i c d" #'aidermacs-debug-exception
       "i c g c" #'aidermacs-commit-with-auto-message
       "i c g C" (generate-bindable-lambda
-                   (magit-stage-untracked)
-                   (aidermacs-commit-with-auto-message)
-                   (magit-push))
+                 (magit-stage-untracked)
+                 (aidermacs-commit-with-auto-message)
+                 (magit-push))
 
       "i g h" #'gptel
       "i g s" #'gptel-send
@@ -1115,6 +1115,8 @@ should be rewritten as:
 
 (after! evil
   (map! :map evil-normal-state-map
+        "C-M-s" (generate-bindable-lambda
+                 (evil-ex "r!date"))
         "C-M-k" (generate-bindable-lambda (ultra-scroll-up (/  (window-pixel-height) 8)))
         "C-M-j" (generate-bindable-lambda (ultra-scroll-down (/  (window-pixel-height) 8)))))
 
