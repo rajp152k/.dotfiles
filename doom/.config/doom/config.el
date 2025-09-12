@@ -173,19 +173,19 @@
                                        (delete-word-at-point)
                                        (insert (format " 0x%X " (string-to-number dec-days))))))))
 
-(defun insert-youtube-video-transcript ()
-  "extract youtube transcript"
-  (interactive)
-  (let ((url (completing-read "video url:" (cl-remove-if-not
-                                            (lambda (victim)
-                                              (string-match-p "https://youtu.be" victim))
-                                            (cl-mapcar (lambda (x) (substring-no-properties x)) kill-ring)))))
-    (with-current-buffer (get-buffer-create (format
-                                             "*%s*"
-                                             url))
-      (insert (shell-command-to-string (format "fabric -y %s"
-                                               url)))
-      (display-buffer (current-buffer)))))
+;; (defun insert-youtube-video-transcript ()
+;;   "extract youtube transcript"
+;;   (interactive)
+;;   (let ((url (completing-read "video url:" (cl-remove-if-not
+;;                                             (lambda (victim)
+;;                                               (string-match-p "https://youtu.be" victim))
+;;                                             (cl-mapcar (lambda (x) (substring-no-properties x)) kill-ring)))))
+;;     (with-current-buffer (get-buffer-create (format
+;;                                              "*%s*"
+;;                                              url))
+;;       (insert (shell-command-to-string (format "fabric -y %s"
+;;                                                url)))
+;;       (display-buffer (current-buffer)))))
 
 (setq shell-command-prompt-show-cwd t)
                                         ; Babel
@@ -951,7 +951,6 @@ should be rewritten as:
 
 (map! :leader
 
-      "y t" #'insert-youtube-video-transcript
       "y p" #'yank-from-kill-ring
 
       "r f c" (generate-bindable-lambda
