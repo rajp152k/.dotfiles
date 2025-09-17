@@ -1060,6 +1060,12 @@ should be rewritten as:
 
       "m o i" #'doom/set-frame-opacity
 
+      "m o l" (generate-bindable-lambda
+               (doom/set-frame-opacity 10 (list (selected-frame))))
+
+      "m o h" (generate-bindable-lambda
+               (doom/set-frame-opacity 100 (list (selected-frame))))
+
       "m p s" #'python-shell-send-statement
       "m p r" #'python-shell-send-region
       "m p p" #'+python/open-ipython-repl
