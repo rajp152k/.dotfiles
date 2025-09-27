@@ -862,6 +862,8 @@ should be rewritten as:
     ,header
     ,prompt)))
 
+(use-package! gptel-mcp)
+
 
                                         ; fabric-gptel
 (use-package! fabric-gpt.el
@@ -888,39 +890,40 @@ should be rewritten as:
   (setq mcp-hub-servers
         '(("file-system" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" "/home/rp152k/source/")))
           ("excel" . (:command "uvx" :args ("excel-mcp-server" "stdio")))
-          ("web-fetch" . (:command "uvx" :args ("mcp-server-fetch"))))))
+          ("web-fetch" . (:command "uvx" :args ("mcp-server-fetch")))))
+  )
 
-(defun gptel-mcp-register-tool ()
-  (interactive)
-  (let ((tools (mcp-hub-get-all-tool :asyncp t :categoryp t)))
-    (mapcar #'(lambda (tool)
-                (apply #'gptel-make-tool
-                       tool))
-            tools)))
+;; (defun gptel-mcp-register-tool ()
+;;   (interactive)
+;;   (let ((tools (mcp-hub-get-all-tool :asyncp t :categoryp t)))
+;;     (mapcar #'(lambda (tool)
+;;                 (apply #'gptel-make-tool
+;;                        tool))
+;;             tools)))
 
-(defun gptel-mcp-use-tool ()
-  (interactive)
-  (let ((tools (mcp-hub-get-all-tool :asyncp t :categoryp t)))
-    (mapcar #'(lambda (tool)
-                (let ((path (list (plist-get tool :category)
-                                  (plist-get tool :name))))
-                  (push (gptel-get-tool path)
-                        gptel-tools)))
-            tools)))
+;; (defun gptel-mcp-use-tool ()
+;;   (interactive)
+;;   (let ((tools (mcp-hub-get-all-tool :asyncp t :categoryp t)))
+;;     (mapcar #'(lambda (tool)
+;;                 (let ((path (list (plist-get tool :category)
+;;                                   (plist-get tool :name))))
+;;                   (push (gptel-get-tool path)
+;;                         gptel-tools)))
+;;             tools)))
 
-(defun gptel-mcp-close-use-tool ()
-  (interactive)
-  (let ((tools (mcp-hub-get-all-tool :asyncp t :categoryp t)))
-    (mapcar #'(lambda (tool)
-                (let ((path (list (plist-get tool :category)
-                                  (plist-get tool :name))))
-                  (setq gptel-tools
-                        (cl-remove-if #'(lambda (tool)
-                                          (equal path
-                                                 (list (gptel-tool-category tool)
-                                                       (gptel-tool-name tool))))
-                                      gptel-tools))))
-            tools)))
+;; (defun gptel-mcp-close-use-tool ()
+;;   (interactive)
+;;   (let ((tools (mcp-hub-get-all-tool :asyncp t :categoryp t)))
+;;     (mapcar #'(lambda (tool)
+;;                 (let ((path (list (plist-get tool :category)
+;;                                   (plist-get tool :name))))
+;;                   (setq gptel-tools
+;;                         (cl-remove-if #'(lambda (tool)
+;;                                           (equal path
+;;                                                  (list (gptel-tool-category tool)
+;;                                                        (gptel-tool-name tool))))
+;;                                       gptel-tools))))
+;;             tools)))
 
                                         ;citar
 (use-package! citar
@@ -1169,7 +1172,7 @@ should be rewritten as:
       "m c t t" #'copilot-mode
 
       "m c p h" #'mcp-hub
-      "m c p r" #'gptel-mcp-register-tool
+      "m c p g" #'gptel-mcp-dispatch
 
       "i a" #'aidermacs-transient-menu
       "i c l" #'aidermacs-mode-config

@@ -87,8 +87,11 @@
 (package! mcp-hub
   :recipe (:host github :repo "lizqwerscott/mcp.el"))
 
+(package! gptel-mcp
+  :recipe (:host github :repo "lizqwerscott/gptel-mcp.el"))
+
 ;; (package! spacious-padding
-;;   :recipe (:host github :repo "protesilaos/spacious-padding"))
+;;   :recipe (:host github :repo protesilaos/spacious-padding"))
 
 (package! aidermacs
   :recipe (:host github :repo "MatthewZMD/aidermacs"))
