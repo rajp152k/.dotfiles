@@ -323,8 +323,8 @@
               (message (format "Aider flash : %s | Aider think : %s"
                                flash
                                think))))
-    (let ((mode (completing-read "Aider Mode: " '("?"
-                                                  "work"
+    (let ((mode (completing-read "Aider Mode: " '("work"
+                                                  "grok"
                                                   "openai"
                                                   "deepseek"
                                                   "gemini"
@@ -332,11 +332,12 @@
                                                   "claude"))))
       (cl-case (intern mode)
         (work (alter-models "openai/gpt-4.1-mini" "openai/o4-mini"))
-        (deepseek (alter-models "openrouter/deepseek/deepseek-chat" "openrouter/deepseek/deepseek-chat-v3-0324" ))
-        (claude (alter-models "openrouter/anthropic/claude-3-7-haiku" "openrouter/anthropic/claude-sonnet-4"))
-        (gemini (alter-models "openrouter/google/gemini-2.5-flash" "openrouter/google/gemini-2.5-pro-preview" ))
+        (grok (alter-models "openrouter/x-ai/grok-code-fast-1" "openrouter/x-ai/grok-code-fast-1"))
+        (deepseek (alter-models "openrouter/deepseek/deepseek-v3.1-termius" "openrouter/deepseek/deepseek-v3.1-termius" ))
+        (claude (alter-models "openrouter/anthropic/claude-3-7-haiku" "openrouter/anthropic/claude-opus-4.1"))
+        (gemini (alter-models "openrouter/google/gemini-2.5-flash-lite" "openrouter/google/gemini-2.5-pro" ))
         (llama (alter-models "openrouter/meta-llama/llama-4-scout" "openrouter/meta-llama/llama-4-maverick"))
-        (openai (alter-models "openrouter/openai/gpt-5-mini" "openrouter/openai/gpt-5"))))))
+        (openai (alter-models "openrouter/openai/gpt-5-nano" "openrouter/openai/gpt-5-codex"))))))
 
 
 (defvar GPTEL-PROVIDER "openrouter"
@@ -788,52 +789,29 @@ should be rewritten as:
           :endpoint "/api/v1/chat/completions"
           :stream t
           :key (cdr (assoc "openrouter" API-KEYS))
-          :models '(openai/gpt-4.1
-                    openai/gpt-4.1-nano
-                    openai/gpt-4.1-mini
-                    openai/o4-mini-high
+          :models '(openai/o4-mini-high
                     openai/o4-mini
                     openai/gpt-5
                     openai/gpt-5-chat
                     openai/gpt-5-mini
                     openai/gpt-5-nano
+                    openai/gpt-5-codex
 
-                    meta-llama/llama-4-maverick:free
                     meta-llama/llama-4-maverick
-                    meta-llama/llama-4-scout:free
                     meta-llama/llama-4-scout
 
-                    deepseek/deepseek-chat
-                    deepseek/deepseek-chat-v3-0324
-                    deepseek/deepseek-r1
-                    deepseek/deepseek-r1-distill-llama-70b
+                    deepseek/deepseek-v3.1-terminus
 
-                    mistralai/mixtral-8x7b-instruct
-                    mistralai/codestral-2501
-                    mistralai/codestral-mamba
-                    mistralai/ministral-8b
-                    mistralai/mistral-small-3.1-24b-instruct
-                    mistralai/mistral-saba
+                    anthropic/claude-opus-4.1
 
-                    morph/morph-v3-large
-                    morph/morph-v3-fast
-                    morph/morph-v2
-
-                    anthropic/claude-3.7-sonnet:thinking
-                    anthropic/claude-3.7-sonnet
-                    anthropic/claude-3.5-haiku
-
-                    google/gemini-2.5-pro-preview-03-25
                     google/gemini-2.5-flash-lite
+                    google/gemini-2.5-flash
+                    google/gemini-2.5-pro
+                    google/gemma-3n-e4b-it
 
-                    qwen/qwen3-30b-a3b
-                    qwen/qwen3-8b:free
-                    qwen/qwen3-14b
-                    qwen/qwen3-32b
-                    qwen/qwen3-235b-a22b
-
-                    x-ai/grok-3-mini-beta
-                    x-ai/grok-3-beta))))
+                    x-ai/grok-code-fast-1
+                    x-ai/grok-4-fast
+                    x-ai/grok-4))))
 
 
 
@@ -890,7 +868,8 @@ should be rewritten as:
   (setq mcp-hub-servers
         '(("file-system" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" "/home/rp152k/source/")))
           ("excel" . (:command "uvx" :args ("excel-mcp-server" "stdio")))
-          ("web-fetch" . (:command "uvx" :args ("mcp-server-fetch")))))
+          ("web-fetch" . (:command "uvx" :args ("mcp-server-fetch"))))))
+
 
                                         ;citar
 (use-package! citar
