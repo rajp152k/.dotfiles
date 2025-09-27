@@ -1146,7 +1146,7 @@ should be rewritten as:
       "n r u z" (generate-bindable-lambda
                  (org-roam-ui-node-zoom (org-roam-id-at-point)
                                         100
-                                        20))
+                                        100))
       "n r u f f" #'org-roam-ui-follow-mode
       "n r u l l" (generate-bindable-lambda
                    (org-roam-ui-node-local (org-roam-id-at-point)
