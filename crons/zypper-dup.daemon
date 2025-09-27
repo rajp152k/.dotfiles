@@ -1,0 +1,2 @@
+#!/bin/sh
+zypper -qn dup -d >> /dev/null
