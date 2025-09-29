@@ -782,7 +782,7 @@ should be rewritten as:
   ;;                            :key gptel-api-key
   ;;                            ;; :models ,(intern (format "gptel--%s-models" GPTEL-PROVIDER))
   ;;                            :stream t)))
-  (setq gptel-model   'meta-llama/llama-4-maverick
+  (setq gptel-model   'google/gemini-2.5-flash
         gptel-backend
         (gptel-make-openai "OpenRouter"
           :host "openrouter.ai"
