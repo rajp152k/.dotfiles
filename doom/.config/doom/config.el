@@ -868,7 +868,9 @@ should be rewritten as:
   (setq mcp-hub-servers
         '(("file-system" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" "/home/rp152k/source/")))
           ("excel" . (:command "uvx" :args ("excel-mcp-server" "stdio")))
-          ("web-fetch" . (:command "uvx" :args ("mcp-server-fetch"))))))
+          ("web-fetch" . (:command "uvx" :args ("mcp-server-fetch")))
+          ("serena" . (:command "uv" :args ("run" "--directory" "/home/rp152k/source/tools/serena" "serena" "start-mcp-server")))
+          ("gitremote-deepwiki" . (:url "https://mcp.deepwiki.com/sse")))))
 
 
                                         ;citar
