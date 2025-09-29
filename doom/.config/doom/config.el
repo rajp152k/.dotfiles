@@ -809,6 +809,12 @@ should be rewritten as:
                     google/gemini-2.5-pro
                     google/gemma-3n-e4b-it
 
+                    perplexity/sonar
+                    perplexity/sonar-pro
+                    perplexity/sonar-deep-research
+                    perplexity/sonar-reasoning-pro
+                    perplexity/sonar-reasoning
+
                     x-ai/grok-code-fast-1
                     x-ai/grok-4-fast
                     x-ai/grok-4))))
