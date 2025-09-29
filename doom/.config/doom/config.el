@@ -870,6 +870,8 @@ should be rewritten as:
           ("excel" . (:command "uvx" :args ("excel-mcp-server" "stdio")))
           ("web-fetch" . (:command "uvx" :args ("mcp-server-fetch")))
           ("sequential-thinking" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-sequential-thinking")))
+          ("arxiv" . (:command "uv" :args ("tool" "run" "arxiv-mcp-server" "--storage-path" "/home/rp152k/.arxiv")))
+          ("compass" . (:command "npx" :args ("-y" "@liuyoshio/mcp-compass")))
           ;; ("serena" . (:command "uv" :args ("run" "--directory" "/home/rp152k/source/tools/serena" "serena" "start-mcp-server")))
           ("gitremote-deepwiki" . (:url "https://mcp.deepwiki.com/sse")))))
 
