@@ -880,6 +880,7 @@ should be rewritten as:
           ("compass" . (:command "npx" :args ("-y" "@liuyoshio/mcp-compass")))
           ("serena" . (:command "uv" :args ("run" "--directory" "/home/rp152k/source/tools/serena" "serena" "start-mcp-server")))
           ("memory" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-memory") :env (:MEMORY_FILE_PATH "/home/rp152k/source/vcops/PrivateOrg/memory.json")))
+          ("time" . (:command "uvx" :args ("mcp-server-time")) )
           ("gitremote-deepwiki" . (:url "https://mcp.deepwiki.com/sse")))))
 
 
