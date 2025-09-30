@@ -872,7 +872,7 @@ should be rewritten as:
   ;; (add-hook 'after-init-hook
   ;;           #'mcp-hub-start-all-server)
   (setq mcp-hub-servers
-        '(("file-system" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" "/home/rp152k/source/")))
+        `(("file-system" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" "/home/rp152k/source/")))
           ("excel" . (:command "uvx" :args ("excel-mcp-server" "stdio")))
           ("web-fetch" . (:command "uvx" :args ("mcp-server-fetch")))
           ("sequential-thinking" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-sequential-thinking")))
@@ -881,6 +881,8 @@ should be rewritten as:
           ("serena" . (:command "uv" :args ("run" "--directory" "/home/rp152k/source/tools/serena" "serena" "start-mcp-server")))
           ("memory" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-memory") :env (:MEMORY_FILE_PATH "/home/rp152k/source/vcops/PrivateOrg/memory.json")))
           ("time" . (:command "uvx" :args ("mcp-server-time")) )
+          ("github" . (:command "docker" :args ("run" "-i" "--rm" "-e" "GITHUB_PERSONAL_ACCESS_TOKEN" "ghcr.io/github/mcp-server")
+                       :env (:GITHUB_PERSONAL_ACCESS_TOKEN ,(cdr (assoc "github_pat" API-KEYS)))))
           ("gitremote-deepwiki" . (:url "https://mcp.deepwiki.com/sse")))))
 
 
