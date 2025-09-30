@@ -879,6 +879,7 @@ should be rewritten as:
           ("arxiv" . (:command "uv" :args ("tool" "run" "arxiv-mcp-server" "--storage-path" "/home/rp152k/.arxiv")))
           ("compass" . (:command "npx" :args ("-y" "@liuyoshio/mcp-compass")))
           ;; ("serena" . (:command "uv" :args ("run" "--directory" "/home/rp152k/source/tools/serena" "serena" "start-mcp-server")))
+          ("serena" . (:command "uv" :args ("run" "--directory" "/home/rp152k/source/tools/serena" "serena" "start-mcp-server")))
           ("gitremote-deepwiki" . (:url "https://mcp.deepwiki.com/sse")))))
 
 
