@@ -882,6 +882,7 @@ should be rewritten as:
           ("memory" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-memory") :env (:MEMORY_FILE_PATH "/home/rp152k/source/vcops/PrivateOrg/memory.json")))
           ("time" . (:command "uvx" :args ("mcp-server-time")) )
           ;; ("github" . (:command "docker" :args ("run" "-i" "--rm" "-e" "GITHUB_PERSONAL_ACCESS_TOKEN" "ghcr.io/github/mcp-server") :env (:GITHUB_PERSONAL_ACCESS_TOKEN ,(cdr (assoc "github_pat" API-KEYS)))))
+          ;; ("spotify" . (:command "uv" :args ("--directory" "/home/rp152k/source/tools/spotify-mcp" "run" "spotify-mcp") :env (:SPOTIFY_CLIENT_ID ,(cdr (assoc "spotify_client_id" API-KEYS)) :SPOTIFY_CLIENT_SECRET (cdr (assoc "spotify_client_secret")) :SPOTIFY_REDIRECT_URI "http://127.0.0.1:8888/callback")))
           ("gitremote-deepwiki" . (:url "https://mcp.deepwiki.com/sse")))))
 
 
