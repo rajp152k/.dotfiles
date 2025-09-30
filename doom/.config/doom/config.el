@@ -878,8 +878,8 @@ should be rewritten as:
           ("sequential-thinking" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-sequential-thinking")))
           ("arxiv" . (:command "uv" :args ("tool" "run" "arxiv-mcp-server" "--storage-path" "/home/rp152k/.arxiv")))
           ("compass" . (:command "npx" :args ("-y" "@liuyoshio/mcp-compass")))
-          ;; ("serena" . (:command "uv" :args ("run" "--directory" "/home/rp152k/source/tools/serena" "serena" "start-mcp-server")))
           ("serena" . (:command "uv" :args ("run" "--directory" "/home/rp152k/source/tools/serena" "serena" "start-mcp-server")))
+          ("memory" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-memory") :env (:MEMORY_FILE_PATH "/home/rp152k/source/vcops/PrivateOrg/memory.json")))
           ("gitremote-deepwiki" . (:url "https://mcp.deepwiki.com/sse")))))
 
 
