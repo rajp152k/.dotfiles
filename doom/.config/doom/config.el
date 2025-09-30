@@ -883,6 +883,7 @@ should be rewritten as:
           ("time" . (:command "uvx" :args ("mcp-server-time")) )
           ;; ("github" . (:command "docker" :args ("run" "-i" "--rm" "-e" "GITHUB_PERSONAL_ACCESS_TOKEN" "ghcr.io/github/mcp-server") :env (:GITHUB_PERSONAL_ACCESS_TOKEN ,(cdr (assoc "github_pat" API-KEYS)))))
           ;; ("spotify" . (:command "uv" :args ("--directory" "/home/rp152k/source/tools/spotify-mcp" "run" "spotify-mcp") :env (:SPOTIFY_CLIENT_ID ,(cdr (assoc "spotify_client_id" API-KEYS)) :SPOTIFY_CLIENT_SECRET (cdr (assoc "spotify_client_secret")) :SPOTIFY_REDIRECT_URI "http://127.0.0.1:8888/callback")))
+          ;; ("youtube" . (:command "zubeid-youtube-mcp-server" :env (:YOUTUBE_API_KEY ,(cdr (assoc "youtube_api_key" API-KEYS)))))
           ("gitremote-deepwiki" . (:url "https://mcp.deepwiki.com/sse")))))
 
 
