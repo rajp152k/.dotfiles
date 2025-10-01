@@ -1064,6 +1064,11 @@ should be rewritten as:
 
 
                                         ; Custom Maps
+
+;; Ctrl maps
+(map!
+ "C-s" #'evil-write-all)
+
 ;; leader maps
 
 (map! :leader
