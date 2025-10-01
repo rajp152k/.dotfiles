@@ -212,9 +212,9 @@
   (setq org-capture-templates
         '(("e" "Executions" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Executions")
            "* TODO [%] %?\n  %i\n  %a")
-          ("c" "Collaborations" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Collaborations")
-           "* @ %? w/")
           ("m" "Meditations" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Meditations")
+           "* TODO [%] %?\n  %i\n  %a")
+          ("c" "Collaborations" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Collaborations")
            "* @ %? w/")
           ("a" "Annotations" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Annotations")
            "* : %?")
