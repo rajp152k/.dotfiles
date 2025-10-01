@@ -977,6 +977,19 @@ should be rewritten as:
                                    (violet . "#9933FF")
                                    (magenta . "#FF33FF"))))                                        ;LSP
 
+(defun org-roam-ui-global-graph ()
+  (interactive)
+  (websocket-send-text org-roam-ui-ws-socket
+                       (json-encode `((type . "command")
+                                      (data . ((commandName . "follow")
+                                               (id . "this is definitely not going to be a valid roam id : awesome hack indeed : local of a nil node")))))))
+(defun org-roam-ui-local-graph ()
+  (interactive)
+  (websocket-send-text org-roam-ui-ws-socket
+                       (json-encode `((type . "command")
+                                      (data . ((commandName . "follow")
+                                               (id . ,(org-roam-id-at-point))))))))
+
                                         ;LSP
 (use-package! lsp-mode
   :hook (lsp-mode . (lambda ()
@@ -1189,6 +1202,8 @@ should be rewritten as:
       "n r u l c" #'org-roam-ui-change-local-graph
       "n r u l a" #'org-roam-ui-add-to-local-graph
       "n r u l d" #'org-roam-ui-remove-from-local-graph
+      "n r u l g" #'org-roam-ui-local-graph
+      "n r u g g" #'org-roam-ui-global-graph
 
 
       "m d h" #'shortdoc
