@@ -210,14 +210,16 @@
   (setq org-startup-numerated t)
   (setq org-agenda-files '("/home/rp152k/source/vcops/org/GTD/GTD_HQ.org"))
   (setq org-capture-templates
-        '(("n" "Next Action" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Next Action")
+        '(("e" "Executions" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Executions")
            "* TODO [%] %?\n  %i\n  %a")
-          ("m" "Meet Log" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Meet Logs")
+          ("c" "Collaborations" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Collaborations")
+           "* @ %? w/")
+          ("m" "Meditations" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Meditations")
            "* @ %? w/")
           ("a" "Annotations" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Annotations")
            "* : %?")
-          ("i" "IN" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "INQ")
-           "*  [%] [INQ] %?\nEntered on %U\n  %i\n  %a"))))
+          ("i" "Ingestions" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Ingestions")
+           "* : %?"))))
 
 (defun gtd-workspace-archive ()
   "Archive every heading whose TODO state is DONE in all `org-agenda-files`."
