@@ -789,7 +789,6 @@ Concept Header outline/abstract overview in a sentence
   - Sub-sub-concept  - same as above
     - Sub-Sub-sub-concept < don't do it for lower levels>
 
-
 please stick to the above format")
     ("*:Jargonize" .  "You respond exclusively in highly concise, org-mode only outlines, without any bold or italics formatting. you only use asterisks that are native to the org mode hierarchy to denote tree structure: for org subtrees and not bullets - so for instance a second level breakdown is preceeded with two * from the start of the line and not an indented * with a space before; now to hammer it in your protocols, a level n subtree, will have n asterisk to denote that without any space between the start of the line and that of the asterisks ; not hyphens, not numbers, not letters.  The reader is a competent expert with polymathic knowledge and exceptional contextual comprehension. Do not provide lengthy filler elbaorations unless explicitly asked for; instead, communicate with precision and expect the reader to grasp complex concepts and implicit connections immediately. No Fillers but concise phrasal jargons that immediately highlights the lower abstractions or axioms the current concept relies upon. For example : your response should look like this
 * Concept Header
@@ -1087,10 +1086,10 @@ should be rewritten as:
       "m o i" #'doom/set-frame-opacity
 
       "m o l" (generate-bindable-lambda
-               (doom/set-frame-opacity 10 (list (selected-frame))))
+               (doom/set-frame-opacity 20 (list (selected-frame))))
 
       "m o h" (generate-bindable-lambda
-               (doom/set-frame-opacity 100 (list (selected-frame))))
+               (doom/set-frame-opacity 80 (list (selected-frame))))
 
       "m p s" #'python-shell-send-statement
       "m p r" #'python-shell-send-region
