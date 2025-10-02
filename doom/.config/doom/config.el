@@ -211,7 +211,7 @@
   (setq org-agenda-files '("/home/rp152k/source/vcops/org/GTD/GTD_HQ.org"))
   (setq org-capture-templates
         '(("e" "Executions" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Executions")
-           "* TODO [%] [EXECUTE] %?\n  %i\n  %a")
+           "* TODO [%]  [EXECUTE] %?\n  %i\n  %a")
           ("m" "Meditations" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Meditations")
            "* TODO [%] [MEDITATE] %?\n  %i\n  %a")
           ("c" "Collaborations" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Collaborations")
