@@ -1101,13 +1101,19 @@ should be rewritten as:
 
       "g d i" #'godoc
 
-      "m o i" #'doom/set-frame-opacity
+      "m o i i" #'doom/set-frame-opacity
 
-      "m o l" (generate-bindable-lambda
+      "m o l l" (generate-bindable-lambda
                (doom/set-frame-opacity 20 (list (selected-frame))))
 
-      "m o h" (generate-bindable-lambda
+      "m o l m" (generate-bindable-lambda
+               (doom/set-frame-opacity 50 (list (selected-frame))))
+
+      "m o h m" (generate-bindable-lambda
                (doom/set-frame-opacity 80 (list (selected-frame))))
+
+      "m o h h" (generate-bindable-lambda
+               (doom/set-frame-opacity 95 (list (selected-frame))))
 
       "m p s" #'python-shell-send-statement
       "m p r" #'python-shell-send-region
