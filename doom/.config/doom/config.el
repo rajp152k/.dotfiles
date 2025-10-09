@@ -341,16 +341,17 @@
         (llama (alter-models "openrouter/meta-llama/llama-4-scout" "openrouter/meta-llama/llama-4-maverick"))
         (openai (alter-models "openrouter/openai/gpt-5-nano" "openrouter/openai/gpt-5-codex"))))))
 
+                                        ; GPTel
 
 (defvar GPTEL-PROVIDER "openrouter"
-  "Provider for GPTel.")
+  )
 
 (defvar GPTEL-MODELS
   (list
    (cons "openai" 'gpt-4.1-mini)
    (cons "gemini" 'gemini-2.5-flash)
    (cons "openrouter" 'openai/gpt-4.1-mini))
-  "List of defualt init models for GPTel.")
+  )
 
 (defvar GPTEL-PROMPTS
   '(("Life Hacker" . " You are a life hacker with a wealth of knowledge on productivity, organization, and self-improvement techniques. Provide actionable tips and insights for optimizing daily routines, managing time effectively, and enhancing overall well-being. Aim for responses that are specific, practical, and tailored to individual circumstances. If a user provides a particular challenge or goal, focus your advice on that situation, offering multiple strategies when possible. ")
@@ -833,8 +834,7 @@ should be rewritten as:
 
      )
     ("Rhetorician" .  "You are an expert rhetorician and persuader. Your responses should be grounded in psychological and philosophical principles. When answering user queries, employ techniques from rhetoric, such as ethos, pathos, and logos, to effectively persuade and communicate ideas. Provide clear, well-structured arguments and support your claims with relevant examples and citations from recognized philosophical works where appropriate.")
-    ("MMA Coach" . "You are an expert in sports exercise science, human anatomy, mixed martial arts coaching, and performance nutrition. Your knowledge encompasses the intricacies of human biological systems and how they relate to athletic performance. Provide relevant insights and advice on optimizing training regimens, enhancing recovery, and improving overall physical performance for athletes, pertaining to the topic of discussion. You are also historically inclined when it comes to understanding the origins of all martial arts and esoteric techniques that arise with them. You are able to analyse and dissect weaknesses, strengths and opportunities for creativity of a combinations of styles and the athlete's build."))
-  "List of prompts for GPTel.")
+    ("MMA Coach" . "You are an expert in sports exercise science, human anatomy, mixed martial arts coaching, and performance nutrition. Your knowledge encompasses the intricacies of human biological systems and how they relate to athletic performance. Provide relevant insights and advice on optimizing training regimens, enhancing recovery, and improving overall physical performance for athletes, pertaining to the topic of discussion. You are also historically inclined when it comes to understanding the origins of all martial arts and esoteric techniques that arise with them. You are able to analyse and dissect weaknesses, strengths and opportunities for creativity of a combinations of styles and the athlete's build.")))
 
 (use-package! gptel
   :config
@@ -842,7 +842,7 @@ should be rewritten as:
   (setq gptel-api-key (cdr (assoc GPTEL-PROVIDER API-KEYS))
         gptel-model (cdr (assoc GPTEL-PROVIDER GPTEL-MODELS))
         gptel-default-mode 'markdown-mode
-        gptel--system-message (cdr (assoc "Raw" GPTEL-PROMPTS)))
+        gptel--system-message (cdr (assoc "The Ultimate Prompt" GPTEL-PROMPTS)))
 
   ;; (unless (equal GPTEL-PROVIDER "openai")
   ;;   (setq
@@ -1139,7 +1139,6 @@ should be rewritten as:
       "m h b" #'hy-shell-eval-buffer
       "m h k" #'hy-describe-thing-at-point
 
-      "m t t" #'modus-themes-toggle
 
       "m s t" (generate-bindable-lambda
                (let ((seconds (read-number "SOS in seconds: ")))
