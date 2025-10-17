@@ -265,9 +265,8 @@
   :after org-roam
   :config
   (nth-roam-default-vault-register "CartoGraph" "/home/rp152k/source/vcops/PrivateOrg/cartograph")
-  (nth-roam-register-vault "thebitmage-archives-0x2408" "/home/rp152k/source/vcops/org/roam/Content")
-  (nth-roam-register-vault "scripts" "/home/rp152k/source/vcops/PrivateOrg/scripts")
-  (nth-roam-register-vault "essays" "/home/rp152k/source/vcops/PrivateOrg/essays")
+  (nth-roam-register-vault "neologos" "/home/rp152k/source/vcops/PrivateOrg/neologos")
+  ;; (nth-roam-register-vault "thebitmage-archives-0x2408" "/home/rp152k/source/vcops/org/roam/Content")
   (nth-roam-init "CartoGraph" ))
 
                                         ; GTD
