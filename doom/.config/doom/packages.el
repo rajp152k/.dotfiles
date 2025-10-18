@@ -72,6 +72,9 @@
 (package! replace-colorthemes
   :recipe (:host github :repo "/rajp152k/replace-colorthemes"))
 
+(package! bit-mage-theme.el
+  :recipe (:host github :repo "rajp152k/bit-mage-theme.el"))
+
 (package! fabric-gpt.el
   :recipe (:host github :repo "/rajp152k/fabric-gpt.el"))
 

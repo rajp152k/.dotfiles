@@ -44,26 +44,14 @@
 ;; `load-theme' function. This is the 
 
 ;; Please set your themes directory to 'custom-theme-load-path
+;; (add-to-list 'custom-theme-load-path
+;;              (file-name-as-directory "/home/rp152k/.config/emacs/.local/straight/repos/replace-colorthemes"))
+
 (add-to-list 'custom-theme-load-path
-             (file-name-as-directory "/home/rp152k/.config/emacs/.local/straight/repos/replace-colorthemes"))
+             (file-name-as-directory "/home/rp152k/.config/emacs/.local/straight/repos/bit-mage-theme.el"))
 
-(load-theme 'lawrence t)
-;;(load-theme 'marquardt t)
-;; (setq doom-theme 'doom-solarized-dark-high-contrast)
-;; (setq global-hl-line-mode t)
-
-;; (let ((dark? 0))
-;;   (setq theme-toggler
-;;         (lambda ()
-;;           (if (= dark? 1)
-;;               (and (setq doom-theme 'doom-solarized-dark-high-contrast)
-;;                    (load-theme 'doom-solarized-dark-high-contrast)
-;;                    (setq dark? 0))
-;;             (and (setq doom-theme 'doom-solarized-light)
-;;                  (load-theme 'doom-solarized-light)
-;;                  (setq dark? 1))))))
-
-;; (funcall theme-toggler)
+(setq doom-theme 'bit-mage)
+(load-theme 'bit-mage t)
 
 (setq pdf-view-midnight-colors (cons "#00ff00" "#000000")
       pdf-view-midnight-invert nil)

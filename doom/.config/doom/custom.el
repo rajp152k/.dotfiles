@@ -22,3 +22,4 @@
 (put 'narrow-to-region 'disabled nil)
 (put 'customize-group 'disabled nil)
 (put 'erase-buffer 'disabled nil)
+(put 'customize-themes 'disabled nil)
