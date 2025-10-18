@@ -265,7 +265,6 @@
   :after org-roam
   :config
   (nth-roam-default-vault-register "CartoGraph" "/home/rp152k/source/vcops/PrivateOrg/cartograph")
-  (nth-roam-register-vault "neologos" "/home/rp152k/source/vcops/PrivateOrg/neologos")
   ;; (nth-roam-register-vault "thebitmage-archives-0x2408" "/home/rp152k/source/vcops/org/roam/Content")
   (nth-roam-init "CartoGraph" ))
 
