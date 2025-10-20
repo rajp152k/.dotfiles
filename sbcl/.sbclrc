@@ -8,6 +8,3 @@
 
 ;;; optimization
 (proclaim '(optimize speed))
-
-;;; utilities
-(load "~/.lisp")

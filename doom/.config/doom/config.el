@@ -1276,4 +1276,4 @@ should be rewritten as:
 ;; Roswell
 
 (load (expand-file-name  "~/.roswell/helper.el"))
-(setq inferior-lisp-program "ros -Q run")
+(setq inferior-lisp-program "ros -L sbcl -Q -l ~/.sbclrc run")
