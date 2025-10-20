@@ -312,7 +312,7 @@
                                flash
                                think))))
     (let ((mode (completing-read "Aider Mode: " '("work"
-                                                  "grok"
+                                                  "grok-fast"
                                                   "openai"
                                                   "deepseek"
                                                   "gemini"
@@ -320,7 +320,7 @@
                                                   "claude"))))
       (cl-case (intern mode)
         (work (alter-models "openai/gpt-4.1-mini" "openai/o4-mini"))
-        (grok (alter-models "openrouter/x-ai/grok-code-fast-1" "openrouter/x-ai/grok-code-fast-1"))
+        (grok-fast (alter-models "openrouter/x-ai/grok-4-fast" "openrouter/x-ai/grok-4-fast"))
         (deepseek (alter-models "openrouter/deepseek/deepseek-v3.1-termius" "openrouter/deepseek/deepseek-v3.1-termius" ))
         (claude (alter-models "openrouter/anthropic/claude-3-7-haiku" "openrouter/anthropic/claude-opus-4.1"))
         (gemini (alter-models "openrouter/google/gemini-2.5-flash-lite" "openrouter/google/gemini-2.5-pro" ))
