@@ -1272,3 +1272,7 @@ should be rewritten as:
         "C-M-h r i" (generate-bindable-lambda (insert "#/ "))
         "C-M-h r l" (generate-bindable-lambda (insert "#%"))
         "C-M-h r a" (generate-bindable-lambda (insert "#^ "))))
+
+;; Loads
+
+(load (expand-file-name  "~/.roswell/helper.el"))
