@@ -1,6 +1,3 @@
-;;; Loading Secrets
-(load "/home/rp152k/.config/doom/secrets.el")
-
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 
@@ -12,6 +9,14 @@
 
 ;; Recursion depth
 (setq max-lisp-eval-depth 10000)
+
+;; Loading Secrets
+(load "/home/rp152k/.config/doom/secrets.el")
+
+;; Roswell
+
+(load (expand-file-name  "~/.roswell/helper.el"))
+(setq inferior-lisp-program "ros -L sbcl -Q -l ~/.sbclrc run")
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
@@ -1273,7 +1278,3 @@ should be rewritten as:
         "C-M-h r l" (generate-bindable-lambda (insert "#%"))
         "C-M-h r a" (generate-bindable-lambda (insert "#^ "))))
 
-;; Roswell
-
-(load (expand-file-name  "~/.roswell/helper.el"))
-(setq inferior-lisp-program "ros -L sbcl -Q -l ~/.sbclrc run")
