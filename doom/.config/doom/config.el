@@ -16,7 +16,7 @@
 ;; Roswell
 
 (load (expand-file-name  "~/.roswell/helper.el"))
-(setq inferior-lisp-program "ros -L sbcl -Q -l ~/.sbclrc run")
+(setq inferior-lisp-program "ros -l ~/.sbclrc run")
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
