@@ -1256,6 +1256,7 @@ should be rewritten as:
 ;; .. the home row ..
 (map! :map evil-insert-state-map
       "C-M-i q" (generate-bindable-lambda (insert "`"))
+      "C-M-i w" (generate-bindable-lambda (insert "~"))
       "C-M-i p" (generate-bindable-lambda (insert "+"))
       "C-M-i n" (generate-bindable-lambda (insert "-"))
       "C-M-i u" (generate-bindable-lambda (insert "_"))
