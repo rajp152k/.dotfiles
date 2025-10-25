@@ -1255,12 +1255,21 @@ should be rewritten as:
 
 ;; .. the home row ..
 (map! :map evil-insert-state-map
-      "C-M-i q" (generate-bindable-lambda (insert "`"))
-      "C-M-i w" (generate-bindable-lambda (insert "~"))
-      "C-M-i p" (generate-bindable-lambda (insert "+"))
-      "C-M-i n" (generate-bindable-lambda (insert "-"))
-      "C-M-i u" (generate-bindable-lambda (insert "_"))
-      "C-M-i e" (generate-bindable-lambda (insert "=")))
+      :prefix "C-M-i"
+      "q" (generate-bindable-lambda (insert "`"))
+      "w" (generate-bindable-lambda (insert "~"))
+      "f" (generate-bindable-lambda (insert "%"))
+      "d" (generate-bindable-lambda (insert "$"))
+      "h" (generate-bindable-lambda (insert "#"))
+      "m" (generate-bindable-lambda (insert "*"))
+      "r" (generate-bindable-lambda (insert "@"))
+      "a" (generate-bindable-lambda (insert "&"))
+      "o" (generate-bindable-lambda (insert "!"))
+      "p" (generate-bindable-lambda (insert "+"))
+      "c" (generate-bindable-lambda (insert "^"))
+      "n" (generate-bindable-lambda (insert "-"))
+      "u" (generate-bindable-lambda (insert "_"))
+      "e" (generate-bindable-lambda (insert "=")))
 
 (after! eshell
   (map! :map eshell-mode-map
