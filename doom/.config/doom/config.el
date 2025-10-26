@@ -1250,9 +1250,6 @@ should be rewritten as:
       "i g a C m" (gptel-prompt-lambda "Conceptual Models" "*:Formulate"))
 
 
-;; eshell
-;; reserving "C-M-h" as the local prefix for any mode specific maps henceforth
-
 ;; .. the home row ..
 (map! :map evil-insert-state-map
       :prefix "C-M-i"
@@ -1287,4 +1284,13 @@ should be rewritten as:
         "C-M-h r i" (generate-bindable-lambda (insert "#/ "))
         "C-M-h r l" (generate-bindable-lambda (insert "#%"))
         "C-M-h r a" (generate-bindable-lambda (insert "#^ "))))
+
+
+(keymap-unset
+ global-map
+ "C-M-q")
+
+(keymap-unset
+ global-map
+ "C-M-SPC")
 
