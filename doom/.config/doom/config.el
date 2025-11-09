@@ -286,13 +286,13 @@
   :after kubernetes)
 
 ; emigo
-(use-package! emigo
-  :config
-  (emigo-enable)
-  :custom
-  (emigo-model "openrouter/deepseek/deepseek-chat-v3-0324")
-  (emigo-base-url "https://openrouter.ai/api/v1")
-  (emigo-api-key (cdr (assoc "openrouter" API-KEYS))))
+;; (use-package! emigo
+;;   :config
+;;   (emigo-enable)
+;;   :custom
+;;   (emigo-model "openrouter/deepseek/deepseek-chat-v3-0324")
+;;   (emigo-base-url "https://openrouter.ai/api/v1")
+;;   (emigo-api-key (cdr (assoc "openrouter" API-KEYS))))
 
                                         ; aider
 (use-package! aidermacs
@@ -316,16 +316,19 @@
               (message (format "Aider flash : %s | Aider think : %s"
                                flash
                                think))))
-    (let ((mode (completing-read "Aider Mode: " '("work"
+    (let ((mode (completing-read "Aider Mode: " '(
+                                                  ;; "work"
                                                   "grok-fast"
                                                   "openai"
                                                   "deepseek"
                                                   "gemini"
                                                   "llama"
+                                                  "grok-code"
                                                   "claude"))))
       (cl-case (intern mode)
-        (work (alter-models "openai/gpt-4.1-mini" "openai/o4-mini"))
+        ;; (work (alter-models "openai/gpt-4.1-mini" "openai/o4-mini"))
         (grok-fast (alter-models "openrouter/x-ai/grok-4-fast" "openrouter/x-ai/grok-4-fast"))
+        (grok-code (alter-models "openrouter/x-ai/grok-code-fast-1" "openrouter/x-ai/grok-code-fast-1"))
         (deepseek (alter-models "openrouter/deepseek/deepseek-v3.1-termius" "openrouter/deepseek/deepseek-v3.1-termius" ))
         (claude (alter-models "openrouter/anthropic/claude-3-7-haiku" "openrouter/anthropic/claude-opus-4.1"))
         (gemini (alter-models "openrouter/google/gemini-2.5-flash-lite" "openrouter/google/gemini-2.5-pro" ))
@@ -334,8 +337,7 @@
 
                                         ; GPTel
 
-(defvar GPTEL-PROVIDER "openrouter"
-  )
+(defvar GPTEL-PROVIDER "openrouter")
 
 (defvar GPTEL-MODELS
   (list
@@ -1286,6 +1288,7 @@ should be rewritten as:
         "C-M-h r a" (generate-bindable-lambda (insert "#^ "))))
 
 
+;; obs
 (keymap-unset
  global-map
  "C-M-q")
