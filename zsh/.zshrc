@@ -117,5 +117,3 @@ source ~/.zsh_exports
 
 #load secrets
 source ~/.zsh_secrets
-
-
