@@ -933,14 +933,14 @@ should be rewritten as:
 
 
                                         ;citar
-;; (use-package! citar
-;;   :custom
-;;   (org-cite-global-bibliography '("/Users/nilenso/source/vcops/org/PrivateOrg/zotero.bib"))
-;;   (citar-bibliography '("/Users/nilenso/source/vcops/org/PrivateOrg/zotero.bib"))
-;;   (org-cite-insert-processor 'citar)
-;;   (org-cite-follow-processor 'citar)
-;;   (org-cite-activate-processor 'citar)
-;;   (citar-bibliographies org-cite-global-bibliography))
+(use-package! citar
+  :custom
+  (org-cite-global-bibliography '("/Users/nilenso/source/vcops/org/PrivateOrg/zotero-work.bib"))
+  (citar-bibliography '("/Users/nilenso/source/vcops/org/PrivateOrg/zotero-work.bib"))
+  (org-cite-insert-processor 'citar)
+  (org-cite-follow-processor 'citar)
+  (org-cite-activate-processor 'citar)
+  (citar-bibliographies org-cite-global-bibliography))
 
                                         ;org-roam-ui
 (use-package! org-roam-ui
@@ -1088,19 +1088,21 @@ should be rewritten as:
 
       "g d i" #'godoc
 
+      "m h t" #'modus-themes-toggle
+
       "m o i i" #'doom/set-frame-opacity
 
       "m o l l" (generate-bindable-lambda
-               (doom/set-frame-opacity 20 (list (selected-frame))))
+                 (doom/set-frame-opacity 20 (list (selected-frame))))
 
       "m o l m" (generate-bindable-lambda
-               (doom/set-frame-opacity 50 (list (selected-frame))))
+                 (doom/set-frame-opacity 50 (list (selected-frame))))
 
       "m o h m" (generate-bindable-lambda
-               (doom/set-frame-opacity 80 (list (selected-frame))))
+                 (doom/set-frame-opacity 80 (list (selected-frame))))
 
       "m o h h" (generate-bindable-lambda
-               (doom/set-frame-opacity 95 (list (selected-frame))))
+                 (doom/set-frame-opacity 95 (list (selected-frame))))
 
       "m p s" #'python-shell-send-statement
       "m p r" #'python-shell-send-region
