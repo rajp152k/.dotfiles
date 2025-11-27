@@ -1,0 +1,6 @@
+## doom
+export PATH=$PATH:~/.config/emacs/bin
+
+
+## .local
+export PATH=$PATH:$HOME/.local/bin
