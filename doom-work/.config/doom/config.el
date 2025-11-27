@@ -949,7 +949,7 @@ should be rewritten as:
   (setq org-roam-ui-follow t
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t
-        org-roam-ui-browser-function #'browse-url-chromium
+        org-roam-ui-browser-function #'browse-url-firefox
         org-roam-ui-sync-theme nil
         org-roam-ui-custom-theme '((bg . "#000000")
                                    (bg-alt . "#000800")
