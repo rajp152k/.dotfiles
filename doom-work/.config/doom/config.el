@@ -316,8 +316,8 @@
         (grok-fast (alter-models "openrouter/x-ai/grok-4-fast" "openrouter/x-ai/grok-4-fast"))
         (grok-code (alter-models "openrouter/x-ai/grok-code-fast-1" "openrouter/x-ai/grok-code-fast-1"))
         (deepseek (alter-models "openrouter/deepseek/deepseek-v3.1-termius" "openrouter/deepseek/deepseek-v3.1-termius" ))
-        (claude (alter-models "openrouter/anthropic/claude-3-7-haiku" "openrouter/anthropic/claude-opus-4.1"))
-        (gemini (alter-models "openrouter/google/gemini-2.5-flash-lite" "openrouter/google/gemini-2.5-pro" ))
+        (claude (alter-models "openrouter/anthropic/claude-haiku-4.5" "openrouter/anthropic/claude-sonnet-4.5"))
+        (gemini (alter-models "openrouter/google/gemini-2.5-flash-lite" "openrouter/google/gemini-3-pro-preview" ))
         (llama (alter-models "openrouter/meta-llama/llama-4-scout" "openrouter/meta-llama/llama-4-maverick"))
         (openai (alter-models "openrouter/openai/gpt-5-nano" "openrouter/openai/gpt-5-codex"))))))
 
@@ -848,11 +848,14 @@ should be rewritten as:
 
                     deepseek/deepseek-v3.1-terminus
 
-                    anthropic/claude-opus-4.1
+                    anthropic/claude-opus-4.5
+                    anthropic/claude-sonnet-4.5
+                    anthropic/claude-haiku-4.5
 
                     google/gemini-2.5-flash-lite
                     google/gemini-2.5-flash
                     google/gemini-2.5-pro
+                    google/gemini-3-pro-preview
                     google/gemma-3n-e4b-it
 
                     perplexity/sonar
@@ -913,24 +916,20 @@ should be rewritten as:
               ("C-<tab>" . 'copilot-accept-completion-by-word)))
 
                                         ; mcp-hub
-;;(use-package! mcp-hub
-;;  :config
-;;  ;; (add-hook 'after-init-hook
-;;  ;;           #'mcp-hub-start-all-server)
-;;  (setq mcp-hub-servers
-;;        `(("file-system" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" "/Users/nilenso/source/")))
-;;          ("excel" . (:command "uvx" :args ("excel-mcp-server" "stdio")))
-;;          ("web-fetch" . (:command "uvx" :args ("mcp-server-fetch")))
-;;          ("sequential-thinking" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-sequential-thinking")))
-;;          ("arxiv" . (:command "uv" :args ("tool" "run" "arxiv-mcp-server" "--storage-path" "/Users/nilenso/.arxiv")))
-;;          ("compass" . (:command "npx" :args ("-y" "@liuyoshio/mcp-compass")))
-;;          ("serena" . (:command "uv" :args ("run" "--directory" "/Users/nilenso/source/tools/serena" "serena" "start-mcp-server")))
-;;          ("memory" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-memory") :env (:MEMORY_FILE_PATH "/Users/nilenso/source/vcops/PrivateOrg/memory.json")))
-;;          ("time" . (:command "uvx" :args ("mcp-server-time")) )
-;;          ;; ("github" . (:command "docker" :args ("run" "-i" "--rm" "-e" "GITHUB_PERSONAL_ACCESS_TOKEN" "ghcr.io/github/mcp-server") :env (:GITHUB_PERSONAL_ACCESS_TOKEN ,(cdr (assoc "github_pat" API-KEYS)))))
-;;          ;; ("spotify" . (:command "uv" :args ("--directory" "/Users/nilenso/source/tools/spotify-mcp" "run" "spotify-mcp") :env (:SPOTIFY_CLIENT_ID ,(cdr (assoc "spotify_client_id" API-KEYS)) :SPOTIFY_CLIENT_SECRET (cdr (assoc "spotify_client_secret")) :SPOTIFY_REDIRECT_URI "http://127.0.0.1:8888/callback")))
-;;          ;; ("youtube" . (:command "zubeid-youtube-mcp-server" :env (:YOUTUBE_API_KEY ,(cdr (assoc "youtube_api_key" API-KEYS)))))
-;;          ("gitremote-deepwiki" . (:url "https://mcp.deepwiki.com/sse")))))
+(use-package! mcp-hub
+ :config
+ ;; (add-hook 'after-init-hook
+ ;;           #'mcp-hub-start-all-server)
+ (setq mcp-hub-servers
+       `(("file-system" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" "/Users/nilenso/source/")))
+         ("web-fetch" . (:command "uvx" :args ("mcp-server-fetch")))
+         ("sequential-thinking" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-sequential-thinking")))
+         ("arxiv" . (:command "uv" :args ("tool" "run" "arxiv-mcp-server" "--storage-path" "/Users/nilenso/.arxiv")))
+         ("compass" . (:command "npx" :args ("-y" "@liuyoshio/mcp-compass")))
+         ("time" . (:command "uvx" :args ("mcp-server-time")) )
+         ;; ("github" . (:command "docker" :args ("run" "-i" "--rm" "-e" "GITHUB_PERSONAL_ACCESS_TOKEN" "ghcr.io/github/mcp-server") :env (:GITHUB_PERSONAL_ACCESS_TOKEN ,(cdr (assoc "github_pat" API-KEYS)))))
+         ;; ("spotify" . (:command "uv" :args ("--directory" "/Users/nilenso/source/tools/spotify-mcp" "run" "spotify-mcp") :env (:SPOTIFY_CLIENT_ID ,(cdr (assoc "spotify_client_id" API-KEYS)) :SPOTIFY_CLIENT_SECRET (cdr (assoc "spotify_client_secret")) :SPOTIFY_REDIRECT_URI "http://127.0.0.1:8888/callback")))
+         ("gitremote-deepwiki" . (:url "https://mcp.deepwiki.com/sse")))))
 
 
                                         ;citar
@@ -1037,36 +1036,36 @@ should be rewritten as:
 (map! :i "M-[" #'lispy-brackets [])
 
                                         ; Dap maps
-(map! :map dap-mode-map
-      :leader
-      :prefix ("d" . "dap")
-      ;; basics
-      :desc "dap next"          "n" #'dap-next
-      :desc "dap step in"       "i" #'dap-step-in
-      :desc "dap step out"      "o" #'dap-step-out
-      :desc "dap continue"      "c" #'dap-continue
-      :desc "dap hydra"         "h" #'dap-hydra
-      :desc "dap debug restart" "r" #'dap-debug-restart
-      :desc "dap debug"         "s" #'dap-debug
+;; (map! :map dap-mode-map
+;;       :leader
+;;       :prefix ("d" . "dap")
+;;       ;; basics
+;;       :desc "dap next"          "n" #'dap-next
+;;       :desc "dap step in"       "i" #'dap-step-in
+;;       :desc "dap step out"      "o" #'dap-step-out
+;;       :desc "dap continue"      "c" #'dap-continue
+;;       :desc "dap hydra"         "h" #'dap-hydra
+;;       :desc "dap debug restart" "r" #'dap-debug-restart
+;;       :desc "dap debug"         "s" #'dap-debug
 
-      ;; debug
-      :prefix ("ddr" . "Debug")
-      :desc "dap debug recent"  "r" #'dap-debug-recent
-      :desc "dap debug last"    "l" #'dap-debug-last
+;;       ;; debug
+;;       :prefix ("ddr" . "Debug")
+;;       :desc "dap debug recent"  "r" #'dap-debug-recent
+;;       :desc "dap debug last"    "l" #'dap-debug-last
 
-      ;; eval
-      :prefix ("de" . "Eval")
-      :desc "eval"                "e" #'dap-eval
-      :desc "eval region"         "r" #'dap-eval-region
-      :desc "eval thing at point" "s" #'dap-eval-thing-at-point
-      :desc "add expression"      "a" #'dap-ui-expressions-add
-      :desc "remove expression"   "d" #'dap-ui-expressions-remove
+;;       ;; eval
+;;       :prefix ("de" . "Eval")
+;;       :desc "eval"                "e" #'dap-eval
+;;       :desc "eval region"         "r" #'dap-eval-region
+;;       :desc "eval thing at point" "s" #'dap-eval-thing-at-point
+;;       :desc "add expression"      "a" #'dap-ui-expressions-add
+;;       :desc "remove expression"   "d" #'dap-ui-expressions-remove
 
-      :prefix ("db" . "Breakpoint")
-      :desc "dap breakpoint toggle"      "b" #'dap-breakpoint-toggle
-      :desc "dap breakpoint condition"   "c" #'dap-breakpoint-condition
-      :desc "dap breakpoint hit count"   "h" #'dap-breakpoint-hit-condition
-      :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message)
+;;       :prefix ("db" . "Breakpoint")
+;;       :desc "dap breakpoint toggle"      "b" #'dap-breakpoint-toggle
+;;       :desc "dap breakpoint condition"   "c" #'dap-breakpoint-condition
+;;       :desc "dap breakpoint hit count"   "h" #'dap-breakpoint-hit-condition
+;;       :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message)
 
 
                                         ; Custom Maps
@@ -1151,12 +1150,17 @@ should be rewritten as:
       "l t" (generate-bindable-lambda
              (insert (format-time-string "%Y-%m-%d %H:%M:%S")))
 
+      "l l" (generate-bindable-lambda
+             (insert "[")
+             (life-hex-count)
+             (insert "|" (format-time-string "%s"))
+             (insert " ]"))
 
       "o g w" #'gtd-workspace
       "o g a" #'gtd-workspace-archive
 
       "e h b" (generate-bindable-lambda
-               (setq easy-hugo-basedir  "/Users/nilenso/source/vcops/thebitmage.com/"
+               (setq easy-hugo-basedir  "/Users/nilenso/source/vcops/bit-mage/"
                      easy-hugo-postdir "content/post/")
                (easy-hugo))
 
