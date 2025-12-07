@@ -1165,9 +1165,12 @@ should be rewritten as:
                (easy-hugo))
 
       "e h c" (generate-bindable-lambda
-               (setq easy-hugo-basedir  "/Users/nilenso/source/ln2.thebitmage/CognWare/cognware/"
+               (setq easy-hugo-basedir  "/Users/nilenso/source/vcops/cognware"
                      easy-hugo-postdir "content/posts/")
                (easy-hugo))
+
+      "e h m t" (generate-bindable-lambda
+                 (insert "```\n```"))
 
       "t t" #'tldr
 
