@@ -7,6 +7,8 @@
 (when (daemonp)
   (exec-path-from-shell-initialize))
 
+(unbind-key "C-x C-c")
+
 ;; Recursion depth
 (setq max-lisp-eval-depth 10000)
 
@@ -996,7 +998,10 @@ should be rewritten as:
   (setq lsp-completion-provider :capf)
   (setq lsp-completion-show-detail t)
   (setq lsp-enable-snippet t)
-  (setq lsp-modeline-code-action t))
+  (setq lsp-modeline-code-action t)
+
+  ;; manual server installs
+  (setq lsp-clojure-custom-server-command '("zsh" "-c" "/opt/homebrew/bin/clojure-lsp")))
 
 
 ; LSP-lang-specific
