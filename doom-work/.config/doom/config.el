@@ -319,7 +319,7 @@
         (grok-code (alter-models "openrouter/x-ai/grok-code-fast-1" "openrouter/x-ai/grok-code-fast-1"))
         (deepseek (alter-models "openrouter/deepseek/deepseek-v3.1-termius" "openrouter/deepseek/deepseek-v3.1-termius" ))
         (claude (alter-models "openrouter/anthropic/claude-haiku-4.5" "openrouter/anthropic/claude-sonnet-4.5"))
-        (gemini (alter-models "openrouter/google/gemini-2.5-flash-lite" "openrouter/google/gemini-3-pro-preview" ))
+        (gemini (alter-models "openrouter/google/gemini-3-flash-preview" "openrouter/google/gemini-3-pro-preview" ))
         (llama (alter-models "openrouter/meta-llama/llama-4-scout" "openrouter/meta-llama/llama-4-maverick"))
         (openai (alter-models "openrouter/openai/gpt-5-nano" "openrouter/openai/gpt-5-codex"))))))
 
