@@ -820,7 +820,7 @@ should be rewritten as:
   (setq gptel--rewrite-message "")
   (setq gptel-api-key (cdr (assoc GPTEL-PROVIDER API-KEYS))
         gptel-model (cdr (assoc GPTEL-PROVIDER GPTEL-MODELS))
-        gptel-default-mode 'markdown-mode
+        gptel-default-mode 'org-mode
         gptel--system-message (cdr (assoc "The Ultimate Prompt" GPTEL-PROMPTS)))
 
   ;; (unless (equal GPTEL-PROVIDER "openai")
@@ -858,6 +858,7 @@ should be rewritten as:
                     google/gemini-2.5-flash
                     google/gemini-2.5-pro
                     google/gemini-3-pro-preview
+                    google/gemini-3-flash-preview
                     google/gemma-3n-e4b-it
 
                     perplexity/sonar
