@@ -1,0 +1,40 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "anthropic/claude-opus-4-5",
+  "small_model": "anthropic/claude-haiku-4-5",
+  "autoupdate": true,
+  "share": "manual",
+  "permission": {
+    "edit": "allow",
+    "bash": "allow"
+  },
+  "agent": {
+    "plan": {
+      "description": "Analysis and planning without making changes",
+      "mode": "primary",
+      "temperature": 0.1,
+      "permission": {
+        "edit": "deny",
+        "bash": "ask"
+      }
+    }
+  },
+  "command": {
+    "issue": {
+      "template": "Fetch and analyze GitHub issue #$1. Summarize the objective, current state, and suggest next actions.",
+      "description": "View and analyze a GitHub issue"
+    },
+    "sync": {
+      "template": "Run git pull && git push to sync with remote. Report any conflicts or issues.",
+      "description": "Sync local repo with remote"
+    },
+    "issues": {
+      "template": "List all open GitHub issues using gh issue list. Group by label and suggest which to work on next.",
+      "description": "List and prioritize open issues"
+    },
+    "project": {
+      "template": "View the GitHub project board using gh project view. Summarize current state across columns.",
+      "description": "View project board status"
+    }
+  }
+}
