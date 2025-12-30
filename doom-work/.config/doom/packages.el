@@ -111,3 +111,6 @@
 
 (package! kubernetes)
 (package! kubernetes-evil)
+
+(package! emamux
+  :recipe (:host github :repo "emacsorphanage/emamux"))

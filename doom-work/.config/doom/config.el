@@ -920,10 +920,10 @@ should be rewritten as:
 
                                         ; mcp-hub
 (use-package! mcp-hub
- :config
- ;; (add-hook 'after-init-hook
- ;;           #'mcp-hub-start-all-server)
- (setq mcp-hub-servers
+  :config
+  ;; (add-hook 'after-init-hook
+  ;;           #'mcp-hub-start-all-server)
+  (setq mcp-hub-servers
        `(("file-system" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" "/Users/nilenso/source/")))
          ("web-fetch" . (:command "uvx" :args ("mcp-server-fetch")))
          ("sequential-thinking" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-sequential-thinking")))
@@ -1005,7 +1005,7 @@ should be rewritten as:
   (setq lsp-clojure-custom-server-command '("zsh" "-c" "/opt/homebrew/bin/clojure-lsp")))
 
 
-; LSP-lang-specific
+                                        ; LSP-lang-specific
 ;; (after! lsp-mode
 ;;   (setq lsp-java-jdt-ls-command "/opt/homebrew/bin/jdtls" ))
 
@@ -1034,8 +1034,12 @@ should be rewritten as:
   (ultra-scroll-mode 1))
 
                                         ; Compile and Shell
-(setq shell-file-name "bash"
+(setq shell-file-name "zsh"
       shell-command-switch "-c")
+
+                                        ; vterm
+(after! vterm
+  (add-hook 'vterm-mode-hook (lambda () (display-line-numbers-mode -1))))
 
                                         ;Lisp
 (load "~/quicklisp/clhs-use-local.el" 'noerror)
