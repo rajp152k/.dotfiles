@@ -7,6 +7,8 @@
 (when (daemonp)
   (exec-path-from-shell-initialize))
 
+(unbind-key "C-x C-c")
+
 ;; Recursion depth
 (setq max-lisp-eval-depth 10000)
 
@@ -205,10 +207,6 @@
   (setq org-capture-templates
         '(("e" "Executions" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Executions")
            "* TODO [%]  [execute] %?\n  %i\n  %a")
-          ("t" "Bit-Mage" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Executions")
-           "* TODO [%]  [bit-mage] %?\n %i\n  %a")
-          ("p" "Cognware" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Executions")
-           "* TODO [%]  [cognware] %?\n  %i\n  %a")
           ("m" "Meditations" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Meditations")
            "* TODO [%] [meditate] %?\n  %i\n  %a")
           ("c" "Collaborations" entry (file+headline "/home/rp152k/source/vcops/org/GTD/GTD_HQ.org" "Collaborations")
@@ -301,15 +299,14 @@
                                         ; aider
 (use-package! aidermacs
   :config
-  (setenv "OPENAI_API_KEY" (cdr (assoc "openai" API-KEYS)))
   (setenv "OPENROUTER_API_KEY" (cdr (assoc "openrouter" API-KEYS)))
   (add-to-list 'aidermacs-extra-args "--no-show-model-warnings" )
   (add-to-list 'aidermacs-extra-args "--add-gitignore-files" )
   (add-to-list 'aidermacs-extra-args "--skip-sanity-check-repo" )
   (setq aidermacs-backend 'vterm)
   (setq aidermacs-show-diff-after-change nil)
-  (setq aidermacs-weak-model "openai/gpt-4.1-mini")
-  (setq aidermacs-default-model "openai/o4-mini"))
+  (setq aidermacs-weak-model "openrouter/x-ai/grok-code-fast-1")
+  (setq aidermacs-default-model "openrouter/x-ai/grok-code-fast-1"))
 
 (defun aidermacs-mode-config ()
   (interactive)
@@ -321,7 +318,6 @@
                                flash
                                think))))
     (let ((mode (completing-read "Aider Mode: " '(
-                                                  ;; "work"
                                                   "grok-fast"
                                                   "openai"
                                                   "deepseek"
@@ -330,12 +326,11 @@
                                                   "grok-code"
                                                   "claude"))))
       (cl-case (intern mode)
-        ;; (work (alter-models "openai/gpt-4.1-mini" "openai/o4-mini"))
         (grok-fast (alter-models "openrouter/x-ai/grok-4-fast" "openrouter/x-ai/grok-4-fast"))
         (grok-code (alter-models "openrouter/x-ai/grok-code-fast-1" "openrouter/x-ai/grok-code-fast-1"))
         (deepseek (alter-models "openrouter/deepseek/deepseek-v3.1-termius" "openrouter/deepseek/deepseek-v3.1-termius" ))
-        (claude (alter-models "openrouter/anthropic/claude-3-7-haiku" "openrouter/anthropic/claude-opus-4.1"))
-        (gemini (alter-models "openrouter/google/gemini-2.5-flash-lite" "openrouter/google/gemini-2.5-pro" ))
+        (claude (alter-models "openrouter/anthropic/claude-haiku-4.5" "openrouter/anthropic/claude-sonnet-4.5"))
+        (gemini (alter-models "openrouter/google/gemini-3-flash-preview" "openrouter/google/gemini-3-pro-preview" ))
         (llama (alter-models "openrouter/meta-llama/llama-4-scout" "openrouter/meta-llama/llama-4-maverick"))
         (openai (alter-models "openrouter/openai/gpt-5-nano" "openrouter/openai/gpt-5-codex"))))))
 
@@ -345,9 +340,7 @@
 
 (defvar GPTEL-MODELS
   (list
-   (cons "openai" 'gpt-4.1-mini)
-   (cons "gemini" 'gemini-2.5-flash)
-   (cons "openrouter" 'openai/gpt-4.1-mini))
+   (cons "openrouter" 'x-ai/grok-4-fast))
   )
 
 (defvar GPTEL-PROMPTS
@@ -838,7 +831,7 @@ should be rewritten as:
   (setq gptel--rewrite-message "")
   (setq gptel-api-key (cdr (assoc GPTEL-PROVIDER API-KEYS))
         gptel-model (cdr (assoc GPTEL-PROVIDER GPTEL-MODELS))
-        gptel-default-mode 'markdown-mode
+        gptel-default-mode 'org-mode
         gptel--system-message (cdr (assoc "The Ultimate Prompt" GPTEL-PROMPTS)))
 
   ;; (unless (equal GPTEL-PROVIDER "openai")
@@ -868,11 +861,15 @@ should be rewritten as:
 
                     deepseek/deepseek-v3.1-terminus
 
-                    anthropic/claude-opus-4.1
+                    anthropic/claude-opus-4.5
+                    anthropic/claude-sonnet-4.5
+                    anthropic/claude-haiku-4.5
 
                     google/gemini-2.5-flash-lite
                     google/gemini-2.5-flash
                     google/gemini-2.5-pro
+                    google/gemini-3-pro-preview
+                    google/gemini-3-flash-preview
                     google/gemma-3n-e4b-it
 
                     perplexity/sonar
@@ -956,8 +953,8 @@ should be rewritten as:
                                         ;citar
 (use-package! citar
   :custom
-  (org-cite-global-bibliography '("/home/rp152k/source/vcops/PrivateOrg/zotero.bib"))
-  (citar-bibliography '("/home/rp152k/source/vcops/PrivateOrg/zotero.bib"))
+  (org-cite-global-bibliography '("/home/rp152k/source/vcops/org/PrivateOrg/zotero-work.bib"))
+  (citar-bibliography '("/home/rp152k/source/vcops/org/PrivateOrg/zotero-work.bib"))
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)
   (org-cite-activate-processor 'citar)
@@ -1164,6 +1161,11 @@ should be rewritten as:
       "l t" (generate-bindable-lambda
              (insert (format-time-string "%Y-%m-%d %H:%M:%S")))
 
+      "l l" (generate-bindable-lambda
+             (insert "[")
+             (life-hex-count)
+             (insert "|" (format-time-string "%s"))
+             (insert " ]"))
 
       "o g w" #'gtd-workspace
       "o g a" #'gtd-workspace-archive
@@ -1177,6 +1179,9 @@ should be rewritten as:
                (setq easy-hugo-basedir  "/home/rp152k/source/ln2.thebitmage/CognWare/cognware/"
                      easy-hugo-postdir "content/posts/")
                (easy-hugo))
+
+      "e h m t" (generate-bindable-lambda
+                 (insert "```\n```"))
 
       "t t" #'tldr
 
