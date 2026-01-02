@@ -953,7 +953,7 @@ should be rewritten as:
                                         ;citar
 (use-package! citar
   :custom
-  (org-cite-global-bibliography '("/home/rp152k/source/vcops/org/PrivateOrg/zotero-work.bib"))
+  (org-cite-global-bibliography '("/home/rp152k/source/vcops/PrivateOrg/zotero-work.bib"))
   (citar-bibliography '("/home/rp152k/source/vcops/org/PrivateOrg/zotero-work.bib"))
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)
