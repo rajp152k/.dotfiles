@@ -1,7 +1,7 @@
 ---
 description: Scout any topic (context-agnostic research)
-agent: general
 subtask: true
+agent: plan
 ---
 
 Scout and research: $ARGUMENTS
