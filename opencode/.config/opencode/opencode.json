@@ -1,13 +1,24 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": ["opencode-anthropic-auth"],
-  "model": "x-ai/grok-code-fast-1",
-  "small_model": "x-ai/grok-code-fast-1",
+  "model": "anthropic/claude-opus-4-5",
+  "small_model": "anthropic/claude-haiku-4-5",
   "autoupdate": true,
   "share": "manual",
   "permission": {
     "edit": "allow",
     "bash": "allow"
+  },
+  "mcp": {
+    "n8n": {
+      "type": "local",
+      "command": [
+        "podman", "run", "-i", "--rm",
+        "--env-file", "/Users/nilenso/source/ops/secrets/n8n-mcp.env",
+        "ghcr.io/czlonkowski/n8n-mcp:latest"
+      ],
+      "enabled": true
+    }
   },
   "agent": {
     "plan": {
