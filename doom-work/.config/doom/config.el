@@ -1024,6 +1024,11 @@ should be rewritten as:
 ;;   (add-hook 'find-file-hook (lambda () (when (bound-and-true-p conda-project-env-path)
 ;;                                          (conda-env-activate-for-buffer)))))
 
+                                        ; wakatime
+(use-package! wakatime-mode
+  :config
+  (global-wakatime-mode))
+
                                         ; ultra Scroll
 
 (use-package ultra-scroll
