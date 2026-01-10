@@ -117,3 +117,10 @@ source ~/.zsh_exports
 
 #load secrets
 source ~/.zsh_secrets
+
+# bun completions
+[ -s "/Users/nilenso/.bun/_bun" ] && source "/Users/nilenso/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

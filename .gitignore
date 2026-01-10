@@ -3,3 +3,4 @@ doom/.config/doom/fabric
 mcp/.mcp/private_server_config.json
 *flycheck*
 .aider*
+opencode/.config/opencode/antigravity-accounts.json
