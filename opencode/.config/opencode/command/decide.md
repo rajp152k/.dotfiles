@@ -1,6 +1,5 @@
 ---
 description: Structure a decision with reasoning
-agent: plan
 ---
 
 Help me make a decision about: $ARGUMENTS

@@ -1,6 +1,5 @@
 ---
 description: Define scope and success criteria before starting a task
-agent: plan
 ---
 
 Help me scope the following task: $ARGUMENTS

@@ -1,6 +1,5 @@
 ---
 description: Review progress on open goals
-agent: plan
 ---
 
 Review my current open goals and progress:
