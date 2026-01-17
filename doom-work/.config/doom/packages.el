@@ -115,4 +115,6 @@
 (package! emamux
   :recipe (:host github :repo "emacsorphanage/emamux"))
 
+(package! ai-code)
+
 (package! wakatime-mode)
