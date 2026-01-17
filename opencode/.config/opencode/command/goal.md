@@ -1,6 +1,6 @@
 ---
 description: Create a new goal with GitHub issue
-agent: build
+agent: general
 ---
 
 Create a new goal/objective based on: $ARGUMENTS

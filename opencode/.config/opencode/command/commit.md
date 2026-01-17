@@ -1,6 +1,6 @@
 ---
 description: Create atomic commits with conventional commits syntax
-agent: build
+agent: general
 ---
 
 Analyze the current changes and create atomic commits using conventional commits syntax.

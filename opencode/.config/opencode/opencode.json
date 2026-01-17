@@ -1,5 +1,8 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "tui": {
+    "theme": "bit-mage"
+  },
   "plugin": [
     "opencode-anthropic-auth",
     "oh-my-opencode",
