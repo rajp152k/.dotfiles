@@ -53,12 +53,14 @@
 ;; Please set your themes directory to 'custom-theme-load-path
 (add-to-list 'custom-theme-load-path
              (file-name-as-directory "/Users/nilenso/.config/emacs/.local/straight/repos/replace-colorthemes"))
+(add-to-list 'custom-theme-load-path
+             (file-name-as-directory "/Users/nilenso/.load/bit-mage-theme.el"))
 
 ;; (add-to-list 'custom-theme-load-path
 ;;             (file-name-as-directory "/Users/nilenso/.config/emacs/.local/straight/repos/bit-mage-theme.el"))
 
-(setq doom-theme 'modus-vivendi)
-(load-theme 'modus-vivendi t)
+(setq doom-theme 'bit-mage)
+(load-theme 'bit-mage t)
 
 (setq pdf-view-midnight-colors (cons "#00ff00" "#000000")
       pdf-view-midnight-invert nil)
