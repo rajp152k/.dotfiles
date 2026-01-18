@@ -325,6 +325,16 @@
         (llama (alter-models "openrouter/meta-llama/llama-4-scout" "openrouter/meta-llama/llama-4-maverick"))
         (openai (alter-models "openrouter/openai/gpt-5-nano" "openrouter/openai/gpt-5-codex"))))))
 
+                                        ; ai-code (opencode via eat)
+(use-package! ai-code
+  :config
+  (ai-code-set-backend 'opencode)
+  (setq ai-code-backends-infra-terminal-backend 'eat)
+  (global-auto-revert-mode 1)
+  (setq auto-revert-interval 1)
+  (with-eval-after-load 'magit
+    (ai-code-magit-setup-transients)))
+
                                         ; GPTel
 
 (defvar GPTEL-PROVIDER "openrouter")
@@ -1238,6 +1248,8 @@ should be rewritten as:
       "m c p h" #'mcp-hub
       "m c p g" #'gptel-mcp-dispatch
 
+      "i o" #'ai-code-menu
+
       "i a" #'aidermacs-transient-menu
       "i c l" #'aidermacs-mode-config
       "i c r" #'aidermacs-send-block-or-region
@@ -1257,6 +1269,7 @@ should be rewritten as:
       "i g f s" #'fabric-gpt.el-sync-patterns
       "i g a p" #'gptel-prompt-alter
       "i g a s" #'dispatch-ephemeral-gptel-base-send
+      
 
       "i g a J m" (gptel-prompt-lambda "Outline" "-:Jargonize")
       "i g a J o" (gptel-prompt-lambda "Outline" "*:Jargonize")
