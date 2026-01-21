@@ -291,6 +291,7 @@
   :config
   (setenv "OPENROUTER_API_KEY" (cdr (assoc "openrouter" API-KEYS)))
   (add-to-list 'aidermacs-extra-args "--no-show-model-warnings" )
+  (add-to-list 'aidermacs-extra-args "--watch-files" )
   (add-to-list 'aidermacs-extra-args "--add-gitignore-files" )
   (add-to-list 'aidermacs-extra-args "--skip-sanity-check-repo" )
   (setq aidermacs-program "/Users/nilenso/.local/bin/aider")

@@ -9,4 +9,4 @@ minimum-contrast = 1.1
 
 # Cursor
 cursor-style = block
-cursor-style-blink = false
+cursor-style-blink = true
