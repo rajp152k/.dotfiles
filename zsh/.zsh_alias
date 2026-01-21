@@ -1,0 +1,5 @@
+#emacs
+alias ec="emacsclient ."
+
+#opencode
+alias oc="opencode"
