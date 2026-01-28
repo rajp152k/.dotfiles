@@ -190,6 +190,9 @@
        ;; irc               ; how neckbeards socialize
        ;; (rss +org +youtube)        ; emacs as an RSS reader
 
+       :private
+       (live-coding +flash +pulse +prettify +aggressive)
+
        :config
        ;;literate
        (default +bindings +smartparens +gpupg))
