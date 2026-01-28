@@ -116,6 +116,10 @@
 ;; they are implemented.
 ;;
 
+                                        ;Rainbow Delimiters
+(use-package! rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+
                                         ;Spacious-Padding
 ;; (use-package! spacious-padding
 ;;   :config
@@ -137,7 +141,6 @@
 ;  (eaf-bind-key nil "M-q" eaf-browser-keybinding))
 
                                         ;Misc
-
 (defmacro generate-bindable-lambda (&rest body)
   `#'(lambda ()
        (interactive)

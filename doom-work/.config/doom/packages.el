@@ -127,3 +127,5 @@
 (package! ai-code)
 
 (package! wakatime-mode)
+
+(package! rainbow-delimiters)
