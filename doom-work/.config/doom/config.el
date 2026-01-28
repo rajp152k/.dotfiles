@@ -7,8 +7,6 @@
 (when (daemonp)
   (exec-path-from-shell-initialize))
 
-(unbind-key "C-x C-c")
-
 ;; Recursion depth
 (setq max-lisp-eval-depth 10000)
 

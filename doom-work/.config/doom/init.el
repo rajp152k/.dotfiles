@@ -191,7 +191,7 @@
        ;; (rss +org +youtube)        ; emacs as an RSS reader
 
        :private
-       (live-coding +flash +pulse +prettify +aggressive)
+       (live-coding +pulse +prettify +aggressive)
 
        :config
        ;;literate
