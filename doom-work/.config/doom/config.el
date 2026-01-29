@@ -67,6 +67,9 @@
 ;; completion case ignore
 (setq completion-ignore-case t)
 
+;; tab completion completion
+(setq tab-always-indent 'complete)
+
 (doom/set-frame-opacity 0.9271)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
@@ -1059,6 +1062,11 @@ should be rewritten as:
                                         ; vterm
 (after! vterm
   (add-hook 'vterm-mode-hook (lambda () (display-line-numbers-mode -1))))
+
+                                        ; cider
+(use-package! cider
+  :config
+  (setq cider-overlays-use-font-lock t))
 
                                         ;Lisp
 (load "~/quicklisp/clhs-use-local.el" 'noerror)
