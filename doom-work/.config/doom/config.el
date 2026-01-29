@@ -1107,6 +1107,9 @@ should be rewritten as:
 
                                         ; Custom Maps
 
+;; Tab
+(map! :i "TAB" #'company-indent-or-complete-common)
+
 ;; Ctrl maps
 (map!
  "C-s" #'evil-write-all)
