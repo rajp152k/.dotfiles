@@ -1048,7 +1048,7 @@ should be rewritten as:
 
                                         ; ultra Scroll
 
-(use-package ultra-scroll
+(use-package! ultra-scroll
   :init
   (setq scroll-conservatively 101
         scroll-margin 0)
