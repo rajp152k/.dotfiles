@@ -121,6 +121,21 @@
 (use-package! rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
+                                        ;Better Jumper - fix jump tracking for navigation
+(after! better-jumper
+  (better-jumper-mode +1))
+
+(after! cider
+  (advice-add #'cider-find-var :around #'doom-set-jump-a)
+  (advice-add #'cider-find-dwim :around #'doom-set-jump-a))
+
+(after! xref
+  (advice-add #'xref-find-definitions :around #'doom-set-jump-a)
+  (advice-add #'xref-find-references :around #'doom-set-jump-a))
+
+(after! evil
+  (advice-add #'evil-goto-definition :around #'doom-set-jump-a))
+
                                         ;Spacious-Padding
 ;; (use-package! spacious-padding
 ;;   :config
@@ -1118,6 +1133,8 @@ should be rewritten as:
 
 (map! :leader
 
+      "j f" #'evil-jump-forward
+      "j b" #'evil-jump-backward
       "y t" #'insert-youtube-video-transcript
       "y p" #'yank-from-kill-ring
 
@@ -1161,6 +1178,8 @@ should be rewritten as:
       "m h c" #'hy-shell-eval-current-form
       "m h b" #'hy-shell-eval-buffer
       "m h k" #'hy-describe-thing-at-point
+
+      "m c c" #'cider-eval-sexp-at-point
 
 
       "m s t" (generate-bindable-lambda
