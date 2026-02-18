@@ -311,7 +311,9 @@
   (setenv "OPENROUTER_API_KEY" (cdr (assoc "openrouter" API-KEYS)))
   (add-to-list 'aidermacs-extra-args "--no-show-model-warnings" )
   (add-to-list 'aidermacs-extra-args "--watch-files" )
+  (add-to-list 'aidermacs-extra-args "--cache-prompts" )
   (add-to-list 'aidermacs-extra-args "--add-gitignore-files" )
+  (add-to-list 'aidermacs-extra-args "--cache-keepalive-pings 6")
   (add-to-list 'aidermacs-extra-args "--skip-sanity-check-repo" )
   (setq aidermacs-program "/Users/nilenso/.local/bin/aider")
   (setq aidermacs-backend 'vterm)
@@ -335,10 +337,12 @@
                                                   "gemini"
                                                   "llama"
                                                   "grok-code"
+                                                  "minimax"
                                                   "claude"))))
       (cl-case (intern mode)
         (grok-fast (alter-models "openrouter/x-ai/grok-4-fast" "openrouter/x-ai/grok-4-fast"))
         (grok-code (alter-models "openrouter/x-ai/grok-code-fast-1" "openrouter/x-ai/grok-code-fast-1"))
+        (minimax (alter-models "openrouter/minimax/minimax-m2.5" "openrouter/minimax/minimax-m2.5" ))
         (deepseek (alter-models "openrouter/deepseek/deepseek-v3.1-termius" "openrouter/deepseek/deepseek-v3.1-termius" ))
         (claude (alter-models "openrouter/anthropic/claude-haiku-4.5" "openrouter/anthropic/claude-sonnet-4.5"))
         (gemini (alter-models "openrouter/google/gemini-3-flash-preview" "openrouter/google/gemini-3-pro-preview" ))
