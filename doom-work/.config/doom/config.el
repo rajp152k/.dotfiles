@@ -309,8 +309,10 @@
 (use-package! aidermacs
   :config
   (setenv "OPENROUTER_API_KEY" (cdr (assoc "openrouter" API-KEYS)))
+  (setq aidermacs-extra-args nil)
   (add-to-list 'aidermacs-extra-args "--no-show-model-warnings" )
   (add-to-list 'aidermacs-extra-args "--watch-files" )
+  (add-to-list 'aidermacs-extra-args "--notifications" )
   (add-to-list 'aidermacs-extra-args "--cache-prompts" )
   (add-to-list 'aidermacs-extra-args "--add-gitignore-files" )
   (add-to-list 'aidermacs-extra-args "--cache-keepalive-pings 6")
