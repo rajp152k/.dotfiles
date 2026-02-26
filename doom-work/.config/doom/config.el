@@ -883,6 +883,8 @@ should be rewritten as:
                     openai/gpt-5-nano
                     openai/gpt-5-codex
 
+                    minimax/minimax-m2.5
+
                     meta-llama/llama-4-maverick
                     meta-llama/llama-4-scout
 

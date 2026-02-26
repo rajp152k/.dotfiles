@@ -12,7 +12,7 @@
       "model": "anthropic/claude-haiku-4-5"
     },
     "oracle": {
-      "model": "anthropic/claude-opus-4-6"
+      "model": "anthropic/claude-opus-4-5"
     },
     "frontend-ui-ux-engineer": {
       "model": "anthropic/claude-sonnet-4"
@@ -23,8 +23,5 @@
     "multimodal-looker": {
       "model": "anthropic/claude-haiku-4-5"
     }
-  },
-  "_migrations": [
-    "model-version:anthropic/claude-opus-4-5->anthropic/claude-opus-4-6"
-  ]
+  }
 }
