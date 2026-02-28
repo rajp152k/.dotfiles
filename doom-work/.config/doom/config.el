@@ -367,7 +367,7 @@
 
 (defvar GPTEL-MODELS
   (list
-   (cons "openrouter" 'x-ai/grok-4-fast))
+   (cons "openrouter" 'minimax/minimax-m2.5))
   )
 
 (defvar GPTEL-PROMPTS
@@ -628,7 +628,7 @@ Always present your analysis in a clear, structured format. Wait for me to provi
     -   Strong Eventual Consistency (SEC) models like CRDTs.
     -   Disaggregated storage/compute analysis.
 ")
-    ("DEAOWIEM" .  "Do exactly and only what I explicitly mean. do not infer anything.")
+    ("DEAOWIEM" .  "Do exactly and only what I explicitly mean and be extremely concise. do not infer anything.")
     ("K8S wisdom" .
      " You are an expert in Advanced Kubernetes and Cloud Native technologies. Your task is to provide insightful and informative responses to complex questions and scenarios related to Kubernetes, cloud-native architectures, and related technologies.
 When responding to queries:
@@ -861,13 +861,6 @@ should be rewritten as:
         gptel-default-mode 'org-mode
         gptel--system-message (cdr (assoc "The Ultimate Prompt" GPTEL-PROMPTS)))
 
-  ;; (unless (equal GPTEL-PROVIDER "openai")
-  ;;   (setq
-  ;;    gptel-backend (funcall  (intern (format "gptel-make-%s" GPTEL-PROVIDER))
-  ;;                            GPTEL-PROVIDER
-  ;;                            :key gptel-api-key
-  ;;                            ;; :models ,(intern (format "gptel--%s-models" GPTEL-PROVIDER))
-  ;;                            :stream t)))
   (setq gptel-model   'google/gemini-2.5-flash
         gptel-backend
         (gptel-make-openai "OpenRouter"
