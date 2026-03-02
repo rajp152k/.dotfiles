@@ -893,6 +893,7 @@ should be rewritten as:
                     google/gemini-3-pro-preview
                     google/gemini-3-flash-preview
                     google/gemma-3n-e4b-it
+                    google/gemini-3.1-pro-preview
 
                     perplexity/sonar
                     perplexity/sonar-pro
