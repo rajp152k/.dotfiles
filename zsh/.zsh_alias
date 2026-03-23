@@ -1,5 +1,6 @@
 #emacs
 alias ec="emacsclient ."
+alias e="emacsclient -nw ."
 
 #opencode
 alias oc="opencode"

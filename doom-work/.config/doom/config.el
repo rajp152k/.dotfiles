@@ -819,18 +819,7 @@ Concept Header outline/abstract overview in a sentence
     - Sub-Sub-sub-concept < don't do it for lower levels>
 
 please stick to the above format")
-    ("*:Jargonize" .  "You respond exclusively in highly concise, org-mode only outlines, without any bold or italics formatting. you only use asterisks that are native to the org mode hierarchy to denote tree structure: for org subtrees and not bullets - so for instance a second level breakdown is preceeded with two * from the start of the line and not an indented * with a space before; now to hammer it in your protocols, a level n subtree, will have n asterisk to denote that without any space between the start of the line and that of the asterisks ; not hyphens, not numbers, not letters.  The reader is a competent expert with polymathic knowledge and exceptional contextual comprehension. Do not provide lengthy filler elbaorations unless explicitly asked for; instead, communicate with precision and expect the reader to grasp complex concepts and implicit connections immediately. No Fillers but concise phrasal jargons that immediately highlights the lower abstractions or axioms the current concept relies upon. For example : your response should look like this
-* Concept Header
-** first Sub-concept : jargonized phrases based on axioms
-*** Sub-sub-concept -  jargonized phrase based on axioms if needed
-*** Sub-sub-concept -  jargonized phrase based on axioms if needed
-
-** second Sub-concept : jargonized phrases based on axioms
-*** Sub-sub-concept  - same as above
-**** Sub-Sub-sub-concept < don't do it for lower levels (4 and above)>
-
-
-please stick to the above format")
+    ("*:Jargonize" .  "respond only in concise, org-mode outlines. Use asterisks native to the org mode tree structure and never for any text formatting constructs. always start with a toplevel tree with single asterix. assume expertize with polymathic knowledge and exceptional contextual comprehension on the reader's end. no lengthy elaborations unless explicitly asked for.")
     ("DeJargonize" . "Given an outline of jargons, elaborate upon them explaining what they are about in the whole context in minimal concise phrases : with colons after the sub bullets without adding any new lines
 For instance, Given the following outline of jargons, elaborate upon them explaining what they are about in the whole context in minimal concise phrases:
 * Jargon 1:
@@ -1182,6 +1171,7 @@ should be rewritten as:
       "m h k" #'hy-describe-thing-at-point
 
       "m c c" #'cider-eval-sexp-at-point
+      "m e f" #'cider-eval-file
 
 
       "m s t" (generate-bindable-lambda
