@@ -276,6 +276,18 @@
   (setq org-roam-directory "/Users/nilenso/source/vcops/org/PrivateOrg/cartograph"))
 
 
+                                        ; formatting
+(defun sanitize-perplexity-citations ()
+  "Remove [non-space] patterns from selection or buffer."
+  (interactive)
+  (evil-ex-nohighlight)
+  (let ((beg (if (region-active-p) (region-beginning) (point-min)))
+        (end (if (region-active-p) (region-end) (point-max))))
+    (save-restriction
+      (narrow-to-region beg end)
+      (goto-char (point-min))
+      (while (re-search-forward "\\[[^ ]\\]" nil t)
+        (replace-match "")))))
 
                                         ; nth-roam
 
@@ -1294,6 +1306,7 @@ should be rewritten as:
       "i g a p" #'gptel-prompt-alter
       "i g a s" #'dispatch-ephemeral-gptel-base-send
       
+      "i g p s" #'sanitize-perplexity-citations
 
       "i g a J m" (gptel-prompt-lambda "Outline" "-:Jargonize")
       "i g a J o" (gptel-prompt-lambda "Outline" "*:Jargonize")
