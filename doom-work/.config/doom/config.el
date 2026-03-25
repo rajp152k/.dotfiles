@@ -51,12 +51,14 @@
 ;; Please set your themes directory to 'custom-theme-load-path
 (add-to-list 'custom-theme-load-path
              (file-name-as-directory "/Users/nilenso/.config/emacs/.local/straight/repos/replace-colorthemes"))
+(add-to-list 'custom-theme-load-path
+             (file-name-as-directory "/Users/nilenso/.load/bit-mage-theme.el"))
 
 ;; (add-to-list 'custom-theme-load-path
 ;;             (file-name-as-directory "/Users/nilenso/.config/emacs/.local/straight/repos/bit-mage-theme.el"))
 
-(setq doom-theme 'modus-vivendi)
-(load-theme 'modus-vivendi t)
+(setq doom-theme 'bit-mage)
+(load-theme 'bit-mage t)
 
 (setq pdf-view-midnight-colors (cons "#00ff00" "#000000")
       pdf-view-midnight-invert nil)
@@ -64,6 +66,9 @@
 
 ;; completion case ignore
 (setq completion-ignore-case t)
+
+;; tab completion completion
+(setq tab-always-indent 'complete)
 
 (doom/set-frame-opacity 0.9271)
 
@@ -112,6 +117,25 @@
 ;; they are implemented.
 ;;
 
+                                        ;Rainbow Delimiters
+(use-package! rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+
+                                        ;Better Jumper - fix jump tracking for navigation
+(after! better-jumper
+  (better-jumper-mode +1))
+
+(after! cider
+  (advice-add #'cider-find-var :around #'doom-set-jump-a)
+  (advice-add #'cider-find-dwim :around #'doom-set-jump-a))
+
+(after! xref
+  (advice-add #'xref-find-definitions :around #'doom-set-jump-a)
+  (advice-add #'xref-find-references :around #'doom-set-jump-a))
+
+(after! evil
+  (advice-add #'evil-goto-definition :around #'doom-set-jump-a))
+
                                         ;Spacious-Padding
 ;; (use-package! spacious-padding
 ;;   :config
@@ -133,7 +157,6 @@
 ;  (eaf-bind-key nil "M-q" eaf-browser-keybinding))
 
                                         ;Misc
-
 (defmacro generate-bindable-lambda (&rest body)
   `#'(lambda ()
        (interactive)
@@ -253,6 +276,18 @@
   (setq org-roam-directory "/Users/nilenso/source/vcops/org/PrivateOrg/cartograph"))
 
 
+                                        ; formatting
+(defun sanitize-perplexity-citations ()
+  "Remove [non-space] patterns from selection or buffer."
+  (interactive)
+  (evil-ex-nohighlight)
+  (let ((beg (if (region-active-p) (region-beginning) (point-min)))
+        (end (if (region-active-p) (region-end) (point-max))))
+    (save-restriction
+      (narrow-to-region beg end)
+      (goto-char (point-min))
+      (while (re-search-forward "\\[[^ ]\\]" nil t)
+        (replace-match "")))))
 
                                         ; nth-roam
 
@@ -286,8 +321,13 @@
 (use-package! aidermacs
   :config
   (setenv "OPENROUTER_API_KEY" (cdr (assoc "openrouter" API-KEYS)))
+  (setq aidermacs-extra-args nil)
   (add-to-list 'aidermacs-extra-args "--no-show-model-warnings" )
+  (add-to-list 'aidermacs-extra-args "--watch-files" )
+  (add-to-list 'aidermacs-extra-args "--notifications" )
+  (add-to-list 'aidermacs-extra-args "--cache-prompts" )
   (add-to-list 'aidermacs-extra-args "--add-gitignore-files" )
+  (add-to-list 'aidermacs-extra-args "--cache-keepalive-pings 6")
   (add-to-list 'aidermacs-extra-args "--skip-sanity-check-repo" )
   (setq aidermacs-program "/Users/nilenso/.local/bin/aider")
   (setq aidermacs-backend 'vterm)
@@ -311,15 +351,27 @@
                                                   "gemini"
                                                   "llama"
                                                   "grok-code"
+                                                  "minimax"
                                                   "claude"))))
       (cl-case (intern mode)
         (grok-fast (alter-models "openrouter/x-ai/grok-4-fast" "openrouter/x-ai/grok-4-fast"))
         (grok-code (alter-models "openrouter/x-ai/grok-code-fast-1" "openrouter/x-ai/grok-code-fast-1"))
+        (minimax (alter-models "openrouter/minimax/minimax-m2.5" "openrouter/minimax/minimax-m2.5" ))
         (deepseek (alter-models "openrouter/deepseek/deepseek-v3.1-termius" "openrouter/deepseek/deepseek-v3.1-termius" ))
         (claude (alter-models "openrouter/anthropic/claude-haiku-4.5" "openrouter/anthropic/claude-sonnet-4.5"))
-        (gemini (alter-models "openrouter/google/gemini-2.5-flash-lite" "openrouter/google/gemini-3-pro-preview" ))
+        (gemini (alter-models "openrouter/google/gemini-3-flash-preview" "openrouter/google/gemini-3-pro-preview" ))
         (llama (alter-models "openrouter/meta-llama/llama-4-scout" "openrouter/meta-llama/llama-4-maverick"))
         (openai (alter-models "openrouter/openai/gpt-5-nano" "openrouter/openai/gpt-5-codex"))))))
+
+                                        ; ai-code (opencode via eat)
+(use-package! ai-code
+  :config
+  (ai-code-set-backend 'opencode)
+  (setq ai-code-backends-infra-terminal-backend 'eat)
+  (global-auto-revert-mode 1)
+  (setq auto-revert-interval 1)
+  (with-eval-after-load 'magit
+    (ai-code-magit-setup-transients)))
 
                                         ; GPTel
 
@@ -327,7 +379,7 @@
 
 (defvar GPTEL-MODELS
   (list
-   (cons "openrouter" 'x-ai/grok-4-fast))
+   (cons "openrouter" 'minimax/minimax-m2.5))
   )
 
 (defvar GPTEL-PROMPTS
@@ -588,7 +640,7 @@ Always present your analysis in a clear, structured format. Wait for me to provi
     -   Strong Eventual Consistency (SEC) models like CRDTs.
     -   Disaggregated storage/compute analysis.
 ")
-    ("DEAOWIEM" .  "Do exactly and only what I explicitly mean. do not infer anything.")
+    ("DEAOWIEM" .  "Do exactly and only what I explicitly mean and be extremely concise. do not infer anything.")
     ("K8S wisdom" .
      " You are an expert in Advanced Kubernetes and Cloud Native technologies. Your task is to provide insightful and informative responses to complex questions and scenarios related to Kubernetes, cloud-native architectures, and related technologies.
 When responding to queries:
@@ -779,18 +831,7 @@ Concept Header outline/abstract overview in a sentence
     - Sub-Sub-sub-concept < don't do it for lower levels>
 
 please stick to the above format")
-    ("*:Jargonize" .  "You respond exclusively in highly concise, org-mode only outlines, without any bold or italics formatting. you only use asterisks that are native to the org mode hierarchy to denote tree structure: for org subtrees and not bullets - so for instance a second level breakdown is preceeded with two * from the start of the line and not an indented * with a space before; now to hammer it in your protocols, a level n subtree, will have n asterisk to denote that without any space between the start of the line and that of the asterisks ; not hyphens, not numbers, not letters.  The reader is a competent expert with polymathic knowledge and exceptional contextual comprehension. Do not provide lengthy filler elbaorations unless explicitly asked for; instead, communicate with precision and expect the reader to grasp complex concepts and implicit connections immediately. No Fillers but concise phrasal jargons that immediately highlights the lower abstractions or axioms the current concept relies upon. For example : your response should look like this
-* Concept Header
-** first Sub-concept : jargonized phrases based on axioms
-*** Sub-sub-concept -  jargonized phrase based on axioms if needed
-*** Sub-sub-concept -  jargonized phrase based on axioms if needed
-
-** second Sub-concept : jargonized phrases based on axioms
-*** Sub-sub-concept  - same as above
-**** Sub-Sub-sub-concept < don't do it for lower levels (4 and above)>
-
-
-please stick to the above format")
+    ("*:Jargonize" .  "respond only in concise, org-mode outlines. Use asterisks native to the org mode tree structure and never for any text formatting constructs. always start with a toplevel tree with single asterix. assume expertize with polymathic knowledge and exceptional contextual comprehension on the reader's end. no lengthy elaborations unless explicitly asked for.")
     ("DeJargonize" . "Given an outline of jargons, elaborate upon them explaining what they are about in the whole context in minimal concise phrases : with colons after the sub bullets without adding any new lines
 For instance, Given the following outline of jargons, elaborate upon them explaining what they are about in the whole context in minimal concise phrases:
 * Jargon 1:
@@ -818,16 +859,9 @@ should be rewritten as:
   (setq gptel--rewrite-message "")
   (setq gptel-api-key (cdr (assoc GPTEL-PROVIDER API-KEYS))
         gptel-model (cdr (assoc GPTEL-PROVIDER GPTEL-MODELS))
-        gptel-default-mode 'markdown-mode
+        gptel-default-mode 'org-mode
         gptel--system-message (cdr (assoc "The Ultimate Prompt" GPTEL-PROMPTS)))
 
-  ;; (unless (equal GPTEL-PROVIDER "openai")
-  ;;   (setq
-  ;;    gptel-backend (funcall  (intern (format "gptel-make-%s" GPTEL-PROVIDER))
-  ;;                            GPTEL-PROVIDER
-  ;;                            :key gptel-api-key
-  ;;                            ;; :models ,(intern (format "gptel--%s-models" GPTEL-PROVIDER))
-  ;;                            :stream t)))
   (setq gptel-model   'google/gemini-2.5-flash
         gptel-backend
         (gptel-make-openai "OpenRouter"
@@ -843,6 +877,8 @@ should be rewritten as:
                     openai/gpt-5-nano
                     openai/gpt-5-codex
 
+                    minimax/minimax-m2.5
+
                     meta-llama/llama-4-maverick
                     meta-llama/llama-4-scout
 
@@ -856,7 +892,9 @@ should be rewritten as:
                     google/gemini-2.5-flash
                     google/gemini-2.5-pro
                     google/gemini-3-pro-preview
+                    google/gemini-3-flash-preview
                     google/gemma-3n-e4b-it
+                    google/gemini-3.1-pro-preview
 
                     perplexity/sonar
                     perplexity/sonar-pro
@@ -917,10 +955,10 @@ should be rewritten as:
 
                                         ; mcp-hub
 (use-package! mcp-hub
- :config
- ;; (add-hook 'after-init-hook
- ;;           #'mcp-hub-start-all-server)
- (setq mcp-hub-servers
+  :config
+  ;; (add-hook 'after-init-hook
+  ;;           #'mcp-hub-start-all-server)
+  (setq mcp-hub-servers
        `(("file-system" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" "/Users/nilenso/source/")))
          ("web-fetch" . (:command "uvx" :args ("mcp-server-fetch")))
          ("sequential-thinking" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-sequential-thinking")))
@@ -996,10 +1034,13 @@ should be rewritten as:
   (setq lsp-completion-provider :capf)
   (setq lsp-completion-show-detail t)
   (setq lsp-enable-snippet t)
-  (setq lsp-modeline-code-action t))
+  (setq lsp-modeline-code-action t)
+
+  ;; manual server installs
+  (setq lsp-clojure-custom-server-command '("zsh" "-c" "/opt/homebrew/bin/clojure-lsp")))
 
 
-; LSP-lang-specific
+                                        ; LSP-lang-specific
 ;; (after! lsp-mode
 ;;   (setq lsp-java-jdt-ls-command "/opt/homebrew/bin/jdtls" ))
 
@@ -1018,9 +1059,14 @@ should be rewritten as:
 ;;   (add-hook 'find-file-hook (lambda () (when (bound-and-true-p conda-project-env-path)
 ;;                                          (conda-env-activate-for-buffer)))))
 
+                                        ; wakatime
+(use-package! wakatime-mode
+  :config
+  (global-wakatime-mode))
+
                                         ; ultra Scroll
 
-(use-package ultra-scroll
+(use-package! ultra-scroll
   :init
   (setq scroll-conservatively 101
         scroll-margin 0)
@@ -1028,8 +1074,17 @@ should be rewritten as:
   (ultra-scroll-mode 1))
 
                                         ; Compile and Shell
-(setq shell-file-name "bash"
+(setq shell-file-name "zsh"
       shell-command-switch "-c")
+
+                                        ; vterm
+(after! vterm
+  (add-hook 'vterm-mode-hook (lambda () (display-line-numbers-mode -1))))
+
+                                        ; cider
+(use-package! cider
+  :config
+  (setq cider-overlays-use-font-lock t))
 
                                         ;Lisp
 (load "~/quicklisp/clhs-use-local.el" 'noerror)
@@ -1070,6 +1125,9 @@ should be rewritten as:
 
                                         ; Custom Maps
 
+;; Tab
+(map! :i "TAB" #'company-indent-or-complete-common)
+
 ;; Ctrl maps
 (map!
  "C-s" #'evil-write-all)
@@ -1078,6 +1136,8 @@ should be rewritten as:
 
 (map! :leader
 
+      "j f" #'evil-jump-forward
+      "j b" #'evil-jump-backward
       "y t" #'insert-youtube-video-transcript
       "y p" #'yank-from-kill-ring
 
@@ -1121,6 +1181,9 @@ should be rewritten as:
       "m h c" #'hy-shell-eval-current-form
       "m h b" #'hy-shell-eval-buffer
       "m h k" #'hy-describe-thing-at-point
+
+      "m c c" #'cider-eval-sexp-at-point
+      "m e f" #'cider-eval-file
 
 
       "m s t" (generate-bindable-lambda
@@ -1221,6 +1284,8 @@ should be rewritten as:
       "m c p h" #'mcp-hub
       "m c p g" #'gptel-mcp-dispatch
 
+      "i o" #'ai-code-menu
+
       "i a" #'aidermacs-transient-menu
       "i c l" #'aidermacs-mode-config
       "i c r" #'aidermacs-send-block-or-region
@@ -1240,6 +1305,8 @@ should be rewritten as:
       "i g f s" #'fabric-gpt.el-sync-patterns
       "i g a p" #'gptel-prompt-alter
       "i g a s" #'dispatch-ephemeral-gptel-base-send
+      
+      "i g p s" #'sanitize-perplexity-citations
 
       "i g a J m" (gptel-prompt-lambda "Outline" "-:Jargonize")
       "i g a J o" (gptel-prompt-lambda "Outline" "*:Jargonize")

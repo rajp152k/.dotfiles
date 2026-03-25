@@ -1,0 +1,12 @@
+# Ghostty Configuration
+# Bit-Mage Theme
+
+theme = bit-mage
+
+# Window settings
+background-opacity = 0.7
+minimum-contrast = 1.1
+
+# Cursor
+cursor-style = block
+cursor-style-blink = true

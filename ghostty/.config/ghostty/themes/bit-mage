@@ -1,0 +1,36 @@
+# Bit-Mage Theme for Ghostty
+# A cyber-medieval sorcerer's cave aesthetic
+# Matching the Emacs and OpenCode bit-mage themes
+
+# Core colors
+background = #0a0a0a
+foreground = #00CC00
+
+# Cursor
+cursor-color = #00FF00
+cursor-text = #0a0a0a
+
+# Selection
+selection-background = #006600
+selection-foreground = #00FF00
+
+# ANSI Color Palette
+# Standard colors (0-7)
+palette = 0=#0a0a0a
+palette = 1=#FF5F5F
+palette = 2=#00FA9A
+palette = 3=#FFD700
+palette = 4=#6A5ACD
+palette = 5=#9932CC
+palette = 6=#00FFFF
+palette = 7=#98FB98
+
+# Bright colors (8-15)
+palette = 8=#606060
+palette = 9=#FF0000
+palette = 10=#00FF00
+palette = 11=#FFAF00
+palette = 12=#8470FF
+palette = 13=#551A8B
+palette = 14=#008B8B
+palette = 15=#FFFFFF
