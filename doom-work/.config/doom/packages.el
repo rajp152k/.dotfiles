@@ -108,3 +108,6 @@
 (package! wakatime-mode)
 
 (package! rainbow-delimiters)
+
+(package! whisper
+  :recipe (:host github :repo "natrys/whisper.el" :files ("whisper.el")))

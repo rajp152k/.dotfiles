@@ -305,6 +305,20 @@
                                         ;ECA
 (use-package! eca)
 
+                                        ;Whisper
+(use-package! whisper
+  :config
+  (setopt whisper-install-directory "/Users/nilenso/source/tools/whisper.el/"
+          whisper-model "base"
+          whisper-language "en"
+          whisper-translate nil
+          whisper-use-threads (/ (num-processors) 2)))
+
+(map! :leader
+      "i w r" #'whisper-run
+      "i w f" #'whisper-file
+      "i w l" #'whisper-select-language)
+
                                         ; GPTel
 
 (defvar GPTEL-PROVIDER "openrouter")
@@ -747,6 +761,8 @@
 
       "m c p h" #'mcp-hub
       "m c p g" #'gptel-mcp-dispatch
+
+      "i c a" #'eca-transient-menu
 
       "i g h" #'gptel
       "i g s" #'gptel-send
