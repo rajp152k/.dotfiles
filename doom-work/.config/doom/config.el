@@ -760,10 +760,16 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
       "o g w" #'gtd-workspace
       "o g a" #'gtd-workspace-archive
 
+      "e h s b"  (generate-bindable-lambda
+                  (find-file "/Users/nilenso/source/vcops/bit-mage/content/scroll/index.md"))
+
       "e h b" (generate-bindable-lambda
                (setq easy-hugo-basedir  "/Users/nilenso/source/vcops/bit-mage/"
                      easy-hugo-postdir "content/post/")
                (easy-hugo))
+
+      "e h s c" (generate-bindable-lambda
+                 (find-file "/Users/nilenso/source/vcops/cognware/content/scroll/index.md")) 
 
       "e h c" (generate-bindable-lambda
                (setq easy-hugo-basedir  "/Users/nilenso/source/vcops/cognware"
