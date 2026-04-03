@@ -1,0 +1,217 @@
+;; =============================================================================
+;; kanata config — translated from mouseless config.yaml
+;; https://github.com/jtroo/kanata
+;; =============================================================================
+;;
+;; DESIGN: Only keys that are ACTUALLY REMAPPED are in defsrc.
+;; Everything else (Cmd, Tab, numbers, F-keys, etc.) stays on the physical
+;; keyboard and bypasses kanata entirely. This ensures system shortcuts
+;; like Cmd+Tab work natively.
+;;
+;; Keys intercepted by kanata:
+;;   z        — tap-hold: tap=z, hold=toggle mouse layer
+;;   ralt     — momentary arrows layer
+;;   i,j,k,l  — mouse movement / arrow keys
+;;   h        — left arrow (arrows layer)
+;;   p,n      — scroll up/down (mouse layer)
+;;   f,d,s    — left/middle/right click (mouse layer)
+;;   q        — exit mouse / esc (arrows)
+;;   w        — backspace (arrows)
+;;   e        — slow speed modifier (mouse)
+;;   r        — reload config (mouse) / delete (arrows)
+;;   v        — enter (arrows)
+;;   caps     — very slow speed modifier (mouse)
+;;   lalt     — fast speed modifier (mouse)
+;;
+;; Keys NOT intercepted (bypass kanata completely):
+;;   lmet(Cmd), tab, spc, lsft, rsft, lctl, numbers, F-keys, etc.
+;; =============================================================================
+
+(defcfg
+  ;; OFF — keys not in defsrc bypass kanata entirely (stay on physical keyboard)
+  ;; This is what makes Cmd+Tab, Cmd+Space, etc. work natively.
+  process-unmapped-keys  no
+
+  movemouse-smooth-diagonals    yes
+  movemouse-inherit-accel-state yes
+
+  ;; macOS: only grab these keyboards
+  macos-dev-names-include (
+    "Apple Internal Keyboard / Trackpad"
+    "Gaming KeyBoard"
+  )
+
+  ;; Linux: restrict to specific /dev/input devices if needed
+  ;; linux-dev (/dev/input/by-path/platform-i8042-serio-0-event-kbd)
+)
+
+;; =============================================================================
+;; Source — ONLY keys that get remapped in at least one layer
+;; =============================================================================
+
+(defsrc
+  z    ralt caps lalt lmet tab spc
+  q    w    e    r    v
+  i    j    k    l    h
+  p    n    f    d    s
+)
+
+;; =============================================================================
+;; Variables — mirrors mouseless speed parameters
+;; =============================================================================
+
+(defvar
+  tap-time  150   ;; quickTapTime: 150
+  hold-time 300   ;; z hold threshold: 300ms
+
+  ;; movemouse-accel args: (interval-ms accel-ms min-speed max-speed)
+  mi    20        ;; mouseLoopInterval: 20
+  ma    200       ;; mouseAccelerationTime: 200
+  mmin  1         ;; startMouseSpeed (kanata min is 1)
+  mmax  25        ;; ~baseMouseSpeed: 750
+
+  mmax-f   70     ;; fast  = 4.0× (leftalt)
+  mmax-s   8      ;; slow  = 0.3× (e)
+  mmax-vs  3      ;; vslow = 0.1× (capslock)
+
+  scrl-i  20      ;; scroll interval ms
+  scrl-d  60      ;; scroll distance units
+)
+
+;; =============================================================================
+;; Aliases
+;; =============================================================================
+
+(defalias
+  ;; Layer switches
+  z        (tap-hold $tap-time $hold-time z (layer-toggle mouse))
+  to-init  (layer-toggle initial)
+  mo-fast  (layer-while-held mouse-fast)
+  mo-slow  (layer-while-held mouse-slow)
+  mo-vslow (layer-while-held mouse-vslow)
+
+  ;; Normal-speed movement
+  mu   (movemouse-accel-up    $mi $ma $mmin $mmax)
+  md   (movemouse-accel-down  $mi $ma $mmin $mmax)
+  ml   (movemouse-accel-left  $mi $ma $mmin $mmax)
+  mr   (movemouse-accel-right $mi $ma $mmin $mmax)
+
+  ;; Fast movement (4×)
+  mu-f (movemouse-accel-up    $mi $ma $mmin $mmax-f)
+  md-f (movemouse-accel-down  $mi $ma $mmin $mmax-f)
+  ml-f (movemouse-accel-left  $mi $ma $mmin $mmax-f)
+  mr-f (movemouse-accel-right $mi $ma $mmin $mmax-f)
+
+  ;; Slow movement (0.3×)
+  mu-s (movemouse-accel-up    $mi $ma $mmin $mmax-s)
+  md-s (movemouse-accel-down  $mi $ma $mmin $mmax-s)
+  ml-s (movemouse-accel-left  $mi $ma $mmin $mmax-s)
+  mr-s (movemouse-accel-right $mi $ma $mmin $mmax-s)
+
+  ;; Very slow movement (0.1×)
+  mu-vs (movemouse-accel-up    $mi $ma $mmin $mmax-vs)
+  md-vs (movemouse-accel-down  $mi $ma $mmin $mmax-vs)
+  ml-vs (movemouse-accel-left  $mi $ma $mmin $mmax-vs)
+  mr-vs (movemouse-accel-right $mi $ma $mmin $mmax-vs)
+
+  ;; Scroll
+  su   (mwheel-up   $scrl-i $scrl-d)
+  sd   (mwheel-down $scrl-i $scrl-d)
+)
+
+;; =============================================================================
+;; LAYER: initial
+;;
+;; Only z and ralt do anything special.
+;; All other defsrc keys pass through as themselves.
+;;
+;; defsrc order: z ralt caps lalt | q w e r v | i j k l h | p n f d s
+;; =============================================================================
+
+(deflayer initial
+  ;;  z          ralt                          caps  lalt→lmet  lmet→lalt  tab   spc
+  @z   (layer-while-held arrows)               caps  lmet       lalt       tab   spc
+  ;;  q    w     e     r     v
+  q    w    e    r    v
+  ;;  i    j     k     l     h
+  i    j    k    l    h
+  ;;  p    n     f     d     s
+  p    n    f    d    s
+)
+
+;; =============================================================================
+;; LAYER: mouse (toggled via z-hold)
+;;
+;; Mouseless axes: i=up, k=down, j=left, l=right
+;; Clicks: f=left, d=middle, s=right
+;; Scroll: p=up, n=down
+;; Speed: lalt=fast(4×), e=slow(0.3×), caps=vslow(0.1×)
+;; q=exit, r=reload
+;;
+;; Keys NOT in defsrc (Cmd, Tab, numbers, etc.) bypass kanata = still work.
+;; =============================================================================
+
+(deflayer mouse
+  ;;  z→exit     ralt         caps→vslow   lalt→fast  lmet→lalt  tab   spc
+  @to-init  ralt              @mo-vslow    @mo-fast   lalt       tab   spc
+  ;;  q→exit  w     e→slow    r→reload   v
+  @to-init  w    @mo-slow  lrld   v
+  ;;  i→up    j→left  k→down  l→right  h
+  @mu  @ml   @md   @mr   h
+  ;;  p→scrl↑  n→scrl↓  f→lclick  d→mclick  s→rclick
+  @su  @sd   mlft  mmid  mrgt
+)
+
+;; =============================================================================
+;; LAYER: mouse-fast (lalt held inside mouse — 4× speed)
+;; =============================================================================
+
+(deflayer mouse-fast
+  @to-init  ralt              @mo-vslow    _          lalt  tab   spc
+  @to-init  w    @mo-slow  lrld   v
+  @mu-f  @ml-f  @md-f  @mr-f  h
+  @su  @sd   mlft  mmid  mrgt
+)
+
+;; =============================================================================
+;; LAYER: mouse-slow (e held inside mouse — 0.3× speed)
+;; =============================================================================
+
+(deflayer mouse-slow
+  @to-init  ralt              @mo-vslow    @mo-fast   lalt  tab   spc
+  @to-init  w    _         lrld   v
+  @mu-s  @ml-s  @md-s  @mr-s  h
+  @su  @sd   mlft  mmid  mrgt
+)
+
+;; =============================================================================
+;; LAYER: mouse-vslow (caps held inside mouse — 0.1× speed)
+;; =============================================================================
+
+(deflayer mouse-vslow
+  @to-init  ralt              _            @mo-fast   lalt  tab   spc
+  @to-init  w    @mo-slow  lrld   v
+  @mu-vs  @ml-vs  @md-vs  @mr-vs  h
+  @su  @sd   mlft  mmid  mrgt
+)
+
+;; =============================================================================
+;; LAYER: arrows (ralt held from initial)
+;;
+;; Mirrors mouseless arrows (passThrough: false):
+;;   h=left, j=down, k=up, l=right, q=esc, w=bspc, r=del, v=ret
+;;
+;; Keys in defsrc but not used here → XX (blocked)
+;; Keys NOT in defsrc → bypass kanata (can't block them, minor compromise)
+;; =============================================================================
+
+(deflayer arrows
+  ;;  z→XX   ralt            caps→XX  lalt→XX  lmet→lalt  tab   spc
+  XX   ralt                  XX       XX       lalt       tab   spc
+  ;;  q→esc  w→bspc  e→XX   r→del    v→enter
+  esc  bspc  XX      del    ret
+  ;;  i→XX   j→down  k→up   l→right  h→left
+  XX   down  up      rght   left
+  ;;  p→XX   n→XX    f→XX   d→XX     s→XX
+  XX   XX    XX      XX     XX
+)
