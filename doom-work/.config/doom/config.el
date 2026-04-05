@@ -777,6 +777,11 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
                (easy-hugo))
 
       "e h m t" (generate-bindable-lambda
+                 (insert "#### ")
+                 (insert "[")
+                 (life-hex-count)
+                 (insert "|" (format-time-string "%s"))
+                 (insert " ]\n")
                  (insert "```\n```"))
 
       "t t" #'tldr
