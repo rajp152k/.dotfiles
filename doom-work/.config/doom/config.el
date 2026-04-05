@@ -782,7 +782,8 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
                  (life-hex-count)
                  (insert "|" (format-time-string "%s"))
                  (insert " ]\n")
-                 (insert "```\n```"))
+                 (insert "```\n```")
+                 (evil-open-above 0))
 
       "t t" #'tldr
 
