@@ -1,30 +1,6 @@
 # Doom
 export PATH=$PATH:~/.config/emacs/bin
 
-# Snap
-export PATH=$PATH:/snap/bin
-
-#krew
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-
-
 # golang
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/go/bin
-
-
-# mcp servers
-## excel
-export EXCEL_FILES_PATH="~/source/excel-files-buffer/"
-## google calendar
-export CREDENTIALS_PATH="~/source/secrets/credentials.json"
-
-# lima
-export PATH=$PATH:$HOME/source/tools/lima/bin
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# cargo
-export PATH="$HOME/.cargo/bin:$PATH"
