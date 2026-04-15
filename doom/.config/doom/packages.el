@@ -93,21 +93,21 @@
 (package! gptel-mcp
   :recipe (:host github :repo "lizqwerscott/gptel-mcp.el"))
 
-;; (package! spacious-padding
-;;   :recipe (:host github :repo protesilaos/spacious-padding"))
-
-(package! aidermacs
-  :recipe (:host github :repo "MatthewZMD/aidermacs"))
-
-(package! emigo
-  :recipe (:host github :repo "rajp152k/emigo" :files (:defaults "*.py" "*.el")))
-
 (package! md-babel
   :recipe  (:host github :repo "md-babel/md-babel.el"))
 
 (package! uv-mode
   :recipe  (:host github :repo "z80dev/uv-mode"))
 
-
 (package! kubernetes)
 (package! kubernetes-evil)
+
+(package! eca
+  :recipe (:host github :repo "editor-code-assistant/eca-emacs" :files ("*.el")))
+
+(package! wakatime-mode)
+
+(package! rainbow-delimiters)
+
+(package! whisper
+  :recipe (:host github :repo "natrys/whisper.el" :files ("whisper.el")))

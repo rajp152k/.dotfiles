@@ -16,7 +16,6 @@
      "10e5d4cc0f67ed5cafac0f4252093d2119ee8b8cb449e7053273453c1a1eb7cc"
      "7964b513f8a2bb14803e717e0ac0123f100fb92160dcf4a467f530868ebaae3e"
      "8450a92571b29a2184f7ad9be0760633245f95681c536c76dc740456ff904e38" default))
- '(org-agenda-files '("/home/rp152k/source/vcops/org/GTD/GTD_HQ.org"))
  '(warning-suppress-types
    '((copilot copilot-no-mode-indent) (defvaralias) (lexical-binding))))
 (put 'narrow-to-region 'disabled nil)
