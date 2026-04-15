@@ -90,4 +90,5 @@ source ~/.bash_exports
 
 #load secrets
 source ~/.bash_secrets
-
+export PATH="/home/tbm/.local/bin:$PATH"
+export PATH="$HOME/.npm-global/bin:$PATH"

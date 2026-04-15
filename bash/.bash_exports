@@ -4,3 +4,7 @@ export PATH=$PATH:~/.config/emacs/bin
 # golang
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/go/bin
+
+# opencode
+export PATH=/home/tbm/.opencode/bin:$PATH
+export OMO_DISABLE_POSTHOG=1

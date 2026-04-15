@@ -5,4 +5,5 @@ alias info='info --vi-keys'
 alias sk='screenkey --mods-mode emacs --vis-shift --font-color "#00ff00" --opacity 0.4'
 
 #mouseless
-alias ml='sudo /home/tbm/go/bin/mouseless --config ~/.config/mouseless/config.yaml'
+alias ml='doas /home/tbm/go/bin/mouseless --config ~/.config/mouseless/config.yaml'
+
