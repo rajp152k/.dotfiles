@@ -489,7 +489,8 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
               ("<tab>" . 'copilot-accept-completion)
               ("TAB" . 'copilot-accept-completion)
               ("C-TAB" . 'copilot-accept-completion-by-word)
-              ("C-<tab>" . 'copilot-accept-completion-by-word)))
+              ("C-<tab>" . 'copilot-accept-completion-by-word))
+  :config (global-copilot-mode -1))
 
                                         ; mcp-hub
 (use-package! mcp-hub
