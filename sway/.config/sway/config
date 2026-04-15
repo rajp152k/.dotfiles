@@ -9,8 +9,20 @@ set $term foot
 # Your preferred application launcher
 set $menu wmenu-run
 
+### Font Configuration
+font pango:GohuFontuni14NerdFont 14
+
+### Transparency Configuration
+# Window colors with alpha (last 2 digits = transparency)
+client.focused           #00FF00CC #000100EE #00FF00 #2e9ef4 #00FF00CC
+client.focused_inactive  #333333CC #5f676aCC #ffffff #484e50 #5f676aCC
+client.unfocused         #333333CC #222222CC #888888 #292d2e #222222CC
+
+# Window opacity (affects content when supported)
+for_window [app_id="foot"] opacity set 0.85
+
 ### Output configuration
-output * bg /usr/share/backgrounds/sway/mountains_purple_orange_sky.jpg fill
+output * bg /usr/share/backgrounds/sway/purple_starry_space.jpg fill
 # monitors
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 # ouptut names: swaymsg -t get_outputs
@@ -166,6 +178,7 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Special key to take a screenshot with grim
     bindsym $mod+Shift+s exec grim
+
 
 #
 # Status Bar:
