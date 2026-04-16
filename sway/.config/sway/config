@@ -7,7 +7,7 @@ set $up k
 set $right l
 set $term foot
 # Your preferred application launcher
-set $menu wmenu-run
+set $menu wmenu-run -l 10 -ib -p "     -=>" -N 001100EE -n 00FF00FF -M 001100EE -m 00FF00FF -S 005500EE -s 00FF00FF -f "GohuFontuni14NerdFont Normal Heavy 20"
 
 ### Font Configuration
 font pango:GohuFontuni14NerdFont 14
