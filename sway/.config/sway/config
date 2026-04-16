@@ -57,6 +57,11 @@ exec swayidle -w \
     # Start your launcher
     bindsym $mod+d exec $menu
 
+    # lock screen
+    #bindsym Ctrl+Shift+l exec swaylock -i /usr/share/backgrounds/sway/purple_starry_space.jpg --font GohuFontuni14NerdFont  --indicator-radius 400 --indicator-thickness 50
+
+    bindsym Ctrl+Shift+l exec swaylock -f -C /home/tbm/.config/sway/swaylock-config
+
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
