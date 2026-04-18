@@ -1,13 +1,9 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; ============================================================================
-;; LOAD STATE MANAGEMENT
-;; ============================================================================
+;; STATE MANAGEMENT
 
-;; Load state.el FIRST (before any other code that depends on it)
-(load! "state")
+(load! "state.el")
 
-;; Load secrets (optional - may not exist in this repo)
 (when (file-exists-p STATE-SECRETS-FILE)
   (load STATE-SECRETS-FILE 'noerror))
 
@@ -20,7 +16,6 @@
 ;; User Information
 (setq user-full-name STATE-USER-FULL-NAME
       user-mail-address STATE-USER-EMAIL)
-
 
                                         ; Aesthetics
 
@@ -37,8 +32,12 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "GohuFont14NerdFontMono-Regular" :size 12 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "GohuFont14NerdFontMono-Regular" :size 13))
+(setq doom-font (font-spec :family "Terminess Nerd Font Mono" :size 18 :weight 'regular)
+      doom-variable-pitch-font (font-spec :family "Terminess Nerd Font" :size 18))
+
+(setq doom-font-increment 0)
+
+(setq doom-big-font (font-spec :family "Terminess Nerd Font Mono" :size 18))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -267,7 +266,7 @@
 (use-package! org-roam
   :config
   ;; (setq org-roam-database-connector 'emacsql-sqlite-builtin)
-  (setq org-roam-directory "STATE-ORG-ROAM-DIR"))
+  (setq org-roam-directory STATE-ORG-ROAM-DIR))
 
 
                                         ; formatting
@@ -394,8 +393,7 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
 
 (defvar GPTEL-MODELS
   (list
-   (cons "openrouter" 'minimax/minimax-m2.5))
-  )
+   (cons "openrouter" 'minimax/minimax-m2.5)))
 
 (defvar GPTEL-PROMPTS
   '(("Raw" .  "be precise, exhaustive, unbiased, analytical and critical")
@@ -483,39 +481,36 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
 (use-package! gptel-mcp)
 
 
-                                        ; fabric-gptel
-(use-package! fabric-gpt.el
-  :after gptel
-  :config
-  (setq fabric-gpt.el-root STATE-DOOM-DIR)
-  (fabric-gpt.el-sync-patterns))
+;;                                        ; fabric-gptel
+;;(use-package! fabric-gpt.el
+;;  :after gptel
+;;  :config
+;;  (setq fabric-gpt.el-root STATE-DOOM-DIR)
+;;  (fabric-gpt.el-sync-patterns))
 
                                         ; copilot
 ;; accept completion from copilot and fallback to company
-(use-package! copilot
-  :hook (prog-mode . copilot-mode)
-  :bind (:map copilot-completion-map
-              ("<tab>" . 'copilot-accept-completion)
-              ("TAB" . 'copilot-accept-completion)
-              ("C-TAB" . 'copilot-accept-completion-by-word)
-              ("C-<tab>" . 'copilot-accept-completion-by-word)))
+;;(use-package! copilot
+;;  :hook (prog-mode . copilot-mode)
+;;  :bind (:map copilot-completion-map
+;;              ("<tab>" . 'copilot-accept-completion)
+;;              ("TAB" . 'copilot-accept-completion)
+;;              ("C-TAB" . 'copilot-accept-completion-by-word)
+;;              ("C-<tab>" . 'copilot-accept-completion-by-word)))
 
                                         ; mcp-hub
-(use-package! mcp-hub
-  :config
-  ;; (add-hook 'after-init-hook
-  ;;           #'mcp-hub-start-all-server)
-  (setq mcp-hub-servers
-       `(("file-system" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" STATE-MCP-FILESYSTEM-PATH ")))
-         ("web-fetch" . (:command "uvx" :args ("mcp-server-fetch")))
-         ("sequential-thinking" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-sequential-thinking")))
-         ("arxiv" . (:command "uv" :args ("tool" "run" "arxiv-mcp-server" "--storage-path" STATE-ARXIV-DIR"))
-         ("compass" . (:command "npx" :args ("-y" "@liuyoshio/mcp-compass")))
-         ("time" . (:command "uvx" :args ("mcp-server-time")) )
-         ;; ("github" . (:command "docker" :args ("run" "-i" "--rm" "-e" "GITHUB_PERSONAL_ACCESS_TOKEN" "ghcr.io/github/mcp-server") :env (:GITHUB_PERSONAL_ACCESS_TOKEN ,(cdr (assoc "github_pat" API-KEYS)))))
-         ;; ("spotify" . (:command "uv" :args ("--directory" "/Users/nilenso/source/tools/spotify-mcp" "run" "spotify-mcp") :env (:SPOTIFY_CLIENT_ID ,(cdr (assoc "spotify_client_id" API-KEYS)) :SPOTIFY_CLIENT_SECRET (cdr (assoc "spotify_client_secret")) :SPOTIFY_REDIRECT_URI "http://127.0.0.1:8888/callback")))
-         ("gitremote-deepwiki" . (:url "https://mcp.deepwiki.com/sse")))))
-
+;;(use-package! mcp-hub
+;;  :config
+;;  ;; (add-hook 'after-init-hook
+;;  ;;           #'mcp-hub-start-all-server)
+;;  (setq mcp-hub-servers
+;;       `(("file-system" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" STATE-MCP-FILESYSTEM-PATH )))
+;;         ("web-fetch" . (:command "uvx" :args ("mcp-server-fetch")))
+;;         ("sequential-thinking" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-sequential-thinking")))
+;;         ("arxiv" . (:command "uv" :args ("tool" "run" "arxiv-mcp-server" "--storage-path" STATE-ARXIV-DIR ))
+;;         ("compass" . (:command "npx" :args ("-y" "@liuyoshio/mcp-compass")))
+;;         ("time" . (:command "uvx" :args ("mcp-server-time")) )
+;;         ("gitremote-deepwiki" . (:url "https://mcp.deepwiki.com/sse"))))))
 
                                         ;citar
 (use-package! citar
@@ -584,7 +579,7 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
   (setq lsp-modeline-code-action t)
 
   ;; manual server installs
-  (setq lsp-clojure-custom-server-command '("zsh" "-c" "STATE-CLOJURE-LSP")))
+  (setq lsp-clojure-custom-server-command '("bash" "-c" "STATE-CLOJURE-LSP")))
 
 
                                         ; LSP-lang-specific
@@ -621,7 +616,7 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
   (ultra-scroll-mode 1))
 
                                         ; Compile and Shell
-(setq shell-file-name "zsh"
+(setq shell-file-name "bash"
       shell-command-switch "-c")
 
                                         ; vterm
@@ -716,18 +711,18 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
       "m o h h" (generate-bindable-lambda
                  (doom/set-frame-opacity 95 (list (selected-frame))))
 
-      "m p s" #'python-shell-send-statement
-      "m p r" #'python-shell-send-region
-      "m p p" #'+python/open-ipython-repl
-      "m p f" #'python-shell-send-file
-      "m p k" #'python-eldoc-at-point
+     ;; "m p s" #'python-shell-send-statement
+     ;; "m p r" #'python-shell-send-region
+     ;; "m p p" #'+python/open-ipython-repl
+     ;; "m p f" #'python-shell-send-file
+     ;; "m p k" #'python-eldoc-at-point
 
-      "m h h" #'run-hy
-      "m h s" #'hy-shell-eval-last-sexp
-      "m h r" #'hy-shell-eval-region
-      "m h c" #'hy-shell-eval-current-form
-      "m h b" #'hy-shell-eval-buffer
-      "m h k" #'hy-describe-thing-at-point
+     ;; "m h h" #'run-hy
+     ;; "m h s" #'hy-shell-eval-last-sexp
+     ;; "m h r" #'hy-shell-eval-region
+     ;; "m h c" #'hy-shell-eval-current-form
+     ;; "m h b" #'hy-shell-eval-buffer
+     ;; "m h k" #'hy-describe-thing-at-point
 
       "m c c" #'cider-eval-sexp-at-point
       "m e f" #'cider-eval-file
@@ -854,8 +849,8 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
       "i w f" #'whisper-file
       "i w l" #'whisper-select-language
 
-      "i g f f" #'fabric-gpt.el-send
-      "i g f s" #'fabric-gpt.el-sync-patterns
+      ;;"i g f f" #'fabric-gpt.el-send
+      ;;"i g f s" #'fabric-gpt.el-sync-patterns
       "i g a p" #'gptel-prompt-alter
       "i g a s" #'dispatch-ephemeral-gptel-base-send
       

@@ -2,27 +2,21 @@
 ;; Central state management for Doom Emacs configuration
 ;; All system/user-specific paths defined here for portability
 
-;; ============================================================================
 ;; USER IDENTIFICATION
-;; ============================================================================
 
 ;; Allow override via environment variables for multi-user setups
-(defconst STATE-USER (or (getenv "DOOM_USER") "nilenso"))
+(defconst STATE-USER (or (getenv "DOOM_USER") "username"))
 (defconst STATE-USER-EMAIL (or (getenv "DOOM_EMAIL") "user@example.com"))
-(defconst STATE-USER-FULL-NAME (or (getenv "DOOM_FULLNAME") "nilenso"))
+(defconst STATE-USER-FULL-NAME (or (getenv "DOOM_FULLNAME") "fullusername"))
 (defconst STATE-HOME (or (getenv "DOOM_HOME") (getenv "HOME")))
 
-;; ============================================================================
 ;; OS DETECTION
-;; ============================================================================
 
-(defconst STATE-IS-MACOS (eq system-type 'darwin))
-(defconst STATE-IS-LINUX (eq system-type 'gnu/linux))
-(defconst STATE-IS-WINDOWS (eq system-type 'windows-nt))
+(defconst STATE-OS-TYPE (or (getenv "OS_TYPE") 'linux))
+(defconst STATE-IS-MACOS (eq STATE-OS-TYPE 'macos))
+(defconst STATE-IS-LINUX (eq STATE-OS-TYPE 'linux))
 
-;; ============================================================================
 ;; DIRECTORY PATHS
-;; ============================================================================
 
 ;; Base directories
 (defconst STATE-SOURCE-DIR (expand-file-name "source" STATE-HOME))
