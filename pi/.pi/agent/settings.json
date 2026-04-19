@@ -1,0 +1,19 @@
+{
+  "lastChangelogVersion": "0.67.68",
+  "defaultProvider": "zai",
+  "defaultModel": "glm-5.1",
+  "defaultThinkingLevel": "minimal",
+  "steeringMode": "one-at-a-time",
+  "followUpMode": "one-at-a-time",
+  "transport": "sse",
+  "hideThinkingBlock": false,
+  "collapseChangelog": true,
+  "quietStartup": false,
+  "enableInstallTelemetry": false,
+  "doubleEscapeAction": "tree",
+  "treeFilterMode": "default",
+  "theme": "dark",
+  "packages": [
+    "npm:pi-web-access"
+  ]
+}
