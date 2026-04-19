@@ -7,3 +7,6 @@ alias sk='screenkey --mods-mode emacs --vis-shift --font-color "#00ff00" --opaci
 #mouseless
 alias ml='doas /home/tbm/go/bin/mouseless --config ~/.config/mouseless/config.yaml'
 
+#pi
+alias pi0='cd ~/source/scratch/pi && pi'
+
