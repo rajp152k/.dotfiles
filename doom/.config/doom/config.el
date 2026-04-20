@@ -768,7 +768,7 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
                   (find-file "STATE-BIT-MAGE-DIR/content/scroll/index.md"))
 
       "e h b" (generate-bindable-lambda
-               (setq easy-hugo-basedir  "STATE-BIT-MAGE-DIR/"
+               (setq easy-hugo-basedir  STATE-BIT-MAGE-DIR
                      easy-hugo-postdir "content/post/")
                (easy-hugo))
 
