@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.67.68",
   "defaultProvider": "zai",
-  "defaultModel": "glm-5.1",
+  "defaultModel": "glm-4.7",
   "defaultThinkingLevel": "minimal",
   "steeringMode": "one-at-a-time",
   "followUpMode": "one-at-a-time",

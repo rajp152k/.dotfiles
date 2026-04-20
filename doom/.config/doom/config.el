@@ -313,6 +313,10 @@
                                         ;ECA
 (use-package! eca)
 
+                                        ;pi-coding-agent
+(use-package! pi-coding-agent
+  :init (defalias 'pi 'pi-coding-agent))
+
                                         ;Whisper
 
 (defun rk/get-ffmpeg-device ()
@@ -839,6 +843,9 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
       "m c p g" #'gptel-mcp-dispatch
 
       "i c a" #'eca-transient-menu
+
+      "i p" #'pi-coding-agent
+      "i P" #'pi-coding-agent-toggle
 
       "i g h" #'gptel
       "i g s" #'gptel-send
