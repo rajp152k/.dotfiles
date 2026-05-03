@@ -583,7 +583,7 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
   (setq lsp-modeline-code-action t)
 
   ;; manual server installs
-  (setq lsp-clojure-custom-server-command '("bash" "-c" "STATE-CLOJURE-LSP")))
+  (setq lsp-clojure-custom-server-command (list "bash" "-c" STATE-CLOJURE-LSP)))
 
 
                                         ; LSP-lang-specific
@@ -631,6 +631,20 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
 (use-package! cider
   :config
   (setq cider-overlays-use-font-lock t))
+
+                                        ;clojure-ts-mode grammar
+;; Pin the tree-sitter-clojure grammar to the revision clojure-ts-mode expects.
+;; Without this, Doom's set-tree-sitter! pulls the default master branch which
+;; lacks the `str_content' node type, causing treesit-query-error on every buffer.
+(after! clojure-ts-mode
+  (setq clojure-ts-grammar-recipes
+        '((clojure "https://github.com/sogaiu/tree-sitter-clojure.git"
+                   "unstable-20250526")
+          (markdown-inline "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
+                           "v0.5.2"
+                           "tree-sitter-markdown-inline/src")
+          (regex "https://github.com/tree-sitter/tree-sitter-regex"
+                 "v0.24.3"))))
 
                                         ;Lisp
 (load "~/quicklisp/clhs-use-local.el" 'noerror)

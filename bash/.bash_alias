@@ -10,3 +10,5 @@ alias ml='doas /home/tbm/go/bin/mouseless --config ~/.config/mouseless/config.ya
 #pi
 alias pi0='cd ~/source/scratch/pi && pi'
 
+#polylith
+alias cply='clj -M:poly'
