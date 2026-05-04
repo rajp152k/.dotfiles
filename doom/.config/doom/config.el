@@ -133,25 +133,6 @@
 (after! evil
   (advice-add #'evil-goto-definition :around #'doom-set-jump-a))
 
-                                        ;Spacious-Padding
-;; (use-package! spacious-padding
-;;   :config
-;;   (spacious-padding-mode t))
-
-                                        ;EAF
-
-;(use-package! eaf
-;  :load-path "~/.emacs.d/site-lisp/emacs-application-framework"
-;  :custom
-;  (eaf-browser-continue-where-left-off t)
-;  (eaf-browser-enable-adblocker t)
-;  (browse-url-browser-function 'eaf-open-browser)
-;  :config
-;  (defalias 'browse-web #'eaf-open-browser)
-;  (eaf-bind-key scroll_up "C-n" eaf-pdf-viewer-keybinding)
-;  (eaf-bind-key scroll_down "C-p" eaf-pdf-viewer-keybinding)
-;  (eaf-bind-key take_photo "p" eaf-camera-keybinding)
-;  (eaf-bind-key nil "M-q" eaf-browser-keybinding))
 
                                         ;Misc
 (defmacro generate-bindable-lambda (&rest body)
@@ -204,6 +185,13 @@
       (display-buffer (current-buffer)))))
 
 (setq shell-command-prompt-show-cwd t)
+
+
+                                        ; Nov
+(use-package! nov
+  :config
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
+
                                         ; Babel
 (use-package! org
   :config
@@ -281,14 +269,6 @@
       (while (re-search-forward "\\[[^ ]\\]" nil t)
         (replace-match "")))))
 
-                                        ; nth-roam
-
-;;(use-package! nth-roam
-;;  :after org-roam
-;;  :config
-;;  (nth-roam-default-vault-register "CartoGraph" "STATE-ORG-ROAM-DIR")
-;;  ;; (nth-roam-register-vault "nilenso" "/Users/nilenso/source/vcops/roams/nilenso")
-;;  (nth-roam-init "cartograph"))
 
                                         ; GTD
 
@@ -309,8 +289,6 @@
 (use-package! kubernetes-evil
   :after kubernetes)
 
-                                        ;ECA
-(use-package! eca)
 
                                         ;pi-coding-agent
 (use-package! pi-coding-agent
@@ -483,38 +461,6 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
 
 (use-package! gptel-mcp)
 
-
-;;                                        ; fabric-gptel
-;;(use-package! fabric-gpt.el
-;;  :after gptel
-;;  :config
-;;  (setq fabric-gpt.el-root STATE-DOOM-DIR)
-;;  (fabric-gpt.el-sync-patterns))
-
-                                        ; copilot
-;; accept completion from copilot and fallback to company
-;;(use-package! copilot
-;;  :hook (prog-mode . copilot-mode)
-;;  :bind (:map copilot-completion-map
-;;              ("<tab>" . 'copilot-accept-completion)
-;;              ("TAB" . 'copilot-accept-completion)
-;;              ("C-TAB" . 'copilot-accept-completion-by-word)
-;;              ("C-<tab>" . 'copilot-accept-completion-by-word)))
-
-                                        ; mcp-hub
-;;(use-package! mcp-hub
-;;  :config
-;;  ;; (add-hook 'after-init-hook
-;;  ;;           #'mcp-hub-start-all-server)
-;;  (setq mcp-hub-servers
-;;       `(("file-system" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-filesystem" STATE-MCP-FILESYSTEM-PATH )))
-;;         ("web-fetch" . (:command "uvx" :args ("mcp-server-fetch")))
-;;         ("sequential-thinking" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-sequential-thinking")))
-;;         ("arxiv" . (:command "uv" :args ("tool" "run" "arxiv-mcp-server" "--storage-path" STATE-ARXIV-DIR ))
-;;         ("compass" . (:command "npx" :args ("-y" "@liuyoshio/mcp-compass")))
-;;         ("time" . (:command "uvx" :args ("mcp-server-time")) )
-;;         ("gitremote-deepwiki" . (:url "https://mcp.deepwiki.com/sse"))))))
-
                                         ;citar
 (use-package! citar
   :custom
@@ -561,7 +507,7 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
                                                (id . ,(org-roam-id-at-point))))))))
 
                                         ;LSP
-use-package! lsp-mode
+(use-package! lsp-mode
 :hook (lsp-mode . (lambda ()
                     (let ((lsp-keymap-prefix "C-M-l"))
                       (lsp-enable-which-key-integration))))
@@ -579,8 +525,7 @@ use-package! lsp-mode
 (setq lsp-completion-provider :capf)
 (setq lsp-completion-show-detail t)
 (setq lsp-enable-snippet t)
-(setq lsp-modeline-code-action t)
-
+(setq lsp-modeline-code-action t))
 
                                         ; LSP-lang-specific
 ;; (after! lsp-mode
