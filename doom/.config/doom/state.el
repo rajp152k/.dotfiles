@@ -41,27 +41,6 @@
 ;; EXTERNAL TOOLS (System-Specific)
 ;; ============================================================================
 
-;; Mermaid CLI path (for org babel)
-(defconst STATE-MERMAID-CLI
-  (cond
-   (STATE-IS-MACOS "/usr/local/bin/mmdc")
-   (STATE-IS-LINUX "/usr/bin/mmdc")
-   (t "mmdc")))  ; Fallback to PATH lookup
-
-;; Clojure LSP server
-(defconst STATE-CLOJURE-LSP
-  (cond
-   (STATE-IS-MACOS "/opt/homebrew/bin/clojure-lsp")
-   (STATE-IS-LINUX "/usr/bin/clojure-lsp")
-   (t "clojure-lsp")))
-
-;; Java LSP server (commented in original)
-;; (defconst STATE-JDTLS
-;;   (cond
-;;      (STATE-IS-MACOS "/opt/homebrew/bin/jdtls")
-;;      (STATE-IS-LINUX "/usr/bin/jdtls")
-;;      (t "jdtls")))
-
 ;; Whisper.el installation path
 (defconst STATE-WHISPER-PATH (expand-file-name "whisper.el" STATE-TOOLS-DIR))
 

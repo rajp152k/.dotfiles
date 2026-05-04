@@ -50,9 +50,9 @@
 
 ;; Please set your themes directory to 'custom-theme-load-path
 (add-to-list 'custom-theme-load-path
-             (file-name-as-directory "STATE-CUSTOM-THEMES-PATH"))
+             (file-name-as-directory STATE-CUSTOM-THEMES-PATH))
 (add-to-list 'custom-theme-load-path
-             (file-name-as-directory "STATE-BIT-MAGE-THEME"))
+             (file-name-as-directory STATE-BIT-MAGE-THEME))
 
 (setq doom-theme 'bit-mage)
 (load-theme 'bit-mage t)
@@ -207,7 +207,6 @@
                                         ; Babel
 (use-package! org
   :config
-  (setq ob-mermaid-cli-path "STATE-MERMAID-CLI")
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((mermaid . t))))
@@ -562,28 +561,25 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
                                                (id . ,(org-roam-id-at-point))))))))
 
                                         ;LSP
-(use-package! lsp-mode
-  :hook (lsp-mode . (lambda ()
-                      (let ((lsp-keymap-prefix "C-M-l"))
-                        (lsp-enable-which-key-integration))))
-  :config
-  (define-key lsp-mode-map (kbd "C-M-l") lsp-command-map)
-  (setq lsp-enable-symbol-highlighting t)
-  (setq lsp-ui-doc-enable t)
-  (setq lsp-ui-doc-show-with-cursor t)
-  (setq lsp-ui-sideline-enable nil)
-  (setq lsp-diagnostics-provider :none)
-  (setq lsp-headerline-breadcrumb-enable t)
-  (setq lsp-headerline-breadcrumb-enable-diagnostics nil)
-  (setq lsp-signature-auto-activate t)
-  (setq lsp-signature-render-documentation t)
-  (setq lsp-completion-provider :capf)
-  (setq lsp-completion-show-detail t)
-  (setq lsp-enable-snippet t)
-  (setq lsp-modeline-code-action t)
-
-  ;; manual server installs
-  (setq lsp-clojure-custom-server-command (list "bash" "-c" STATE-CLOJURE-LSP)))
+use-package! lsp-mode
+:hook (lsp-mode . (lambda ()
+                    (let ((lsp-keymap-prefix "C-M-l"))
+                      (lsp-enable-which-key-integration))))
+:config
+(define-key lsp-mode-map (kbd "C-M-l") lsp-command-map)
+(setq lsp-enable-symbol-highlighting t)
+(setq lsp-ui-doc-enable t)
+(setq lsp-ui-doc-show-with-cursor t)
+(setq lsp-ui-sideline-enable nil)
+(setq lsp-diagnostics-provider :none)
+(setq lsp-headerline-breadcrumb-enable t)
+(setq lsp-headerline-breadcrumb-enable-diagnostics nil)
+(setq lsp-signature-auto-activate t)
+(setq lsp-signature-render-documentation t)
+(setq lsp-completion-provider :capf)
+(setq lsp-completion-show-detail t)
+(setq lsp-enable-snippet t)
+(setq lsp-modeline-code-action t)
 
 
                                         ; LSP-lang-specific
