@@ -464,8 +464,8 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
                                         ;citar
 (use-package! citar
   :custom
-  (org-cite-global-bibliography '(STATE-ORG-ZOTERO-BIB"))
-  (citar-bibliography '(STATE-ORG-ZOTERO-BIB"))
+  (org-cite-global-bibliography STATE-ORG-ZOTERO-BIB)
+  (citar-bibliography STATE-ORG-ZOTERO-BIB)
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)
   (org-cite-activate-processor 'citar)
