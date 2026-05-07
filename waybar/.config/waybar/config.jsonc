@@ -25,7 +25,7 @@
         "memory",
         "temperature",
         "backlight",
-        "keyboard-state",
+       // "keyboard-state",
        // "sway/language",
         "battery",
         "battery#bat2",
@@ -50,15 +50,15 @@
     //         "default": ""
     //     }
     // },
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
-    },
+    //"keyboard-state": {
+    //    "numlock": false,
+    //    "capslock": false,
+    //    "format": "{name} {icon}",
+    //    "format-icons": {
+    //        "locked": "",
+    //        "unlocked": ""
+    //    }
+    //},
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },

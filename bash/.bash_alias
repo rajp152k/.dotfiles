@@ -1,9 +1,6 @@
 # vi info
 alias info='info --vi-keys'
 
-# screenkey
-alias sk='screenkey --mods-mode emacs --vis-shift --font-color "#00ff00" --opacity 0.4'
-
 #mouseless
 alias ml='doas /home/tbm/go/bin/mouseless --config ~/.config/mouseless/config.yaml'
 
@@ -12,3 +9,7 @@ alias pi0='cd ~/source/scratch/pi && pi'
 
 #polylith
 alias cply='clj -M:poly'
+
+#wshowkeys
+alias wsk='wshowkeys  -F "Terminess Nerd Font 64"  -f "#00FF00"  -s "#AA00AA"  -a bottom  -m 256'
+
