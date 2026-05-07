@@ -217,18 +217,24 @@
   "GTD work-mode tags for fast org tag selection.")
 
 (defvar tbm/org-gtd-tag-faces
-  '(("QA"  . (:foreground "#ffdf5d" :weight bold))
-    ("QR"  . (:foreground "#7dd3fc" :weight bold))
-    ("D"   . (:foreground "#c084fc" :weight bold))
-    ("R"   . (:foreground "#38bdf8" :weight bold))
-    ("P"   . (:foreground "#f97316" :weight bold))
-    ("W"   . (:foreground "#f9a8d4" :weight bold))
-    ("C"   . (:foreground "#34d399" :weight bold))
-    ("M"   . (:foreground "#a3e635" :weight bold))
-    ("REF" . (:foreground "#94a3b8" :weight bold))
-    ("EV"  . (:foreground "#fb7185" :weight bold))
-    ("TK"  . (:foreground "#facc15" :weight bold)))
-  "Faces for GTD work-mode tags.")
+  '(("QA"  . bit-mage-org-gtd-tag-qa)
+    ("QR"  . bit-mage-org-gtd-tag-qr)
+    ("D"   . bit-mage-org-gtd-tag-d)
+    ("R"   . bit-mage-org-gtd-tag-r)
+    ("P"   . bit-mage-org-gtd-tag-p)
+    ("W"   . bit-mage-org-gtd-tag-w)
+    ("C"   . bit-mage-org-gtd-tag-c)
+    ("M"   . bit-mage-org-gtd-tag-m)
+    ("REF" . bit-mage-org-gtd-tag-ref)
+    ("EV"  . bit-mage-org-gtd-tag-ev)
+    ("TK"  . bit-mage-org-gtd-tag-tk))
+  "GTD work-mode tag to Bit Mage face mapping.")
+
+(defvar tbm/org-gtd-priority-faces
+  '((?A . bit-mage-org-gtd-priority-a)
+    (?B . bit-mage-org-gtd-priority-b)
+    (?C . bit-mage-org-gtd-priority-c))
+  "GTD priority to Bit Mage face mapping.")
 
 (use-package! org
    :config
@@ -236,9 +242,7 @@
          org-agenda-files (list STATE-ORG-GTD-HQ)
          org-tag-alist tbm/org-gtd-tag-alist
          org-tag-faces tbm/org-gtd-tag-faces
-         org-priority-faces '((?A . (:foreground "#fb7185" :weight bold))
-                              (?B . (:foreground "#facc15" :weight bold))
-                              (?C . (:foreground "#94a3b8" :weight bold)))
+         org-priority-faces tbm/org-gtd-priority-faces
          org-capture-templates
          '(("q" "Quick Actionable" entry (file+headline STATE-ORG-GTD-HQ "Executions")
             "* TODO [%] %? :QA:\n  %i\n  %a")

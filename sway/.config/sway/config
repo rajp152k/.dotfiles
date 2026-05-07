@@ -19,7 +19,8 @@ client.focused_inactive  #333333CC #222222CC #FFFFFF #001100 #001100CC
 client.unfocused         #333333CC #222222CC #FFFFFF #001100 #001100CC
 
 ### Output configuration
-output * bg /usr/share/backgrounds/sway/purple_starry_space.jpg fill
+#output * bg /usr/share/backgrounds/sway/purple_starry_space.jpg fill
+output * bg /usr/share/backgrounds/sway/purple_astral_4k.jpg fill
 # monitors
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 # ouptut names: swaymsg -t get_outputs
