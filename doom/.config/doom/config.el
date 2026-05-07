@@ -202,21 +202,66 @@
 
                                         ; GTD
 
+(defvar tbm/org-gtd-tag-alist
+  '(("QA"  . ?q)  ; Quick Actionable
+    ("QR"  . ?r)  ; Quick Consumable
+    ("D"   . ?d)  ; Deep Study
+    ("R"   . ?R)  ; Research / Recon
+    ("P"   . ?p)  ; Project / Build
+    ("W"   . ?w)  ; Writing / Synthesis
+    ("C"   . ?c)  ; Collaboration
+    ("M"   . ?m)  ; Meditation / Ideation
+    ("REF" . ?f)  ; Reference / Annotation
+    ("EV"  . ?e)  ; Event / Deadline
+    ("TK"  . ?t)) ; Tickler / Deferred
+  "GTD work-mode tags for fast org tag selection.")
+
+(defvar tbm/org-gtd-tag-faces
+  '(("QA"  . (:foreground "#ffdf5d" :weight bold))
+    ("QR"  . (:foreground "#7dd3fc" :weight bold))
+    ("D"   . (:foreground "#c084fc" :weight bold))
+    ("R"   . (:foreground "#38bdf8" :weight bold))
+    ("P"   . (:foreground "#f97316" :weight bold))
+    ("W"   . (:foreground "#f9a8d4" :weight bold))
+    ("C"   . (:foreground "#34d399" :weight bold))
+    ("M"   . (:foreground "#a3e635" :weight bold))
+    ("REF" . (:foreground "#94a3b8" :weight bold))
+    ("EV"  . (:foreground "#fb7185" :weight bold))
+    ("TK"  . (:foreground "#facc15" :weight bold)))
+  "Faces for GTD work-mode tags.")
+
 (use-package! org
    :config
-   (setq org-startup-numerated t)
-   (setq org-agenda-files (list STATE-ORG-GTD-HQ))
-   (setq org-capture-templates
-         '(("e" "Executions" entry (file+headline STATE-ORG-GTD-HQ "Executions")
-            "* TODO [%]  [execute] %?\n  %i\n  %a")
-           ("m" "Meditations" entry (file+headline STATE-ORG-GTD-HQ "Meditations")
-            "* TODO [%]  [meditate] %?\n  %i\n  %a")
-           ("c" "Collaborations" entry (file+headline STATE-ORG-GTD-HQ "Collaborations")
-            "* @ %? w/")
-           ("a" "Annotations" entry (file+headline STATE-ORG-GTD-HQ "Annotations")
-            "* : %?")
-           ("i" "Ingestions" entry (file+headline STATE-ORG-GTD-HQ "Ingestions")
-            "* : %?"))))
+   (setq org-startup-numerated t
+         org-agenda-files (list STATE-ORG-GTD-HQ)
+         org-tag-alist tbm/org-gtd-tag-alist
+         org-tag-faces tbm/org-gtd-tag-faces
+         org-priority-faces '((?A . (:foreground "#fb7185" :weight bold))
+                              (?B . (:foreground "#facc15" :weight bold))
+                              (?C . (:foreground "#94a3b8" :weight bold)))
+         org-capture-templates
+         '(("q" "Quick Actionable" entry (file+headline STATE-ORG-GTD-HQ "Executions")
+            "* TODO [%] %? :QA:\n  %i\n  %a")
+           ("d" "Deep Study" entry (file+headline STATE-ORG-GTD-HQ "Executions")
+            "* TODO [%] %? :D:\n  %i\n  %a")
+           ("r" "Quick Consumable" entry (file+headline STATE-ORG-GTD-HQ "Ingestions")
+            "* %? :QR:\n  %i\n  %a")
+           ("R" "Research / Recon" entry (file+headline STATE-ORG-GTD-HQ "Executions")
+            "* TODO [%] %? :R:\n  %i\n  %a")
+           ("p" "Project / Build" entry (file+headline STATE-ORG-GTD-HQ "Executions")
+            "* TODO [%] %? :P:\n  %i\n  %a")
+           ("w" "Writing / Synthesis" entry (file+headline STATE-ORG-GTD-HQ "Executions")
+            "* TODO [%] %? :W:\n  %i\n  %a")
+           ("m" "Meditation / Ideation" entry (file+headline STATE-ORG-GTD-HQ "Meditations")
+            "* TODO [%] %? :M:\n  %i\n  %a")
+           ("c" "Collaboration" entry (file+headline STATE-ORG-GTD-HQ "Collaborations")
+            "* @ %? w/ :C:")
+           ("a" "Annotation / Reference" entry (file+headline STATE-ORG-GTD-HQ "Annotations")
+            "* %? :REF:\n  %i\n  %a")
+           ("e" "Event / Deadline" entry (file+headline STATE-ORG-GTD-HQ "Ingestions")
+            "* %? :EV:\n  %i\n  %a")
+           ("t" "Tickler / Deferred" entry (file+headline STATE-ORG-GTD-HQ "Executions")
+            "* TODO [%] %? :TK:\n  %i\n  %a"))))
 
 (defun gtd-workspace-archive ()
   "Archive every heading whose TODO state is DONE in all `org-agenda-files`."
