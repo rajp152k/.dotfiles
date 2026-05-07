@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: (comment )
-# uuid:
-# key: comment
-# condition: t
-# --
-
-(comment `%`)

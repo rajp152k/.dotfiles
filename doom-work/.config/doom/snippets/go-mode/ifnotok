@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: if !ok {...}
-# key: ifnotok
-# --
-if !ok {
-    `%`$0
-}
