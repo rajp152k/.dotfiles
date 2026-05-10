@@ -199,21 +199,24 @@
    'org-babel-load-languages
    '((mermaid . t))))
 
+                                        ;mermaid mode
+(use-package! mermaid-mode)
+
 
                                         ; GTD
 
 (defvar tbm/org-gtd-tag-alist
-  '(("QA"  . ?q)  ; Quick Actionable
-    ("QR"  . ?r)  ; Quick Consumable
-    ("D"   . ?d)  ; Deep Study
-    ("R"   . ?R)  ; Research / Recon
-    ("P"   . ?p)  ; Project / Build
-    ("W"   . ?w)  ; Writing / Synthesis
-    ("C"   . ?c)  ; Collaboration
-    ("M"   . ?m)  ; Meditation / Ideation
-    ("REF" . ?f)  ; Reference / Annotation
-    ("EV"  . ?e)  ; Event / Deadline
-    ("TK"  . ?t)) ; Tickler / Deferred
+  '(("QA"  . ?q)                        ; Quick Actionable
+    ("QR"  . ?r)                        ; Quick Consumable
+    ("D"   . ?d)                        ; Deep Study
+    ("R"   . ?R)                        ; Research / Recon
+    ("P"   . ?p)                        ; Project / Build
+    ("W"   . ?w)                        ; Writing / Synthesis
+    ("C"   . ?c)                        ; Collaboration
+    ("M"   . ?m)                        ; Meditation / Ideation
+    ("REF" . ?f)                        ; Reference / Annotation
+    ("EV"  . ?e)                        ; Event / Deadline
+    ("TK"  . ?t))                       ; Tickler / Deferred
   "GTD work-mode tags for fast org tag selection.")
 
 (defvar tbm/org-gtd-tag-faces
@@ -237,13 +240,13 @@
   "GTD priority to Bit Mage face mapping.")
 
 (use-package! org
-   :config
-   (setq org-startup-numerated t
-         org-agenda-files (list STATE-ORG-GTD-HQ)
-         org-tag-alist tbm/org-gtd-tag-alist
-         org-tag-faces tbm/org-gtd-tag-faces
-         org-priority-faces tbm/org-gtd-priority-faces
-         org-capture-templates
+  :config
+  (setq org-startup-numerated t
+        org-agenda-files (list STATE-ORG-GTD-HQ)
+        org-tag-alist tbm/org-gtd-tag-alist
+        org-tag-faces tbm/org-gtd-tag-faces
+        org-priority-faces tbm/org-gtd-priority-faces
+        org-capture-templates
          '(("q" "Quick Actionable" entry (file+headline STATE-ORG-GTD-HQ "Executions")
             "* TODO [%] %? :QA:\n  %i\n  %a")
            ("d" "Deep Study" entry (file+headline STATE-ORG-GTD-HQ "Executions")
