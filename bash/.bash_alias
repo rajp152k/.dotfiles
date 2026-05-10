@@ -13,3 +13,6 @@ alias cply='clj -M:poly'
 #wshowkeys
 alias wsk='wshowkeys  -F "Terminess Nerd Font 64"  -f "#00FF00"  -s "#AA00AA"  -a bottom  -m 256'
 
+#keyboard-sounds
+alias ksp='kbs-pro'
+
