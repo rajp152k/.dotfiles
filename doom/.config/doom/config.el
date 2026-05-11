@@ -215,8 +215,7 @@
     ("C"   . ?c)                        ; Collaboration
     ("M"   . ?m)                        ; Meditation / Ideation
     ("REF" . ?f)                        ; Reference / Annotation
-    ("EV"  . ?e)                        ; Event / Deadline
-    ("TK"  . ?t))                       ; Tickler / Deferred
+    ("EV"  . ?e))                       ; Event / Deadline
   "GTD work-mode tags for fast org tag selection.")
 
 (defvar tbm/org-gtd-tag-faces
@@ -229,8 +228,7 @@
     ("C"   . bit-mage-org-gtd-tag-c)
     ("M"   . bit-mage-org-gtd-tag-m)
     ("REF" . bit-mage-org-gtd-tag-ref)
-    ("EV"  . bit-mage-org-gtd-tag-ev)
-    ("TK"  . bit-mage-org-gtd-tag-tk))
+    ("EV"  . bit-mage-org-gtd-tag-ev))
   "GTD work-mode tag to Bit Mage face mapping.")
 
 (defvar tbm/org-gtd-priority-faces
@@ -252,7 +250,7 @@
            ("d" "Deep Study" entry (file+headline STATE-ORG-GTD-HQ "Executions")
             "* TODO [%] %? :D:\n  %i\n  %a")
            ("r" "Quick Consumable" entry (file+headline STATE-ORG-GTD-HQ "Ingestions")
-            "* %? :QR:\n  %i\n  %a")
+            "* TODO [%] %? :QR:\n  %i\n  %a")
            ("R" "Research / Recon" entry (file+headline STATE-ORG-GTD-HQ "Executions")
             "* TODO [%] %? :R:\n  %i\n  %a")
            ("p" "Project / Build" entry (file+headline STATE-ORG-GTD-HQ "Executions")
@@ -266,9 +264,10 @@
            ("a" "Annotation / Reference" entry (file+headline STATE-ORG-GTD-HQ "Annotations")
             "* %? :REF:\n  %i\n  %a")
            ("e" "Event / Deadline" entry (file+headline STATE-ORG-GTD-HQ "Ingestions")
-            "* %? :EV:\n  %i\n  %a")
-           ("t" "Tickler / Deferred" entry (file+headline STATE-ORG-GTD-HQ "Executions")
-            "* TODO [%] %? :TK:\n  %i\n  %a"))))
+            "* %? :EV:\n  %i\n  %a"))))
+
+(defun archivable? (todo-state)
+  (member todo-state '("DONE" "NO")))
 
 (defun gtd-workspace-archive ()
   "Archive every heading whose TODO state is DONE in all `org-agenda-files`."
@@ -283,7 +282,7 @@
            (goto-char (point-min))
            ;; collect every DONE heading
            (while (re-search-forward org-heading-regexp nil t)
-             (when (string= (org-get-todo-state) "DONE")
+             (when (funcall #'archivable? (org-get-todo-state))
                (push (point-marker) done-markers)))
            ;; process from bottom to top
            (dolist (mk (sort done-markers
