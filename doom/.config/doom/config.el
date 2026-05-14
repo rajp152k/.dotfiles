@@ -809,6 +809,7 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
       "e c" #'eww-copy-page-url
 
       "n i l" #'org-insert-link
+      "n i d" #'tbm/org-insert-edraw-file-link
       "c e" #'org-cite-insert
       "c o" #'citar-open
       "c d" #'citar-dwim
@@ -906,6 +907,55 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
         "C-M-h r i" (generate-bindable-lambda (insert "#/ "))
         "C-M-h r l" (generate-bindable-lambda (insert "#%"))
         "C-M-h r a" (generate-bindable-lambda (insert "#^ "))))
+
+
+;; Easy Draw (edraw)
+;; In org buffers, insert [[edraw:]] and press C-c C-o to create/edit drawings.
+(defun tbm/org-insert-edraw-file-link ()
+  "Insert an edraw file link into the current Org buffer.
+
+The drawing file is placed under an `edraw/' subdirectory next to the
+current Org file, creating that directory if needed.  The inserted link is
+relative, e.g. [[edraw:file=edraw/foo.edraw.svg]]."
+  (interactive)
+  (unless (derived-mode-p 'org-mode)
+    (user-error "This binding is intended for Org buffers"))
+  (let* ((base-dir (file-name-directory (or buffer-file-name default-directory)))
+         (edraw-dir (expand-file-name "edraw" base-dir))
+         (default-name (format-time-string "%Y%m%d-%H%M%S.edraw.svg"))
+         (name (read-string "Edraw filename: " default-name))
+         (name (if (string-suffix-p ".edraw.svg" name)
+                   name
+                 (concat (file-name-sans-extension name) ".edraw.svg")))
+         (file (expand-file-name name edraw-dir))
+         (relative-file (file-relative-name file base-dir)))
+    (make-directory edraw-dir t)
+    (insert (format "[[edraw:file=%s]]" relative-file))))
+
+(use-package! edraw
+  :commands (edraw))
+
+(use-package! edraw-mode
+  :commands (edraw-mode edraw)
+  :mode ("\\.edraw\\.svg\\'" . edraw-mode)
+  :init
+  (autoload 'edraw "edraw-mode" nil t))
+
+(after! org
+  (require 'edraw-org)
+  (edraw-org-setup-default)
+  (edraw-org-link-image-mode +1)
+  (map! :map org-mode-map
+        :localleader
+        (:prefix ("d" . "draw")
+         "d" #'edraw-org-edit-link
+         "f" #'edraw-org-edit-regular-file-link
+         "i" #'edraw-org-link-image-mode
+         "n" #'tbm/org-insert-edraw-file-link)))
+
+(after! ox
+  (require 'edraw-org)
+  (edraw-org-setup-exporter))
 
 
 ;; obs

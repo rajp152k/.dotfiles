@@ -116,3 +116,8 @@
   :recipe (:host github :repo "natrys/whisper.el" :files ("whisper.el")))
 
 (package! pi-coding-agent)
+
+(package! edraw
+  :recipe (:host github
+           :repo "misohena/el-easydraw"
+           :files ("*.el" "msg")))
