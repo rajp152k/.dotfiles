@@ -1,7 +1,14 @@
-# the keyboard devices it reads from, if no devices are specified, it reads from all
-#devices:
-#  - "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
-# - "/dev/input/by-id/SOME_KEYBOARD_REPLACE_ME-event-kbd"
+# Keyboard devices mouseless reads/grabs.
+# If `devices` is empty/omitted, mouseless reads from all detected keyboards.
+# Some mice, including the Logitech G304, also expose a "keyboard" interface, so
+# exclude it or sway/libinput stops receiving mouse movement/clicks.
+#
+# This setup captures all keyboards, including occasional external keyboards,
+# except the Logitech G304 mouse.
+# Run `doas /home/tbm/go/bin/mouseless --list-devices` to see detected names.
+# Prefer excluding by device name here so it still works if /dev/input/eventN changes.
+devicesExclude:
+  - "Logitech G304"
 
 
 # this is executed when mouseless starts, e.g. useful for setting the keyboard layout
