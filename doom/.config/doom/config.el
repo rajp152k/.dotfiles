@@ -688,6 +688,13 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
 
 (map! :leader
 
+      "t s n j j" (generate-bindable-lambda
+                   (+workspace-switch "meta" t)
+                   (when-let ((win (get-buffer-window (format-time-string "%Y%m%d")
+                                                      (selected-frame))))
+                     (select-window win))
+                   (org-journal-new-entry nil))
+
       "j f" #'evil-jump-forward
       "j b" #'evil-jump-backward
       "y t" #'insert-youtube-video-transcript
