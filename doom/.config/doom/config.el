@@ -245,26 +245,26 @@
         org-tag-faces tbm/org-gtd-tag-faces
         org-priority-faces tbm/org-gtd-priority-faces
         org-capture-templates
-         '(("q" "Quick Actionable" entry (file+headline STATE-ORG-GTD-HQ "Executions")
-            "* TODO [%] %? :QA:\n  %i\n  %a")
-           ("d" "Deep Study" entry (file+headline STATE-ORG-GTD-HQ "Executions")
-            "* TODO [%] %? :D:\n  %i\n  %a")
-           ("r" "Quick Consumable" entry (file+headline STATE-ORG-GTD-HQ "Ingestions")
-            "* TODO [%] %? :QR:\n  %i\n  %a")
-           ("R" "Research / Recon" entry (file+headline STATE-ORG-GTD-HQ "Executions")
-            "* TODO [%] %? :R:\n  %i\n  %a")
-           ("p" "Project / Build" entry (file+headline STATE-ORG-GTD-HQ "Executions")
-            "* TODO [%] %? :P:\n  %i\n  %a")
-           ("w" "Writing / Synthesis" entry (file+headline STATE-ORG-GTD-HQ "Executions")
-            "* TODO [%] %? :W:\n  %i\n  %a")
-           ("m" "Meditation / Ideation" entry (file+headline STATE-ORG-GTD-HQ "Meditations")
-            "* TODO [%] %? :M:\n  %i\n  %a")
-           ("c" "Collaboration" entry (file+headline STATE-ORG-GTD-HQ "Collaborations")
-            "* @ %? w/ :C:")
-           ("a" "Annotation / Reference" entry (file+headline STATE-ORG-GTD-HQ "Annotations")
-            "* %? :REF:\n  %i\n  %a")
-           ("e" "Event / Deadline" entry (file+headline STATE-ORG-GTD-HQ "Ingestions")
-            "* %? :EV:\n  %i\n  %a"))))
+        '(("q" "Quick Actionable" entry (file+headline STATE-ORG-GTD-HQ "Executions")
+           "* TODO [%] %? :QA:\n  %i\n  %a")
+          ("d" "Deep Study" entry (file+headline STATE-ORG-GTD-HQ "Executions")
+           "* TODO [%] %? :D:\n  %i\n  %a")
+          ("r" "Quick Consumable" entry (file+headline STATE-ORG-GTD-HQ "Ingestions")
+           "* TODO [%] %? :QR:\n  %i\n  %a")
+          ("R" "Research / Recon" entry (file+headline STATE-ORG-GTD-HQ "Executions")
+           "* TODO [%] %? :R:\n  %i\n  %a")
+          ("p" "Project / Build" entry (file+headline STATE-ORG-GTD-HQ "Executions")
+           "* TODO [%] %? :P:\n  %i\n  %a")
+          ("w" "Writing / Synthesis" entry (file+headline STATE-ORG-GTD-HQ "Executions")
+           "* TODO [%] %? :W:\n  %i\n  %a")
+          ("m" "Meditation / Ideation" entry (file+headline STATE-ORG-GTD-HQ "Meditations")
+           "* TODO [%] %? :M:\n  %i\n  %a")
+          ("c" "Collaboration" entry (file+headline STATE-ORG-GTD-HQ "Collaborations")
+           "* @ %? w/ :C:")
+          ("a" "Annotation / Reference" entry (file+headline STATE-ORG-GTD-HQ "Annotations")
+           "* %? :REF:\n  %i\n  %a")
+          ("e" "Event / Deadline" entry (file+headline STATE-ORG-GTD-HQ "Ingestions")
+           "* %? :EV:\n  %i\n  %a"))))
 
 (defun archivable? (todo-state)
   (member todo-state '("DONE" "NO")))
@@ -348,7 +348,7 @@
                                         ;Whisper
 
 (defun rk/get-ffmpeg-device ()
-   "Gets the list of devices available to ffmpeg.
+  "Gets the list of devices available to ffmpeg.
 The output of the ffmpeg command is pretty messy, e.g.
    [AVFoundation indev @ 0x7f867f004580] AVFoundation video devices:
    [AVFoundation indev @ 0x7f867f004580] [0] FaceTime HD Camera (Built-in)
@@ -358,8 +358,8 @@ The output of the ffmpeg command is pretty messy, e.g.
    so we need to parse it to get the list of devices.
    The return value contains two lists, one for video devices and one for audio devices.
    Each list contains a list of cons cells, where the car is the device number and the cdr is the device name."
-   (when (not (or STATE-IS-MACOS STATE-IS-LINUX))
-     (message "Whisper device detection may require platform-specific adjustments"))
+  (when (not (or STATE-IS-MACOS STATE-IS-LINUX))
+    (message "Whisper device detection may require platform-specific adjustments"))
 
   (let ((lines (string-split (shell-command-to-string "ffmpeg -list_devices true -f avfoundation -i dummy || true") "\n")))
     (cl-loop with at-video-devices = nil
@@ -559,24 +559,24 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
 
                                         ;LSP
 (use-package! lsp-mode
-:hook (lsp-mode . (lambda ()
-                    (let ((lsp-keymap-prefix "C-M-l"))
-                      (lsp-enable-which-key-integration))))
-:config
-(define-key lsp-mode-map (kbd "C-M-l") lsp-command-map)
-(setq lsp-enable-symbol-highlighting t)
-(setq lsp-ui-doc-enable t)
-(setq lsp-ui-doc-show-with-cursor t)
-(setq lsp-ui-sideline-enable nil)
-(setq lsp-diagnostics-provider :none)
-(setq lsp-headerline-breadcrumb-enable t)
-(setq lsp-headerline-breadcrumb-enable-diagnostics nil)
-(setq lsp-signature-auto-activate t)
-(setq lsp-signature-render-documentation t)
-(setq lsp-completion-provider :capf)
-(setq lsp-completion-show-detail t)
-(setq lsp-enable-snippet t)
-(setq lsp-modeline-code-action t))
+  :hook (lsp-mode . (lambda ()
+                      (let ((lsp-keymap-prefix "C-M-l"))
+                        (lsp-enable-which-key-integration))))
+  :config
+  (define-key lsp-mode-map (kbd "C-M-l") lsp-command-map)
+  (setq lsp-enable-symbol-highlighting t)
+  (setq lsp-ui-doc-enable t)
+  (setq lsp-ui-doc-show-with-cursor t)
+  (setq lsp-ui-sideline-enable nil)
+  (setq lsp-diagnostics-provider :none)
+  (setq lsp-headerline-breadcrumb-enable t)
+  (setq lsp-headerline-breadcrumb-enable-diagnostics nil)
+  (setq lsp-signature-auto-activate t)
+  (setq lsp-signature-render-documentation t)
+  (setq lsp-completion-provider :capf)
+  (setq lsp-completion-show-detail t)
+  (setq lsp-enable-snippet t)
+  (setq lsp-modeline-code-action t))
 
                                         ; LSP-lang-specific
 ;; (after! lsp-mode
@@ -631,7 +631,7 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
 (after! clojure-ts-mode
   (setq clojure-ts-grammar-recipes
         '((clojure "https://github.com/sogaiu/tree-sitter-clojure.git"
-                   "unstable-20250526")
+           "unstable-20250526")
           (markdown-inline "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
                            "v0.5.2"
                            "tree-sitter-markdown-inline/src")
@@ -710,7 +710,7 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
                                     repo commit-code)))
                        (magit-run-git "push"))
                    (error
-                    (message "failed syncing %s: %s" repo err)))))))
+                    (message "failed syncing %s: %s" repo err))))))
 
       "j f" #'evil-jump-forward
       "j b" #'evil-jump-backward
@@ -745,18 +745,18 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
       "m o h h" (generate-bindable-lambda
                  (doom/set-frame-opacity 95 (list (selected-frame))))
 
-     ;; "m p s" #'python-shell-send-statement
-     ;; "m p r" #'python-shell-send-region
-     ;; "m p p" #'+python/open-ipython-repl
-     ;; "m p f" #'python-shell-send-file
-     ;; "m p k" #'python-eldoc-at-point
+      ;; "m p s" #'python-shell-send-statement
+      ;; "m p r" #'python-shell-send-region
+      ;; "m p p" #'+python/open-ipython-repl
+      ;; "m p f" #'python-shell-send-file
+      ;; "m p k" #'python-eldoc-at-point
 
-     ;; "m h h" #'run-hy
-     ;; "m h s" #'hy-shell-eval-last-sexp
-     ;; "m h r" #'hy-shell-eval-region
-     ;; "m h c" #'hy-shell-eval-current-form
-     ;; "m h b" #'hy-shell-eval-buffer
-     ;; "m h k" #'hy-describe-thing-at-point
+      ;; "m h h" #'run-hy
+      ;; "m h s" #'hy-shell-eval-last-sexp
+      ;; "m h r" #'hy-shell-eval-region
+      ;; "m h c" #'hy-shell-eval-current-form
+      ;; "m h b" #'hy-shell-eval-buffer
+      ;; "m h k" #'hy-describe-thing-at-point
 
       "m c c" #'cider-eval-sexp-at-point
       "m e f" #'cider-eval-file
@@ -798,8 +798,8 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
       "o g w" #'gtd-workspace
       "o g a" #'gtd-workspace-archive
 
-      "e h s b"  (generate-bindable-lambda
-                  (find-file "STATE-BIT-MAGE-DIR/content/scroll/index.md"))
+      "e h s b" (generate-bindable-lambda
+                 (find-file "STATE-BIT-MAGE-DIR/content/scroll/index.md"))
 
       "e h b" (generate-bindable-lambda
                (setq easy-hugo-basedir  STATE-BIT-MAGE-DIR
@@ -807,7 +807,7 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
                (easy-hugo))
 
       "e h s c" (generate-bindable-lambda
-                 (find-file "STATE-COGNWARE-DIR/content/scroll/index.md")) 
+                 (find-file "STATE-COGNWARE-DIR/content/scroll/index.md"))
 
       "e h c" (generate-bindable-lambda
                (setq easy-hugo-basedir  "STATE-COGNWARE-DIR"
@@ -894,26 +894,26 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
       
       "i g p s" #'sanitize-perplexity-citations
 
-      "i g a J o" (gptel-prompt-lambda "Outline" "*:Jargonize"))
+      "i g a J o" (gptel-prompt-lambda "Outline" "*:Jargonize")) 
 
 
 ;; .. the home row ..
 (map! :map evil-insert-state-map
-      :prefix "C-M-i"
-      "q" (generate-bindable-lambda (insert "`"))
-      "w" (generate-bindable-lambda (insert "~"))
-      "f" (generate-bindable-lambda (insert "%"))
-      "d" (generate-bindable-lambda (insert "$"))
-      "h" (generate-bindable-lambda (insert "#"))
-      "m" (generate-bindable-lambda (insert "*"))
-      "r" (generate-bindable-lambda (insert "@"))
-      "a" (generate-bindable-lambda (insert "&"))
-      "o" (generate-bindable-lambda (insert "!"))
-      "p" (generate-bindable-lambda (insert "+"))
-      "c" (generate-bindable-lambda (insert "^"))
-      "n" (generate-bindable-lambda (insert "-"))
-      "u" (generate-bindable-lambda (insert "_"))
-      "e" (generate-bindable-lambda (insert "=")))
+:prefix "C-M-i"
+"q" (generate-bindable-lambda (insert "`"))
+"w" (generate-bindable-lambda (insert "~"))
+"f" (generate-bindable-lambda (insert "%"))
+"d" (generate-bindable-lambda (insert "$"))
+"h" (generate-bindable-lambda (insert "#"))
+"m" (generate-bindable-lambda (insert "*"))
+"r" (generate-bindable-lambda (insert "@"))
+"a" (generate-bindable-lambda (insert "&"))
+"o" (generate-bindable-lambda (insert "!"))
+"p" (generate-bindable-lambda (insert "+"))
+"c" (generate-bindable-lambda (insert "^"))
+"n" (generate-bindable-lambda (insert "-"))
+"u" (generate-bindable-lambda (insert "_"))
+"e" (generate-bindable-lambda (insert "=")))
 
 (after! eshell
   (map! :map eshell-mode-map
@@ -937,10 +937,9 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
 ;; In org buffers, insert [[edraw:]] and press C-c C-o to create/edit drawings.
 (defun tbm/org-insert-edraw-file-link ()
   "Insert an edraw file link into the current Org buffer.
-
-The drawing file is placed under an `edraw/' subdirectory next to the
-current Org file, creating that directory if needed.  The inserted link is
-relative, e.g. [[edraw:file=edraw/foo.edraw.svg]]."
+    The drawing file is placed under an `edraw/' subdirectory next to the
+    current Org file, creating that directory if needed.  The inserted link is
+    relative, e.g. [[edraw:file=edraw/foo.edraw.svg]]."
   (interactive)
   (unless (derived-mode-p 'org-mode)
     (user-error "This binding is intended for Org buffers"))
@@ -972,10 +971,10 @@ relative, e.g. [[edraw:file=edraw/foo.edraw.svg]]."
   (map! :map org-mode-map
         :localleader
         (:prefix ("d" . "draw")
-         "d" #'edraw-org-edit-link
-         "f" #'edraw-org-edit-regular-file-link
-         "i" #'edraw-org-link-image-mode
-         "n" #'tbm/org-insert-edraw-file-link)))
+                 "d" #'edraw-org-edit-link
+                 "f" #'edraw-org-edit-regular-file-link
+                 "i" #'edraw-org-link-image-mode
+                 "n" #'tbm/org-insert-edraw-file-link)))
 
 (after! ox
   (require 'edraw-org)
