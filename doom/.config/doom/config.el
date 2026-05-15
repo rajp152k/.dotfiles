@@ -697,21 +697,61 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
 
       "s a" (generate-bindable-lambda
              (evil-write-all nil)
-             (dolist (repo (cl-remove-if-not
-                            #'file-directory-p
-                            (directory-files STATE-ORG-DIR t "^[^.]" t)))
-               (let ((default-directory repo))
-                 (message "syncing %s" repo)
-                 (condition-case err
+             (let* ((popup-buffer " *state-org-sync*")
+                    (log "Starting sync...\n"))
+               (require 'posframe)
+
+               (cl-labels
+                   ((show ()
+                      (posframe-show
+                       popup-buffer
+                       :string log
+                       :poshandler #'posframe-poshandler-frame-center
+                       :width 80
+                       :height 14 
+                       :internal-border-width 12
+                       :internal-border-color (face-background 'mode-line)
+                       :background-color (face-background 'tooltip)
+                       :foreground-color (face-foreground 'tooltip))
+                      ;; Force Emacs to draw/update the posframe now.
+                      (redisplay t))
+
+                    (append-log (fmt &rest args)
+                      (setq log (concat log (apply #'format fmt args) "\n"))
+                      (show)))
+
+                 (unwind-protect
                      (progn
-                       (magit-stage-modified t)
-                       (let ((commit-code (magit-run-git "commit" "-m" "updates")))
-                         (unless (zerop commit-code)
-                           (message "commit skipped/failed for %s, code: %s"
-                                    repo commit-code)))
-                       (magit-run-git "push"))
-                   (error
-                    (message "failed syncing %s: %s" repo err))))))
+                       (show)
+
+                       (dolist (repo (cl-remove-if-not
+                                      #'file-directory-p
+                                      (directory-files STATE-ORG-DIR t "^[^.]" t)))
+                         (let ((default-directory repo))
+                           (append-log "syncing %s" repo)
+
+                           (condition-case err
+                               (progn
+                                 (magit-stage-modified t)
+
+                                 (let ((commit-code
+                                        (magit-run-git "commit" "-m" "updates")))
+                                   (unless (zerop commit-code)
+                                     (append-log "commit skipped/failed for %s, code: %s"
+                                                 repo commit-code)))
+
+                                 (append-log "pushing %s" repo)
+                                 (magit-run-git "push")
+
+                                 (append-log "done %s" repo))
+
+                             (error
+                              (append-log "failed syncing %s: %s" repo err)))))
+
+                       (append-log "All done.")
+                       (sit-for 1.5))
+
+                   (posframe-hide popup-buffer))))) 
 
       "j f" #'evil-jump-forward
       "j b" #'evil-jump-backward
