@@ -696,6 +696,7 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
                    (org-journal-new-entry nil))
 
       "s a" (generate-bindable-lambda
+             (evil-write-all nil)
              (dolist (repo (cl-remove-if-not
                             #'file-directory-p
                             (directory-files STATE-ORG-DIR t "^[^.]" t)))
