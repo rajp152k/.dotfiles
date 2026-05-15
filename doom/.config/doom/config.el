@@ -695,6 +695,23 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
                      (select-window win))
                    (org-journal-new-entry nil))
 
+      "s a" (generate-bindable-lambda
+             (dolist (repo (cl-remove-if-not
+                            #'file-directory-p
+                            (directory-files STATE-ORG-DIR t "^[^.]" t)))
+               (let ((default-directory repo))
+                 (message "syncing %s" repo)
+                 (condition-case err
+                     (progn
+                       (magit-stage-modified t)
+                       (let ((commit-code (magit-run-git "commit" "-m" "updates")))
+                         (unless (zerop commit-code)
+                           (message "commit skipped/failed for %s, code: %s"
+                                    repo commit-code)))
+                       (magit-run-git "push"))
+                   (error
+                    (message "failed syncing %s: %s" repo err)))))))
+
       "j f" #'evil-jump-forward
       "j b" #'evil-jump-backward
       "y t" #'insert-youtube-video-transcript
