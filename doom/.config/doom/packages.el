@@ -99,9 +99,6 @@
 (package! md-babel
   :recipe  (:host github :repo "md-babel/md-babel.el"))
 
-(package! uv-mode
-  :recipe  (:host github :repo "z80dev/uv-mode"))
-
 (package! kubernetes)
 (package! kubernetes-evil)
 
@@ -121,3 +118,7 @@
   :recipe (:host github
            :repo "misohena/el-easydraw"
            :files ("*.el" "msg")))
+
+(package! uv
+  :recipe (:host github
+           :repo "rajp152k/uv.el"))

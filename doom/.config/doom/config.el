@@ -695,6 +695,10 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
                      (select-window win))
                    (org-journal-new-entry nil))
 
+      "t s n r f" (generate-bindable-lambda
+                   (+workspace-switch "roam" t)
+                   (org-roam-node-find))
+
       "s a" (generate-bindable-lambda
              (evil-write-all nil)
              (let* ((popup-buffer " *state-org-sync*")
@@ -786,6 +790,8 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
       "m o h h" (generate-bindable-lambda
                  (doom/set-frame-opacity 95 (list (selected-frame))))
 
+      "p u v" #'uv
+
       ;; "m p s" #'python-shell-send-statement
       ;; "m p r" #'python-shell-send-region
       ;; "m p p" #'+python/open-ipython-repl
@@ -840,7 +846,7 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
       "o g a" #'gtd-workspace-archive
 
       "e h s b" (generate-bindable-lambda
-                 (find-file "STATE-BIT-MAGE-DIR/content/scroll/index.md"))
+                 (find-file (format "%s/%s" STATE-BIT-MAGE-DIR "content/scroll/index.md")))
 
       "e h b" (generate-bindable-lambda
                (setq easy-hugo-basedir  STATE-BIT-MAGE-DIR
@@ -848,10 +854,10 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
                (easy-hugo))
 
       "e h s c" (generate-bindable-lambda
-                 (find-file "STATE-COGNWARE-DIR/content/scroll/index.md"))
+                 (find-file (format "%s/%s" STATE-COGNWARE-DIR "content/scroll/index.md")))
 
       "e h c" (generate-bindable-lambda
-               (setq easy-hugo-basedir  "STATE-COGNWARE-DIR"
+               (setq easy-hugo-basedir "STATE-COGNWARE-DIR"
                      easy-hugo-postdir "content/posts/")
                (easy-hugo))
 
