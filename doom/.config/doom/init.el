@@ -104,7 +104,7 @@
        (eval +overlay)     ; run code, run (also, repls)
        (lookup +dictionary +offline +docsets)              ; navigate your code and its documentation
        (lsp +peek)               ; M-x vscode
-       magit             ; a git porcelain for Emacs
+       (magit +forge)    ; a git porcelain for Emacs + GitHub/GitLab forge integration
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
        pdf               ; pdf enhancements
