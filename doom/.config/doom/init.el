@@ -27,8 +27,9 @@
        ;;layout            ; auie,ctsrnm is the superior home row
 
        :completion
-       (company +childframe +tng)           ; the ultimate code completion backend
-       ;;(corfu +orderless)  ; complete with cap(f), cape and a flying feather!
+       ;; (company +childframe +tng)
+                                        ; the ultimate code completion backend
+      (corfu +icons +orderless +dabbrev)  ; complete with cap(f), cape and a flying feather!
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        ;;ivy               ; a search engine for love and life
@@ -165,7 +166,7 @@
        ;; plantuml          ; diagrams for confusing people more
        ;;graphviz          ; diagrams for confusing yourself even more
        ;;purescript        ; javascript, but functional
-       (python +lsp +pyright +cython +tree-sitter +uv)            ; beautiful is better than ugly
+       (python +lsp +pyright +cython +uv)            ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        ;; (racket +lsp +xp)            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6

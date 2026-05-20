@@ -122,3 +122,9 @@
 (package! uv
   :recipe (:host github
            :repo "rajp152k/uv.el"))
+
+(package! rail
+  :recipe (:host github
+           :repo "masatoi/Rail"
+           :files ("*.el"))
+  :pin "dd514d75363c48e429563f6b3d75dfe4cdb92e9f")
