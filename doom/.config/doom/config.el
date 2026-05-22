@@ -148,10 +148,14 @@
          (diff (float-time (time-subtract today birth))))
     (insert (concat " " (format "0x%X" (/ diff 86400))))))
 
-(defun time-stamp ()
-  "insert current time stamp"
+(defun tbm/insert-time-stamp ()
+  "Insert the current time stamp at point."
   (interactive)
-  (insert (format "%s" (format-time-string "%Y-%m-%d %H:%M:%S %Z" (current-time)))))
+  (insert (format-time-string "%Y-%m-%d %H:%M:%S %Z" (current-time))))
+
+;; If an old session/customization added the former `time-stamp' helper to
+;; `before-save-hook', remove it. Saving should never insert text implicitly.
+(remove-hook 'before-save-hook #'time-stamp)
 
 (defun hex-ops ()
   "hexify decimal number at point, invoke life hex at count if nil"
@@ -606,6 +610,7 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
         "C-c C-l" #'hy-shell-eval-buffer
         "C-c C-d d"   #'tbm/hy-describe
         "C-c C-d C-d" #'tbm/hy-describe
+        "C-c C-d r"   #'tbm/hyground-reindex
         "M-." #'xref-find-definitions
         "M-," #'xref-go-back))
 
@@ -638,6 +643,20 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
       (call-interactively #'lsp-describe-thing-at-point)
     (lsp-deferred)
     (message "Starting HyGround LSP; retry docs after it connects")))
+
+(defun tbm/hyground-reindex ()
+  "Force HyGround to rebuild the current workspace index."
+  (interactive)
+  (if (and (bound-and-true-p lsp-mode)
+           (fboundp 'lsp-workspaces)
+           (lsp-workspaces)
+           (fboundp 'lsp-send-execute-command))
+      (progn
+        (lsp-send-execute-command "hyground.reindexWorkspace"
+                                  (vector (lsp--buffer-uri)))
+        (message "HyGround reindex requested"))
+    (lsp-deferred)
+    (message "Starting HyGround LSP; retry reindex after it connects")))
 
                                         ; wakatime
 (use-package! wakatime-mode
@@ -846,6 +865,7 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
       "m h b" #'hy-shell-eval-buffer
       "m h f" #'hy-shell-eval-buffer
       "m h k" #'tbm/hy-describe
+      "m h I" #'tbm/hyground-reindex
       "m h j" #'xref-find-definitions
       "m h p" #'xref-go-back
       "m h z" #'run-hy
