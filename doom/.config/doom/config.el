@@ -616,12 +616,13 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
 
 (after! lsp-mode
   (defcustom tbm/hyground-command
-    '("uv" "--directory" "/home/tbm/source/vcops/hylang/HyGround-Dev/HyGround" "run" "hyground")
+    '("uvx" "--from" "git+https://github.com/rajp152k/HyGround" "hyground")
     "Command used to start HyGround, the Hy language server."
     :type '(repeat string))
-  ;; Force the local development server on reload even if the defcustom was already bound.
+  ;; Run the latest HyGround from GitHub. HyGround resolves imports against the
+  ;; active workspace root and its local .venv; the server itself runs via uvx.
   (setq tbm/hyground-command
-        '("uv" "--directory" "/home/tbm/source/vcops/hylang/HyGround-Dev/HyGround" "run" "hyground"))
+        '("uvx" "--from" "git+https://github.com/rajp152k/HyGround" "hyground"))
 
   (add-to-list 'lsp-language-id-configuration '(hy-mode . "hy"))
 
