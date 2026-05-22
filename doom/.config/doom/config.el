@@ -589,10 +589,10 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
   (add-hook 'hy-mode-hook #'uv-mode-auto-activate-hook))
 
                                         ; Hy LSP + inferior Hy
-;; Hyuga owns IDE features (completion, hover/docs, jump-to-definition).
+;; HyGround owns IDE features (completion, hover/docs, jump-to-definition).
 ;; hy-mode's inferior Hy shell owns interactive eval and the REPL.
 (after! hy-mode
-  ;; `jedhy' is stale with modern Hy. Don't autostart it; use Hyuga LSP instead.
+  ;; `jedhy' is stale with modern Hy. Don't autostart it; use HyGround LSP instead.
   (setq hy-jedhy--enable? nil)
   (add-hook 'hy-mode-hook #'lsp-deferred)
   ;; Keep hy-mode's stock eval keys on inferior Hy; docs/jump use LSP.
@@ -610,26 +610,26 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
         "M-," #'xref-go-back))
 
 (after! lsp-mode
-  (defcustom tbm/hyuga-command '("uvx" "hyuga")
-    "Command used to start Hyuga, the Hy language server.
-Hyuga itself runs in uvx's tool environment, while Hyuga indexes project-local
-libraries from the workspace .venv via its own venv discovery."
+  (defcustom tbm/hyground-command
+    '("uv" "--directory" "/home/tbm/source/vcops/hylang/HyGround-Dev/HyGround" "run" "hyground")
+    "Command used to start HyGround, the Hy language server."
     :type '(repeat string))
-  ;; Force the local preference on reload even if the defcustom was already bound.
-  (setq tbm/hyuga-command '("uvx" "hyuga"))
+  ;; Force the local development server on reload even if the defcustom was already bound.
+  (setq tbm/hyground-command
+        '("uv" "--directory" "/home/tbm/source/vcops/hylang/HyGround-Dev/HyGround" "run" "hyground"))
 
   (add-to-list 'lsp-language-id-configuration '(hy-mode . "hy"))
 
   (lsp-register-client
    (make-lsp-client
-    :new-connection (lsp-stdio-connection (lambda () tbm/hyuga-command))
+    :new-connection (lsp-stdio-connection (lambda () tbm/hyground-command))
     :major-modes '(hy-mode)
     :activation-fn (lsp-activate-on "hy")
-    :priority 1
-    :server-id 'hyuga)))
+    :priority 20
+    :server-id 'hyground)))
 
 (defun tbm/hy-describe ()
-  "Describe symbol at point using Hyuga LSP."
+  "Describe symbol at point using HyGround LSP."
   (interactive)
   (if (and (bound-and-true-p lsp-mode)
            (fboundp 'lsp-workspaces)
@@ -637,7 +637,7 @@ libraries from the workspace .venv via its own venv discovery."
            (fboundp 'lsp-describe-thing-at-point))
       (call-interactively #'lsp-describe-thing-at-point)
     (lsp-deferred)
-    (message "Starting Hyuga LSP; retry docs after it connects")))
+    (message "Starting HyGround LSP; retry docs after it connects")))
 
                                         ; wakatime
 (use-package! wakatime-mode
