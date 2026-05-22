@@ -12,6 +12,11 @@ set $menu wmenu-run -l 10 -ib -p "     -=>" -N 001100EE -n 00FF00FF -M 001100EE 
 ### Font Configuration
 font pango:GohuFontuni14NerdFont 14
 
+### Pi completion overlay
+# Foot starts this window as floating immediately, so it does not reflow tiles.
+no_focus [app_id="pi-done-notify"]
+for_window [app_id="pi-done-notify"] floating enable, border none, resize set width 120 px height 80 px, sticky enable, opacity 0.95
+
 ### Transparency Configuration
 # Window colors with alpha (last 2 digits = transparency)
 client.focused           #00FF00CC #000100EE #00FF00 #00FF00 #00FF00CC
