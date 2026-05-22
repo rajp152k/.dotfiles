@@ -5,8 +5,7 @@
 # condition: t
 # --
 
-(require $1 :readers *)
-(require $1 *)
+(require $1 :readers * :macros *)
 (import $1 *)
 
 `%`
