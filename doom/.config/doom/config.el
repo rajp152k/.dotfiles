@@ -770,8 +770,8 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
                        popup-buffer
                        :string log
                        :poshandler #'posframe-poshandler-frame-center
-                       :width 80
-                       :height 14 
+                       :width 64
+                       :height 24
                        :internal-border-width 12
                        :internal-border-color (face-background 'mode-line)
                        :background-color (face-background 'tooltip)
@@ -802,6 +802,12 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
                                    (unless (zerop commit-code)
                                      (append-log "commit skipped/failed for %s, code: %s"
                                                  repo commit-code)))
+
+                                 (append-log "fetching %s" repo)
+                                 (magit-run-git "fetch" "--all" "--prune")
+
+                                 (append-log "pulling %s" repo)
+                                 (magit-run-git "pull" "--rebase" "--autostash")
 
                                  (append-log "pushing %s" repo)
                                  (magit-run-git "push")

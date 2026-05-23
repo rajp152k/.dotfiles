@@ -1,8 +1,8 @@
 {
-  "lastChangelogVersion": "0.73.1",
+  "lastChangelogVersion": "0.75.5",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.5",
-  "defaultThinkingLevel": "minimal",
+  "defaultThinkingLevel": "xhigh",
   "steeringMode": "one-at-a-time",
   "followUpMode": "one-at-a-time",
   "transport": "sse",
