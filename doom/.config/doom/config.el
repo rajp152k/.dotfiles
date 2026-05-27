@@ -659,11 +659,6 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
     (lsp-deferred)
     (message "Starting HyGround LSP; retry reindex after it connects")))
 
-                                        ; wakatime
-(use-package! wakatime-mode
-  :config
-  (global-wakatime-mode))
-
                                         ; ultra Scroll
 
 (use-package! ultra-scroll
@@ -745,18 +740,27 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
 
 ;; leader maps
 
+(defmacro tbm/in-workspace (workspace &rest body)
+  `(generate-bindable-lambda
+    (+workspace-switch ,workspace t)
+    ,@body))
+
 (map! :leader
 
-      "t s n j j" (generate-bindable-lambda
-                   (+workspace-switch "meta" t)
+     "tsnjj" (tbm/in-workspace
+                   "meta"
                    (when-let ((win (get-buffer-window (format-time-string "%Y%m%d")
                                                       (selected-frame))))
                      (select-window win))
                    (org-journal-new-entry nil))
 
-      "t s n r f" (generate-bindable-lambda
-                   (+workspace-switch "roam" t)
+      "tsnrf" (tbm/in-workspace
+                   "roam"
                    (org-roam-node-find))
+
+      "tsnn" (tbm/in-workspace
+                 "meta"
+                 (org-capture))
 
       "s a" (generate-bindable-lambda
              (evil-write-all nil)

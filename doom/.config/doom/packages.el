@@ -105,8 +105,6 @@
 (package! eca
   :recipe (:host github :repo "editor-code-assistant/eca-emacs" :files ("*.el")))
 
-(package! wakatime-mode)
-
 (package! rainbow-delimiters)
 
 (package! whisper
