@@ -73,6 +73,10 @@ exec swayidle -w \
 
     bindsym Ctrl+Shift+l exec swaylock -f -C /home/tbm/.config/sway/swaylock-config
 
+    # Disable/enable all pointer devices (mouse + touchpad) and hide/show cursor
+    bindsym $mod+m seat seat0 hide_cursor 100, input type:pointer events disabled, input type:touchpad events disabled
+    bindsym $mod+Shift+m seat seat0 hide_cursor 0, input type:pointer events enabled, input type:touchpad events enabled
+
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
