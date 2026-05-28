@@ -12,6 +12,12 @@ set $menu wmenu-run -l 10 -ib -p "     -=>" -N 001100EE -n 00FF00FF -M 001100EE 
 ### Font Configuration
 font pango:GohuFontuni14NerdFont 14
 
+### Desktop portal / systemd environment
+# Keep user systemd + D-Bus activation environment in sync with the current Sway session.
+# Needed by xdg-desktop-portal-wlr/OBS PipeWire screen capture.
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_SESSION_DESKTOP
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_SESSION_DESKTOP
+
 ### Pi completion overlay
 # Foot starts this window as floating immediately, so it does not reflow tiles.
 no_focus [app_id="pi-done-notify"]
@@ -24,8 +30,7 @@ client.focused_inactive  #333333CC #222222CC #FFFFFF #001100 #001100CC
 client.unfocused         #333333CC #222222CC #FFFFFF #001100 #001100CC
 
 ### Output configuration
-#output * bg /usr/share/backgrounds/sway/purple_starry_space.jpg fill
-output * bg /usr/share/backgrounds/sway/purple_astral_4k.jpg fill
+output * bg /usr/share/backgrounds/sway/earth-space.jpg fill
 # monitors
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 # ouptut names: swaymsg -t get_outputs
