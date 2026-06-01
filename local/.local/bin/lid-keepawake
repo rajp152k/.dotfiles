@@ -1,0 +1,54 @@
+#!/bin/sh
+# lid-keepawake — toggle logind lid-switch handling at runtime via a
+# `handle-lid-switch` block inhibitor held by a transient systemd --user unit.
+#
+#   on      acquire inhibitor -> lid close is IGNORED in every power state
+#                                (laptop stays awake, like the docked case)
+#   off     release inhibitor -> default logind behaviour
+#                                (suspend when undocked, ignore when docked)
+#   toggle  flip between on/off
+#   status  print on|off  (exit 0 when on, 1 when off)
+#   waybar  emit one JSON line for the Waybar custom/lid module
+#
+# Why a transient unit: `systemctl --user stop` kills the whole unit cgroup,
+# so systemd-inhibit AND its `sleep` child both die and the inhibitor fd is
+# fully closed. No PID files, no orphaned sleep, no leaked lock.
+set -u
+
+UNIT="lid-keepawake"
+WHO="lid-keepawake"
+WHY="User toggled keep-awake on lid close"
+WAYBAR_SIGNAL=8   # Waybar custom/lid module listens on SIGRTMIN+8
+
+is_on() { systemctl --user is-active --quiet "$UNIT"; }
+
+refresh_bar() { pkill -RTMIN+"$WAYBAR_SIGNAL" waybar 2>/dev/null || true; }
+
+start() {
+	is_on && return 0
+	systemctl --user reset-failed "$UNIT" 2>/dev/null || true
+	systemd-run --user --quiet --collect --unit="$UNIT" \
+		--description="Keep system awake on lid close (logind lid-switch inhibitor)" \
+		systemd-inhibit --what=handle-lid-switch --who="$WHO" --why="$WHY" \
+		--mode=block sleep infinity
+}
+
+stop() {
+	systemctl --user stop "$UNIT" 2>/dev/null || true
+	systemctl --user reset-failed "$UNIT" 2>/dev/null || true
+}
+
+case "${1:-status}" in
+	on)     start; refresh_bar ;;
+	off)    stop;  refresh_bar ;;
+	toggle) if is_on; then stop; else start; fi; refresh_bar ;;
+	status) if is_on; then echo on; else echo off; exit 1; fi ;;
+	waybar)
+		if is_on; then
+			printf '{"text":"lid: awake","alt":"on","class":"active","tooltip":"Lid: STAY AWAKE — lid switch ignored in all power states"}\n'
+		else
+			printf '{"text":"lid: sleep","alt":"off","class":"default","tooltip":"Lid: default — suspend when undocked, stay awake when docked / external display"}\n'
+		fi
+		;;
+	*) echo "usage: ${0##*/} {on|off|toggle|status|waybar}" >&2; exit 2 ;;
+esac
