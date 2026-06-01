@@ -5,13 +5,13 @@ alias info='info --vi-keys'
 alias ml='doas /home/tbm/go/bin/mouseless --config ~/.config/mouseless/config.yaml'
 
 #pi
-alias pi0='cd ~/source/scratch/pi && pi'
+alias omp0='cd ~/source/scratch/omp && omp'
 
 #polylith
 alias cply='clj -M:poly'
 
 #wshowkeys
-alias wsk='wshowkeys  -F "Terminess Nerd Font 32"  -f "#00FF00"  -s "#AA00AA"  -a bottom  -m 256'
+alias wsk='wshowkeys  -F "Terminess Nerd Font 32"  -f "#00FF00"  -s "#8E44AD"  -a bottom  -m 64'
 
 #keyboard-sounds
 alias ksp='kbs-pro'
