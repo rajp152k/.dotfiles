@@ -17,6 +17,7 @@
     ],
     "modules-right": [
         "mpd",
+        "custom/lid",
         "idle_inhibitor",
         "pulseaudio",
         "network",
@@ -101,6 +102,15 @@
             "activated": "",
             "deactivated": ""
         }
+    },
+    "custom/lid": {
+        "format": "{}",
+        "return-type": "json",
+        "interval": "once",
+        "signal": 8,
+        "tooltip": true,
+        "on-click": "$HOME/.local/bin/lid-keepawake toggle",
+        "exec": "$HOME/.local/bin/lid-keepawake waybar"
     },
     "tray": {
         // "icon-size": 21,

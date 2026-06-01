@@ -94,6 +94,7 @@ button:hover {
 #idle_inhibitor,
 #scratchpad,
 #power-profiles-daemon,
+#custom-lid,
 #mpd {
     padding: 5 10px;
     color: #ffffff;
@@ -272,6 +273,16 @@ label:focus {
 #idle_inhibitor.activated {
     background-color: transparent;
     color: #00FF00;
+}
+
+#custom-lid {
+    background-color: transparent;
+    color: #00FF00;
+}
+
+#custom-lid.active {
+    background-color: transparent;
+    color: #FFB000;
 }
 
 #mpd {
