@@ -77,6 +77,11 @@ exec swayidle -w \
     bindsym $mod+m seat seat0 hide_cursor 100, input type:pointer events disabled, input type:touchpad events disabled
     bindsym $mod+Shift+m seat seat0 hide_cursor 0, input type:pointer events enabled, input type:touchpad events enabled
 
+    # Lid-close behaviour toggle (logind handle-lid-switch inhibitor).
+    # Stay awake on lid close (all power states); +Shift restores default (suspend when undocked).
+    bindsym Ctrl+$mod+s exec /home/tbm/.local/bin/lid-keepawake on
+    bindsym Ctrl+$mod+Shift+s exec /home/tbm/.local/bin/lid-keepawake off
+
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
