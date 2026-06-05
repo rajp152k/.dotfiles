@@ -616,13 +616,15 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
 
 (after! lsp-mode
   (defcustom tbm/hyground-command
-    '("uvx" "--from" "git+https://github.com/rajp152k/HyGround" "hyground")
+    '("uvx" "--from" "git+https://github.com/rajp152k/ThyForce@master#subdirectory=projects/hyground" "hyground")
     "Command used to start HyGround, the Hy language server."
     :type '(repeat string))
-  ;; Run the latest HyGround from GitHub. HyGround resolves imports against the
-  ;; active workspace root and its local .venv; the server itself runs via uvx.
+  ;; HyGround now lives in the ThyForce Polylith monorepo as the `hyground`
+  ;; project (projects/hyground). uvx builds it straight from master and runs the
+  ;; `hyground` console script; the server resolves imports against the active
+  ;; workspace root and its local .venv.
   (setq tbm/hyground-command
-        '("uvx" "--from" "git+https://github.com/rajp152k/HyGround" "hyground"))
+        '("uvx" "--from" "git+https://github.com/rajp152k/ThyForce@master#subdirectory=projects/hyground" "hyground"))
 
   (add-to-list 'lsp-language-id-configuration '(hy-mode . "hy"))
 
